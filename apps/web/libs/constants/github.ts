@@ -1,1 +1,0 @@
-export const repositoryName = 'rezankv.online'
