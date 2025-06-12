@@ -6,6 +6,8 @@ import React from "react";
 import config from "@app/lib/config";
 import { DM_Sans } from 'next/font/google'
 import Head from "next/head";
+import { ThemeProvider,   } from "@app/lib/store/theme";
+import { ThemeToggle } from "./_components/ThemeToggle";
  
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -21,6 +23,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
+  
   return (
     <html lang="en" className={dmSans.className}>
 
@@ -28,7 +33,9 @@ export default function RootLayout({
       <meta name="apple-mobile-web-app-title" content="Reza Nikravesh" />
       </Head>
       <body className=" items-center  bg-background text-foreground flex min-h-screen flex-col">
-        <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 py-8">
+      <ThemeProvider>
+      <>
+      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 py-8">
           <header className="mx-4 flex items-center justify-between">
             <Link href="/">
               <div className="group flex items-center gap-4">
@@ -68,14 +75,7 @@ export default function RootLayout({
               >
                 Posts
               </Link>
-              <button
-
-                className="group cursor-pointer"
-                title="Toggle theme"
-                aria-label="Toggle theme"
-              >
-                <div className="bg-foreground h-4 w-4 rounded duration-200 group-hover:scale-110 group-active:scale-95" />
-              </button>
+      <ThemeToggle/>
             </div>
           </header>
 
@@ -111,7 +111,8 @@ export default function RootLayout({
         </div>
 
         {/* <ScrollRestoration />
-        <Scripts /> */}
+        <Scripts /> */}</>
+      </ThemeProvider>
       </body>
     </html>
   );
