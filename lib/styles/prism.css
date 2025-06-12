@@ -1,0 +1,207 @@
+/* Base styles for light mode */
+pre[class*='language-'] {
+  color: theme('colors.zinc.800');
+  background-color: theme('colors.zinc.50');
+  margin-top: 0rem !important;
+  border-width: 1px;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-color: theme('colors.neutral.300');
+}
+
+/* Dark mode styles */
+:is(.dark pre[class*='language-']) {
+  color: theme('colors.zinc.50');
+  background-color: theme('colors.zinc.900');
+  border-color: theme('colors.neutral.600');
+}
+
+/* Light mode tokens */
+.token.tag,
+.token.class-name,
+.token.selector,
+.token.selector .class,
+.token.selector.class,
+.token.function {
+  color: theme('colors.pink.600');
+}
+
+.token.attr-name,
+.token.keyword,
+.token.rule,
+.token.pseudo-class,
+.token.important {
+  color: theme('colors.blue.600');
+}
+
+.token.module {
+  color: theme('colors.purple.600');
+}
+
+.token.attr-value {
+  color: theme('colors.blue.600');
+}
+
+.token.string {
+  color: theme('colors.orange.600');
+}
+
+.token.class {
+  color: theme('colors.teal.600');
+}
+
+.token.punctuation,
+.token.attr-equals {
+  color: theme('colors.zinc.600');
+}
+
+.token.unit,
+.language-css .token.function {
+  color: theme('colors.sky.600');
+}
+
+.token.comment {
+  color: theme('colors.emerald.600');
+  opacity: 0.7;
+}
+
+.token.property,
+.token.operator,
+.token.combinator {
+  color: theme('colors.zinc.600');
+}
+
+/* Dark mode tokens */
+:is(.dark .token.tag),
+:is(.dark .token.class-name),
+:is(.dark .token.selector),
+:is(.dark .token.selector .class),
+:is(.dark .token.selector.class),
+:is(.dark .token.function) {
+  color: theme('colors.pink.400');
+}
+
+:is(.dark .token.attr-name),
+:is(.dark .token.keyword),
+:is(.dark .token.rule),
+:is(.dark .token.pseudo-class),
+:is(.dark .token.important) {
+  color: theme('colors.blue.300');
+}
+
+:is(.dark .token.module) {
+  color: theme('colors.purple.300');
+}
+
+:is(.dark .token.attr-value) {
+  color: theme('colors.blue.300');
+}
+
+:is(.dark .token.string) {
+  color: theme('colors.orange.300');
+}
+
+:is(.dark .token.class) {
+  color: theme('colors.teal.300');
+}
+
+:is(.dark .token.punctuation),
+:is(.dark .token.attr-equals) {
+  color: theme('colors.zinc.500');
+}
+
+:is(.dark .token.unit),
+:is(.dark .language-css .token.function) {
+  color: theme('colors.sky.200');
+}
+
+:is(.dark .token.comment) {
+  color: theme('colors.emerald.400');
+  opacity: 0.7;
+}
+
+:is(.dark .token.property),
+:is(.dark .token.operator),
+:is(.dark .token.combinator) {
+  color: theme('colors.zinc.400');
+}
+
+/* Code highlight and line styles */
+.code-highlight {
+  float: left;
+  min-width: 100%;
+}
+
+.code-line {
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: -16px;
+  margin-right: -16px;
+  border-left: 4px solid rgba(0, 0, 0, 0);
+  line-height: 1.5rem;
+}
+
+.code-line.inserted {
+  background-color: theme('colors.emerald.100');
+}
+
+:is(.dark .code-line.inserted) {
+  background-color: theme('colors.emerald.900');
+}
+
+.code-line.deleted {
+  background-color: theme('colors.red.100');
+}
+
+:is(.dark .code-line.deleted) {
+  background-color: theme('colors.red.900');
+}
+
+.highlight-line {
+  margin-left: -14px;
+  margin-right: -16px;
+  background-color: theme('colors.zinc.200');
+  border-left: 2px solid theme('colors.amber.500');
+}
+
+:is(.dark .highlight-line) {
+  background-color: theme('colors.zinc.800');
+  border-left: 2px solid theme('colors.amber.400');
+}
+
+.line-number::before {
+  display: inline-block;
+  width: 1rem;
+  text-align: right;
+  margin-right: 16px;
+  margin-left: -8px;
+  color: theme('colors.zinc.500');
+  content: attr(line);
+}
+
+:is(.dark .line-number::before) {
+  color: theme('colors.zinc.500');
+}
+
+.rehype-code-title {
+  margin: 0 !important;
+  display: inline-flex;
+  position: relative;
+  top: 1rem;
+  left: 2rem;
+  background: theme('colors.zinc.200');
+  color: theme('colors.zinc.800');
+  font-family: theme('fontFamily.mono');
+  padding: 0.25rem 1.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  border-top: 4px solid theme('colors.indigo.600');
+  font-size: 0.8rem;
+}
+
+:is(.dark .rehype-code-title) {
+  background: theme('colors.zinc.900');
+  color: theme('colors.zinc.100');
+}

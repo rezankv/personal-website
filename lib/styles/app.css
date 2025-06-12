@@ -1,6 +1,13 @@
+@import './prism.css';
 @import 'tailwindcss';
-
+@plugin "@tailwindcss/typography";
 @custom-variant dark (&:where(.dark, .dark *));
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 
 :root {
   --background: oklch(0.9911 0 0);
