@@ -3,6 +3,7 @@ import ProjectCard from "./_components/ProjectCard";
 import { ArrowRight } from "lucide-react";
 import PostCard from "./_components/PostCard";
 import config from "@app/lib/config";
+import { allPosts } from "@app/.contentlayer/generated";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
 
       <div className="flex flex-col gap-2">
         <span className="mx-4 font-medium">Featured Projects</span>
-        <div className="  flex flex-col gap-4 md:gap-1">
+        <div className="flex flex-col gap-4 md:gap-1">
           {config.projects.map((project, idx) => {
             if (project.featured) {
               return (
@@ -43,11 +44,7 @@ export default function Home() {
 
       <div className="flex flex-col gap-4 md:gap-1">
         <span className="mx-4 font-medium">Latest Posts</span>
-        {[{slug:'/dsa',title:'say my naem',date:new Date().toString()},
-          {slug:'/d2sa',title:'say my naem2',date:new Date().toString()},
-          {slug:'/d33sa',title:'say my naem3',date:new Date().toString()}
-
-        ].slice(0, 3).map((post) => {
+        {allPosts.slice(0, 3).map((post) => {
           return (
             <Link key={post.slug} href={`/posts/${post.slug}`}>
               <PostCard post={post} />

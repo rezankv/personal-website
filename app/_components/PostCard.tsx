@@ -1,7 +1,5 @@
 import { formatDate } from "@app/lib/utils";
-import { ExternalLink } from 'lucide-react';
-
-
+import { ExternalLink } from "lucide-react";
 
 type Post = {
   title: string;

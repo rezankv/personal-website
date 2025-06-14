@@ -1,8 +1,32 @@
-import { formatDate } from "@app/lib/utils"
-import Link from "next/link"
-import React from 'react'
+import { formatDate, formatReadingTime } from "@app/lib/utils";
+import Link from "next/link";
+import { allPosts } from "contentlayer/generated";
+import { notFound } from "next/navigation";
+import { MdxViewer } from "@app/lib/components/MdxViewer";
+// import { MdxViewer } from "@app/lib/components/MdxViewer"
 
-const SinglePostPage = () => {
+export const revalidate = 60;
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  return allPosts.map(({ slug }) => ({
+    slug,
+  }));
+}
+
+const SinglePostPage = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
+  const { slug } = await params;
+  const post = allPosts.find((post) => post.slug === slug);
+
+  if (!post) notFound();
+
+  const readingTime = formatReadingTime(post.body.code);
+
   return (
     <main className="flex flex-col gap-8 p-4">
       <Link
@@ -26,33 +50,24 @@ const SinglePostPage = () => {
         Back to posts
       </Link>
       <section>
-        {/* Title */}
         <h1 className="text-foreground mb-4 text-3xl leading-tight font-bold tracking-tight">
-          {/* {frontmatter.title} */}
-          The Awesome Title
+          {post.title}
         </h1>
 
-        {/* Metadata - author, date, reading time */}
         <div className="text-muted-foreground flex items-center gap-2 text-sm">
-            <time dateTime={new Date().toString()}>
-              {formatDate(new Date().toString())}
-            </time>
-          {/* {frontmatter.date && (
-            <time dateTime={frontmatter.date}>
-              {formatDate(frontmatter.date)}
-            </time>
-          )} */}
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
           <span>•</span>
-          <span>{22} min read</span>
-          {/* <span>{readingTime} min read</span> */}
+          <span>{readingTime} min read</span>
         </div>
       </section>
 
-      <article className="prose dark:prose-invert max-w-none">
-        {/* <Component components={{ CodeBlock }} /> */}
+      <article 
+      className="prose dark:prose-invert "
+      >
+        <MdxViewer content={post.body.code} />
       </article>
     </main>
-  )
-}
+  );
+};
 
-export default SinglePostPage
+export default SinglePostPage;
