@@ -21,6 +21,8 @@
     "baseUrl": ".",
     "paths": {
       "@app/*": ["./*"],
+      "@app/constants": ["./lib/constants/index.ts"],
+      "@app/utils": ["./lib/utils/index.ts"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
