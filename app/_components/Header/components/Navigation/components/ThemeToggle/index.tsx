@@ -1,5 +1,6 @@
 "use client";
 
+// store
 import { useTheme } from "@app/lib/store/theme";
 
 export const ThemeToggle = () => {
@@ -8,6 +9,7 @@ export const ThemeToggle = () => {
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
+  
   return (
     <button
       onClick={toggleTheme}

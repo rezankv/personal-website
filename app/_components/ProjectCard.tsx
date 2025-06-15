@@ -2,9 +2,9 @@ import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 
 type Project = {
-  name: string;
+  title: string;
   description: string;
-  image: string;
+  icon: string;
 };
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -14,12 +14,12 @@ export default function ProjectCard({ project }: { project: Project }) {
         <Image
           width={100}
           height={100}
-          src={project.image}
-          alt={project.name}
+          src={project.icon}
+          alt={project.title}
           className="h-10 w-10 rounded-lg shadow"
         />
         <div className="flex flex-col">
-          <h2 className="text-sm">{project.name}</h2>
+          <h2 className="text-sm">{project.title}</h2>
           <span className="text-muted-foreground text-sm">
             {project.description}
           </span>

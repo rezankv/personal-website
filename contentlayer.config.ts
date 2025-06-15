@@ -8,6 +8,7 @@ export const Post = defineDocumentType(() => ({
     title: { type: "string", required: true },
     slug: { type: "string", required: true },
     date: { type: "date", required: true },
+
   },
   computedFields: {
     url: {
@@ -25,6 +26,10 @@ export const Project = defineDocumentType(() => ({
     title: { type: "string", required: true },
     slug: { type: "string", required: true },
     date: { type: "date", required: true },
+    isFeatured: { type: "boolean", required: true },
+    description: { type: "string", required: true },
+    liveLink: { type: "string", required: true },
+    icon: { type: "string", required: true },
   },
   computedFields: {
     url: {

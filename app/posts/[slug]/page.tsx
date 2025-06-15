@@ -3,7 +3,9 @@ import Link from "next/link";
 import { allPosts } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { MdxViewer } from "@app/lib/components/MdxViewer";
-// import { MdxViewer } from "@app/lib/components/MdxViewer"
+
+// constants
+import { routes } from "@app/constants";
 
 export const revalidate = 60;
 
@@ -30,7 +32,7 @@ const SinglePostPage = async ({
   return (
     <main className="flex flex-col gap-8 p-4">
       <Link
-        href="/posts"
+        href={routes.POSTS_ROUTE}
         className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors"
       >
         <svg

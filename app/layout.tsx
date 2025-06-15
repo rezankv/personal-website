@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Link from "next/link";
-import Image from "next/image";
 import React from "react";
-import config from "@app/lib/config";
 import { DM_Sans } from "next/font/google";
 import Head from "next/head";
 import { ThemeProvider } from "@app/lib/store/theme";
-import { ThemeToggle } from "./_components/ThemeToggle";
+import { Footer, Header } from "./_components";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -30,85 +27,11 @@ export default function RootLayout({
       </Head>
       <body className="bg-background text-foreground flex min-h-screen flex-col items-center">
         <ThemeProvider>
-          <>
-            <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 py-8">
-              <header className="mx-4 flex items-center justify-between">
-                <Link href="/">
-                  <div className="group flex items-center gap-4">
-                    <Image
-                      width={25}
-                      height={25}
-                      src={config.headshot}
-                      alt={config.name}
-                      className="h-12 w-12 rounded-full transition-transform duration-200 group-hover:scale-105 group-active:scale-95"
-                    />
-                    <div className="flex flex-col">
-                      <p className="font-medium">{config.name}</p>
-                      <p className="text-muted-foreground hidden font-light sm:block">
-                        {config.title}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-                <div className="flex gap-4">
-                  <Link
-                    href="/projects"
-                    className={`hover:text-foreground transition-colors ${
-                      "".startsWith("/projects")
-                        ? "text-foreground font-medium"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    Projects
-                  </Link>
-                  <Link
-                    href="/posts"
-                    className={`hover:text-foreground transition-colors ${
-                      "".startsWith("/posts")
-                        ? "text-foreground font-medium"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    Posts
-                  </Link>
-                  <ThemeToggle />
-                </div>
-              </header>
-
-              <main className="flex-1">{children}</main>
-
-              <footer className="border-border mx-4 border-t pt-8">
-                <div className="text-muted-foreground flex flex-col items-center gap-4 text-sm sm:flex-row sm:justify-between">
-                  <div className="flex items-center gap-4">
-                    <span>
-                      © {new Date().getFullYear()} {config.name}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    {config.social.map((social, idx) => (
-                      <React.Fragment key={idx}>
-                        <a
-                          href={social.link}
-                          {...(social.platform !== "Email" && {
-                            target: "_blank",
-                            rel: "noopener noreferrer",
-                          })}
-                          className="hover:text-foreground transition-colors duration-200"
-                        >
-                          <span>{social.platform}</span>
-                        </a>
-                        {idx < config.social.length - 1 && <span>•</span>}
-                      </React.Fragment>
-                    ))}
-                  </div>
-                </div>
-              </footer>
-            </div>
-
-            {/* <ScrollRestoration />
-        <Scripts /> */}
-          </>
+          <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 py-8">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
