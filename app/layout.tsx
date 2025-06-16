@@ -5,6 +5,7 @@ import { DM_Sans } from "next/font/google";
 import Head from "next/head";
 import { ThemeProvider } from "@app/lib/store/theme";
 import { Footer, Header } from "./_components";
+import NextTopLoader from "nextjs-toploader";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({
       </Head>
       <body className="bg-background text-foreground flex min-h-screen flex-col items-center">
         <ThemeProvider>
+          <NextTopLoader color="var(--foreground)" />
           <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 py-8">
             <Header />
             <main className="flex-1">{children}</main>
