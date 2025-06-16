@@ -22,6 +22,7 @@
     "paths": {
       "@app/*": ["./*"],
       "@app/constants": ["./lib/constants/index.ts"],
+      "@app/styles": ["./lib/styles/index.css"],
       "@app/utils": ["./lib/utils/index.ts"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }

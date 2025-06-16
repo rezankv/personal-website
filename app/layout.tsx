@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "@app/styles";
 import React from "react";
 import { DM_Sans } from "next/font/google";
 import Head from "next/head";
