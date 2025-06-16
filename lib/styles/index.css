@@ -107,38 +107,6 @@
   --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.43);
 }
 
-/* @-webkit-keyframes fadeInUp {
-  0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0,100%,0);
-      transform: translate3d(0,100%,0)
-  }
-
-  to {
-      opacity: 1;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0)
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0,100%,0);
-      transform: translate3d(0,100%,0)
-  }
-
-  to {
-      opacity: 1;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0)
-  }
-}
-
-.animate__fadeInUp {
-  -webkit-animation-name: fadeInUp;
-  animation-name: fadeInUp
-} */
 
 @theme {
   --animate-fade-in: fade-in 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
