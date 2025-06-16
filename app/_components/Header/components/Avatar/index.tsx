@@ -4,11 +4,12 @@ export const Avatar = () => {
   return (
     <div className="group flex items-center gap-4">
       <Image
-        width={25}
-        height={25}
-        src="/avatar.png"
+        width={48}
+        height={48}
+        src="/avatar.webp"
         alt="Reza Nikravesh"
-        className="h-12 w-12 rounded-full transition-transform duration-200 group-hover:scale-105 group-active:scale-95"
+        className="rounded-full transition-transform duration-200 group-hover:scale-105 group-active:scale-95"
+        unoptimized
       />
       <div className="flex flex-col">
         <p className="font-medium">Reza Nikravesh</p>
