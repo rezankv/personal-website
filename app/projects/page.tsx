@@ -9,7 +9,7 @@ import { allProjects } from "@app/.contentlayer/generated";
 
 const ProjectsPage = () => {
   return (
-    <main className="flex flex-col gap-2 md:py-4">
+    <div className="flex flex-col gap-2 md:py-4 animate-fade-in">
       <h2 className="mx-4 text-xl font-bold">Projects</h2>
       <div className="flex flex-col gap-4 md:gap-1">
         {allProjects.map((project, index) => {
@@ -24,7 +24,7 @@ const ProjectsPage = () => {
           );
         })}
       </div>
-    </main>
+    </div>
   );
 };
 

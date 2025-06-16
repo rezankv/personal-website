@@ -30,7 +30,7 @@ const SinglePostPage = async ({
   const readingTime = formatReadingTime(post.body.code);
 
   return (
-    <main className="flex flex-col gap-8 p-4">
+    <div className="animate-fade-in flex flex-col gap-8 p-4">
       <Link
         href={routes.POSTS_ROUTE}
         className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors"
@@ -63,12 +63,10 @@ const SinglePostPage = async ({
         </div>
       </section>
 
-      <article 
-      className="prose dark:prose-invert "
-      >
+      <article className="prose dark:prose-invert">
         <MdxViewer content={post.body.code} />
       </article>
-    </main>
+    </div>
   );
 };
 

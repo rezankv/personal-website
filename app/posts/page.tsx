@@ -13,7 +13,7 @@ const PostsPage = () => {
   );
 
   return (
-    <main className="flex flex-col gap-2 md:py-4">
+    <div className="flex flex-col gap-2 md:py-4 animate-fade-in">
       <h2 className="mx-4 text-xl font-bold">Posts</h2>
       <div className="flex flex-col gap-4 md:gap-1">
         {posts.map((post) => (
@@ -22,7 +22,7 @@ const PostsPage = () => {
           </Link>
         ))}
       </div>
-    </main>
+    </div>
   );
 };
 
