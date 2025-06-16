@@ -1,23 +1,19 @@
 "use client";
 
-// store
-import { useTheme } from "@app/lib/store/theme";
+// locals
+import { useLogic } from "./useLogic";
 
 export const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { toggleThemeHandler, renderIconHandler, theme } = useLogic();
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
-  
   return (
     <button
-      onClick={toggleTheme}
-      className="group cursor-pointer"
+      onClick={toggleThemeHandler}
+      className="group cursor-pointer transition"
       title="Toggle theme"
       aria-label="Toggle theme"
     >
-      <div className="bg-foreground h-4 w-4 rounded duration-200 group-hover:scale-110 group-active:scale-95" />
+      {renderIconHandler(theme)}
     </button>
   );
 };
