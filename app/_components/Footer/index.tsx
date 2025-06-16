@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment } from "react";
 
 // constants
 import { socialLinks } from "@app/constants";
@@ -13,7 +14,7 @@ export const Footer = () => {
 
         <div className="flex items-center gap-3">
           {socialLinks.map((social, index) => (
-            <>
+            <Fragment key={social.link}>
               <Link
                 href={social.link}
                 target={social.target}
@@ -23,7 +24,7 @@ export const Footer = () => {
                 <span>{social.platform}</span>
               </Link>
               {index < socialLinks.length - 1 && <span>•</span>}
-            </>
+            </Fragment>
           ))}
         </div>
       </div>

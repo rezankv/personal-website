@@ -10,7 +10,11 @@ import { routes } from "@app/constants";
 import { cn } from "@app/utils";
 
 // locals
-import { ThemeToggle } from "./components";
+import {ThemeToggle} from './components'
+// const ThemeToggle = dynamic(
+//   () => import("./components").then((res) => res.ThemeToggle),
+//   { ssr: false },
+// );
 
 export const Navigation = () => {
   const pathname = usePathname();

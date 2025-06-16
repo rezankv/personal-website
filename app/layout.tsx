@@ -3,9 +3,8 @@ import "@app/styles";
 import React from "react";
 import { DM_Sans } from "next/font/google";
 import Head from "next/head";
-import { ThemeProvider } from "@app/lib/store/theme";
 import { Footer, Header } from "./_components";
-import NextTopLoader from "nextjs-toploader";
+import { Providers } from "@app/lib/providers";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -22,19 +21,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={dmSans.className}>
+    <html lang="en" className={dmSans.className} suppressHydrationWarning>
       <Head>
         <meta name="apple-mobile-web-app-title" content="Reza Nikravesh" />
       </Head>
       <body className="bg-background text-foreground flex min-h-screen flex-col items-center">
-        <ThemeProvider>
-          <NextTopLoader color="var(--foreground)" />
+        <Providers>
           <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 py-8">
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

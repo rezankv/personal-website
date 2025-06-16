@@ -23,6 +23,8 @@
       "@app/*": ["./*"],
       "@app/constants": ["./lib/constants/index.ts"],
       "@app/styles": ["./lib/styles/index.css"],
+      "@app/providers": ["./lib/providers/index.tsx"],
+      "@app/components": ["./lib/components/index.ts"],
       "@app/utils": ["./lib/utils/index.ts"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
