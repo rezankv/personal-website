@@ -15,5 +15,5 @@ export const MdxViewer = ({ content }: MdxViewerProps) => {
 
   const MdxContent = useMDXComponent(content);
 
-  return <>{isShow && <MdxContent  />}</>;
+  return <>{isShow && <MdxContent />}</>;
 };

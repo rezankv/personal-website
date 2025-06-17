@@ -10,8 +10,7 @@ import { routes } from "@app/constants";
 import { cn } from "@app/utils";
 
 // locals
-import {ThemeToggle} from './components'
-
+import { ThemeToggle } from "./components";
 
 export const Navigation = () => {
   const pathname = usePathname();
@@ -35,7 +34,7 @@ export const Navigation = () => {
           <Link
             href={navItem.href}
             className={cn(
-              "hover:text-foreground transition-colors text-sm sm:text-base ",
+              "hover:text-foreground text-sm transition-colors sm:text-base",
               navItem.isActive
                 ? "text-foreground font-medium"
                 : "text-muted-foreground",

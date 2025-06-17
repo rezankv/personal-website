@@ -9,11 +9,10 @@ export const Spinner = ({ className, ...props }: SpinnerProps) => {
   return (
     <div
       className={cn(
-        "h-6 w-6  rounded-full border-2 border-t-2 border-transparent animate-[spin_300ms_linear_infinite]",
+        "h-6 w-6 animate-[spin_300ms_linear_infinite] rounded-full border-2 border-t-2 border-transparent",
         "border-t-foreground",
         className,
       )}
-
       {...props}
     ></div>
   );

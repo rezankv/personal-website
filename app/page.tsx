@@ -13,7 +13,7 @@ export default function Home() {
   const featuredProjects = allProjects.filter((project) => project.isFeatured);
 
   return (
-    <div className="mt-4 flex flex-col gap-10 animate-fade-in">
+    <div className="animate-fade-in mt-4 flex flex-col gap-10">
       <div className="mx-4 flex flex-col gap-2">
         <span className="font-medium">About me</span>
         <span>

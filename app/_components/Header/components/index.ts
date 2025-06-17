@@ -1,2 +1,2 @@
-export * from './Navigation'
-export * from './Avatar'
+export * from "./Navigation";
+export * from "./Avatar";
