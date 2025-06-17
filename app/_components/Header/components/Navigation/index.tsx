@@ -11,10 +11,7 @@ import { cn } from "@app/utils";
 
 // locals
 import {ThemeToggle} from './components'
-// const ThemeToggle = dynamic(
-//   () => import("./components").then((res) => res.ThemeToggle),
-//   { ssr: false },
-// );
+
 
 export const Navigation = () => {
   const pathname = usePathname();
@@ -32,13 +29,13 @@ export const Navigation = () => {
     },
   ];
   return (
-    <ul className="flex gap-4">
+    <ul className="flex gap-3 sm:gap-4">
       {navItems.map((navItem) => (
         <li key={navItem.href}>
           <Link
             href={navItem.href}
             className={cn(
-              "hover:text-foreground transition-colors",
+              "hover:text-foreground transition-colors text-sm sm:text-base ",
               navItem.isActive
                 ? "text-foreground font-medium"
                 : "text-muted-foreground",
