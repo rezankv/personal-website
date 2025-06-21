@@ -26,6 +26,7 @@
       "@app/providers": ["./lib/providers/index.tsx"],
       "@app/components": ["./lib/components/index.ts"],
       "@app/utils": ["./lib/utils/index.ts"],
+      "@app/contents": ["./lib/contents/index.ts"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },
