@@ -1,2 +1,2 @@
-export * from './posts'
-export * from './projects'
+export * from "./posts";
+export * from "./projects";

@@ -4,7 +4,6 @@ import Image from "next/image";
 // content
 import { Project } from "@app/contents";
 
-
 export const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <div className="group md:hover:bg-muted flex cursor-pointer flex-row items-center justify-between gap-4 rounded-lg px-4 py-1 duration-300 md:py-3">

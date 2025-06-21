@@ -6,7 +6,6 @@ import { formatDate } from "@app/lib/utils";
 // content
 import { Post } from "@app/lib/contents";
 
-
 export const PostCard = ({ post }: { post: Post }) => {
   return (
     <div className="group md:hover:bg-muted flex cursor-pointer flex-row items-center justify-between gap-4 rounded-lg px-4 py-1 duration-300 md:py-3">

@@ -11,7 +11,7 @@ import { routes } from "@app/constants";
 import { PostCard } from "@app/components";
 
 export const PostsSection = () => {
-  const posts = postService.getAll().slice(0, 3)
+  const posts = postService.getAll().slice(0, 3);
 
   return (
     <div className="flex flex-col gap-4 md:gap-1">

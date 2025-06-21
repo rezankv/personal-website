@@ -9,7 +9,7 @@ export const AboutSection = () => {
           coding, I also make YouTube videos, sharing my knowledge and
           experience on web & mobile development.`}
       </span>
-      <SocialLinks/>
+      <SocialLinks />
     </div>
   );
 };

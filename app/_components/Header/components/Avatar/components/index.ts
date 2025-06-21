@@ -1,1 +1,1 @@
-export * from './OnlineIndicator'
+export * from "./OnlineIndicator";

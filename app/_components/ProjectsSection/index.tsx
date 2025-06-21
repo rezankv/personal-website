@@ -10,8 +10,6 @@ import { routes } from "@app/constants";
 // components
 import { ProjectCard } from "@app/components";
 
-
-
 export const ProjectSection = () => {
   const featuredProjects = allProjects.filter((project) => project.isFeatured);
 
