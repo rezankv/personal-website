@@ -1,11 +1,13 @@
 import Link from "next/link";
-import ProjectCard from "../_components/ProjectCard";
 
 // constants
 import { routes } from "@app/constants";
 
 // content
 import { allProjects } from "@app/.contentlayer/generated";
+
+// components
+import { ProjectCard } from "@app/components";
 
 const ProjectsPage = () => {
   return (

@@ -1,13 +1,11 @@
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 
-type Project = {
-  title: string;
-  description: string;
-  icon: string;
-};
+// content
+import { Project } from "@app/contents";
 
-export default function ProjectCard({ project }: { project: Project }) {
+
+export const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <div className="group md:hover:bg-muted flex cursor-pointer flex-row items-center justify-between gap-4 rounded-lg px-4 py-1 duration-300 md:py-3">
       <div className="flex flex-row items-center gap-4">
@@ -31,4 +29,4 @@ export default function ProjectCard({ project }: { project: Project }) {
       />
     </div>
   );
-}
+};

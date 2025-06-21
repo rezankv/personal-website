@@ -1,11 +1,13 @@
 import Link from "next/link";
 import React from "react";
-import PostCard from "../_components/PostCard";
 import { allPosts } from "@app/.contentlayer/generated";
 import { compareDesc } from "date-fns";
 
 // constants
 import { routes } from "@app/constants";
+
+// components
+import { PostCard } from "@app/components";
 
 const PostsPage = () => {
   const posts = allPosts.sort((a, b) =>
