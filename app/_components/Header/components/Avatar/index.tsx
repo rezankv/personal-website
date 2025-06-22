@@ -18,9 +18,7 @@ export const Avatar = () => {
         <p className="font-medium">
           Reza Nikravesh<span className="hidden sm:inline"></span>
         </p>
-        <p className="text-muted-foreground hidden font-light sm:block">
-          Software Developer
-        </p>
+        <p className="text-muted-foreground font-light">Software Developer</p>
       </div>
     </div>
   );

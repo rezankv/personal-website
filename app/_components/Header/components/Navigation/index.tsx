@@ -10,7 +10,7 @@ import { routes } from "@app/constants";
 import { cn } from "@app/utils";
 
 // locals
-import { ThemeToggle } from "./components";
+import { NavigationMenu, ThemeToggle } from "./components";
 
 export const Navigation = () => {
   const pathname = usePathname();
@@ -28,23 +28,26 @@ export const Navigation = () => {
     },
   ];
   return (
-    <ul className="flex gap-3 sm:gap-4 items-center">
-      {navItems.map((navItem) => (
-        <li key={navItem.href}>
-          <Link
-            href={navItem.href}
-            className={cn(
-              "hover:text-foreground text-sm transition-colors sm:text-base",
-              navItem.isActive
-                ? "text-foreground font-medium"
-                : "text-muted-foreground",
-            )}
-          >
-            {navItem.label}
-          </Link>
-        </li>
-      ))}
+    <div className="flex items-center gap-1 md:gap-4">
       <ThemeToggle />
-    </ul>
+      <NavigationMenu />
+      <ul className="order-1 hidden items-center gap-3 sm:gap-4 md:flex">
+        {navItems.map((navItem) => (
+          <li key={navItem.href}>
+            <Link
+              href={navItem.href}
+              className={cn(
+                "hover:text-foreground text-sm transition-colors sm:text-base",
+                navItem.isActive
+                  ? "text-foreground font-medium"
+                  : "text-muted-foreground",
+              )}
+            >
+              {navItem.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
