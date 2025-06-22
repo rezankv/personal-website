@@ -4,7 +4,7 @@ import Link from "next/link";
 import { routes } from "@app/constants";
 
 // content
-import { projectService} from "@app/contents";
+import { projectService } from "@app/contents";
 
 // components
 import { ProjectCard } from "@app/components";

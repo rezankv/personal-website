@@ -12,7 +12,7 @@ export const Footer = () => {
           <span>© {new Date().getFullYear()} Reza Nikravesh</span>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3 justify-center ">
+        <div className="flex flex-wrap items-center justify-center gap-3">
           {socialLinks.map((link, index) => (
             <Fragment key={link.platform}>
               <Link

@@ -29,7 +29,9 @@ const SingleProjectPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
-  const project = projectService.getAll().find((project) => project.slug === slug);
+  const project = projectService
+    .getAll()
+    .find((project) => project.slug === slug);
 
   if (!project) notFound();
 

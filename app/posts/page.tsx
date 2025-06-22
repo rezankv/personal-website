@@ -11,9 +11,9 @@ import { PostCard } from "@app/components";
 import { postService } from "@app/contents";
 
 const PostsPage = () => {
-  const posts = postService.getAll().sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date)),
-  );
+  const posts = postService
+    .getAll()
+    .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)));
 
   return (
     <div className="animate-fade-in flex flex-col gap-2 md:py-4">

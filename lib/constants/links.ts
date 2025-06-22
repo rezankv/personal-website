@@ -1,16 +1,9 @@
 export type SocialLink = {
-  platform:
-  | "Github"
-  | "Linkedin"
-  | "Instagram"
-  | "Mail"
-  | "Telegram"
-  | "X"
-  ,
-  href: string
-  target?: string
-  rel?: string
-}
+  platform: "Github" | "Linkedin" | "Instagram" | "Mail" | "Telegram" | "X";
+  href: string;
+  target?: string;
+  rel?: string;
+};
 export const socialLinks: SocialLink[] = [
   {
     platform: "Github",
