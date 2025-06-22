@@ -28,7 +28,7 @@ export const Navigation = () => {
     },
   ];
   return (
-    <ul className="flex gap-3 sm:gap-4">
+    <ul className="flex gap-3 sm:gap-4 items-center">
       {navItems.map((navItem) => (
         <li key={navItem.href}>
           <Link

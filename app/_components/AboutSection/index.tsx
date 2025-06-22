@@ -3,7 +3,7 @@ import { SocialLinks } from "./components";
 
 export const AboutSection = () => {
   return (
-    <div className="mx-4 flex flex-col gap-2">
+    <div className=" flex flex-col gap-2">
       <span className="font-medium">About me</span>
       <p>
         {`Hi, I'm Reza. I'm based in Los Angeles, California. In addition to

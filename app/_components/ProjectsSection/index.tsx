@@ -17,7 +17,7 @@ export const ProjectSection = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <span className="mx-4 font-medium">Featured Projects</span>
+      <span className="font-medium">Featured Projects</span>
       <div className="flex flex-col gap-4 md:gap-1">
         {featuredProjects.map((project) => (
           <Link
@@ -28,7 +28,7 @@ export const ProjectSection = () => {
           </Link>
         ))}
       </div>
-      <div className="mx-4 flex justify-end">
+      <div className="flex justify-end">
         <Link
           href={routes.PROJECTS_ROUTE}
           className="group text-muted-foreground flex items-center justify-center gap-1 text-sm transition-colors"

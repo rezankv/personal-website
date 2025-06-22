@@ -15,7 +15,7 @@ export const PostsSection = () => {
 
   return (
     <div className="flex flex-col gap-4 md:gap-1">
-      <span className="mx-4 font-medium">Latest Posts</span>
+      <span className="font-medium">Latest Posts</span>
       {posts.map((post) => {
         return (
           <Link key={post.slug} href={routes.SINGLE_POST_ROUTE(post.slug)}>
@@ -23,7 +23,7 @@ export const PostsSection = () => {
           </Link>
         );
       })}
-      <div className="mx-4 flex justify-end">
+      <div className="flex justify-end">
         <Link
           href={routes.POSTS_ROUTE}
           className="group text-muted-foreground flex items-center justify-center gap-1 text-sm transition-colors"
