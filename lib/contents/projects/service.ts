@@ -1,4 +1,4 @@
-import { Project } from "@app/.contentlayer/generated";
+import { Project } from "contentlayer/generated";
 
 // locals
 import { ProjectRepository } from "./repository";

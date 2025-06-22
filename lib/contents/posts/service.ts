@@ -1,4 +1,4 @@
-import { Post } from "@app/.contentlayer/generated";
+import { Post } from "contentlayer/generated";
 
 // locals
 import { PostRepository } from "./repository";

@@ -1,3 +1,3 @@
-import { Post as CLPost } from "@app/.contentlayer/generated";
+import { Post as CLPost } from "contentlayer/generated";
 
 export type Post = CLPost;

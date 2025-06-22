@@ -1,3 +1,3 @@
-import { Project as CLProject } from "@app/.contentlayer/generated";
+import { Project as CLProject } from "contentlayer/generated";
 
 export type Project = CLProject;

@@ -11,7 +11,7 @@ import { formatDate, formatReadingTime } from "@app/utils";
 import { routes } from "@app/constants";
 
 // content
-import { projectService } from "@app/lib/contents";
+import { projectService } from "@app/contents";
 
 export const revalidate = 60;
 
