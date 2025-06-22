@@ -4,4 +4,4 @@ import { ProjectService } from "./service";
 export * from "./type";
 
 const repository = new ProjectRepository();
-export const service = new ProjectService(repository);
+export const projectService = new ProjectService(repository);
