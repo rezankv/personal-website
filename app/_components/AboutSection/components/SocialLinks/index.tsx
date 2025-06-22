@@ -49,6 +49,8 @@ export const SocialLinks = () => {
         <Link
           key={link.platform}
           href={link.href}
+          target={link.target}
+          rel={link.rel}
           className="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent text-muted-foreground hover:text-foreground inline-flex size-10 items-center justify-center rounded-md border bg-transparent whitespace-nowrap transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
         >
           {getLinkIcon(link)}
