@@ -11,14 +11,19 @@ import { routes } from "@app/constants";
 import { ProjectCard } from "@app/components";
 
 export const ProjectSection = () => {
-  const featuredProjects = projectService.getAll().filter((project) => project.isFeatured);
+  const featuredProjects = projectService
+    .getAll()
+    .filter((project) => project.isFeatured);
 
   return (
     <div className="flex flex-col gap-2">
       <span className="mx-4 font-medium">Featured Projects</span>
       <div className="flex flex-col gap-4 md:gap-1">
         {featuredProjects.map((project) => (
-          <Link key={project._id} href={project.liveLink} target="_blank">
+          <Link
+            key={project._id}
+            href={routes.SINGLE_PROJECT_ROUTE(project.slug)}
+          >
             <ProjectCard project={project} />
           </Link>
         ))}
