@@ -1,10 +1,10 @@
 import { ExternalLink } from "lucide-react";
 
 // utils
-import { formatDate } from "@app/lib/utils";
+import { formatDate } from "@app/utils";
 
 // content
-import { Post } from "@app/lib/contents";
+import { Post } from "@app/contents";
 
 export const PostCard = ({ post }: { post: Post }) => {
   return (

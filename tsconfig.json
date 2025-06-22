@@ -20,7 +20,6 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@app/*": ["./*"],
       "@app/constants": ["./lib/constants/index.ts"],
       "@app/styles": ["./lib/styles/index.css"],
       "@app/providers": ["./lib/providers/index.tsx"],

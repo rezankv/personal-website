@@ -1,4 +1,4 @@
-import { allPosts, Post } from "@app/.contentlayer/generated";
+import { allPosts, Post } from "contentlayer/generated";
 
 export class PostRepository {
   getAllPosts(): Post[] {

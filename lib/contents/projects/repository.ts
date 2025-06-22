@@ -1,4 +1,4 @@
-import { allProjects, Project } from "@app/.contentlayer/generated";
+import { allProjects, Project } from "contentlayer/generated";
 
 export class ProjectRepository {
   getAllProjects(): Project[] {

@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import "@app/styles";
-import React from "react";
 import { DM_Sans } from "next/font/google";
 import Head from "next/head";
+
+// styles
+import "@app/styles";
+
+// providers
+import { Providers } from "@app/providers";
+
+// locals
 import { Footer, Header } from "./_components";
-import { Providers } from "@app/lib/providers";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
