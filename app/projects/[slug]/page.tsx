@@ -40,7 +40,7 @@ const SingleProjectPage = async ({
   return (
     <div className="animate-fade-in flex flex-col gap-8 p-4">
       <Link
-        href={routes.POSTS_ROUTE}
+        href={routes.PROJECTS_ROUTE}
         className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors"
       >
         <svg
@@ -57,7 +57,7 @@ const SingleProjectPage = async ({
             clipRule="evenodd"
           />
         </svg>
-        Back to posts
+        Back to projects
       </Link>
       <section>
         <h1 className="text-foreground mb-4 text-3xl leading-tight font-bold tracking-tight">
