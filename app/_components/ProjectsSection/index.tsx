@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 // content
-import { allProjects } from "@app/.contentlayer/generated";
+import { projectService } from "@app/contents";
 
 // constants
 import { routes } from "@app/constants";
@@ -11,7 +11,7 @@ import { routes } from "@app/constants";
 import { ProjectCard } from "@app/components";
 
 export const ProjectSection = () => {
-  const featuredProjects = allProjects.filter((project) => project.isFeatured);
+  const featuredProjects = projectService.getAll().filter((project) => project.isFeatured);
 
   return (
     <div className="flex flex-col gap-2">
