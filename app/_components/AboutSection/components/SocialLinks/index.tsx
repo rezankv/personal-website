@@ -1,36 +1,17 @@
+import { ReactNode } from "react";
 import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
-const links = [
-  {
-    name: "github",
-    label: "Github",
-    href: "https://github.com/rezankv",
-    icon: <Github />,
-  },
-  {
-    name: "linkedin",
-    label: "Linkedin",
-    href: "https://linkedin.com/in/rezankv",
-    icon: <Linkedin />,
-  },
-  {
-    name: "instagram",
-    label: "Instagram",
-    href: "https://instagram.com/rezankv",
-    icon: <Instagram />,
-  },
-  {
-    name: "mail",
-    label: "E-mail",
-    href: "https://instagram.com/rezankv",
-    icon: <Mail />,
-  },
-  {
-    name: "telegram",
-    label: "Telegram",
-    href: "https://t.me/rezankv",
-    icon: (
+// constants
+import { socialLinks, SocialLink } from "@app/constants";
+
+const getLinkIcon = (link: SocialLink) => {
+  const icons: Record<SocialLink["platform"], ReactNode> = {
+    Github: <Github />,
+    Linkedin: <Linkedin />,
+    Instagram: <Instagram />,
+    Mail: <Mail />,
+    Telegram: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="1.5 1.5 21 21"
@@ -45,12 +26,7 @@ const links = [
         />
       </svg>
     ),
-  },
-  {
-    name: "x",
-    label: "X",
-    href: "https://x.com/rezankv",
-    icon: (
+    X: (
       <svg
         width="24"
         height="24"
@@ -61,18 +37,21 @@ const links = [
         <path d="M18.205 2.25h3.308l-7.227 8.26l8.502 11.24H16.13l-5.214-6.817L4.95 21.75H1.64l7.73-8.835L1.215 2.25H8.04l4.713 6.231l5.45-6.231Zm-1.161 17.52h1.833L7.045 4.126H5.078L17.044 19.77Z"></path>
       </svg>
     ),
-  },
-];
+  };
+
+  return icons[link.platform];
+};
+
 export const SocialLinks = () => {
   return (
     <div className="flex gap-1 md:gap-2">
-      {links.map((link) => (
+      {socialLinks.map((link) => (
         <Link
-          key={link.name}
+          key={link.platform}
           href={link.href}
           className="ring-offset-background focus-visible:ring-ring border-input hover:bg-accent text-muted-foreground hover:text-foreground inline-flex size-10 items-center justify-center rounded-md border bg-transparent whitespace-nowrap transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
         >
-          {link.icon}
+          {getLinkIcon(link)}
         </Link>
       ))}
     </div>

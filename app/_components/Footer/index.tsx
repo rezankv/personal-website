@@ -12,16 +12,16 @@ export const Footer = () => {
           <span>© {new Date().getFullYear()} Reza Nikravesh</span>
         </div>
 
-        <div className="flex items-center gap-3">
-          {socialLinks.map((social, index) => (
-            <Fragment key={social.link}>
+        <div className="flex flex-wrap items-center gap-3 justify-center ">
+          {socialLinks.map((link, index) => (
+            <Fragment key={link.platform}>
               <Link
-                href={social.link}
-                target={social.target}
-                rel={social.rel}
+                href={link.href}
+                target={link.target}
+                rel={link.rel}
                 className="hover:text-foreground transition-colors duration-200"
               >
-                <span>{social.platform}</span>
+                <span>{link.platform}</span>
               </Link>
               {index < socialLinks.length - 1 && <span>•</span>}
             </Fragment>

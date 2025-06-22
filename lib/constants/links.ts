@@ -1,30 +1,49 @@
-export const socialLinks = [
+export type SocialLink = {
+  platform:
+  | "Github"
+  | "Linkedin"
+  | "Instagram"
+  | "Mail"
+  | "Telegram"
+  | "X"
+  ,
+  href: string
+  target?: string
+  rel?: string
+}
+export const socialLinks: SocialLink[] = [
   {
-    platform: "YouTube",
-    link: "https://youtube.com/@hqasmei",
+    platform: "Github",
+    href: "https://github.com/rezankv",
     target: "_blank",
     rel: "noopener noreferrer",
   },
   {
-    platform: "GitHub",
-    link: "https://github.com/hqasmei",
+    platform: "Instagram",
+    href: "https://instagram.com/rezankv",
+    target: "_blank",
+    rel: "noopener noreferrer",
+  },
+  {
+    platform: "Linkedin",
+    href: "https://linkedin.com/in/rezankv",
+    target: "_blank",
+    rel: "noopener noreferrer",
+  },
+  {
+    platform: "Telegram",
+    href: "https://t.me/rezankv",
     target: "_blank",
     rel: "noopener noreferrer",
   },
   {
     platform: "X",
-    link: "https://x.com/hqasmei",
+    href: "https://x.com/rezankv",
     target: "_blank",
     rel: "noopener noreferrer",
   },
   {
-    platform: "LinkedIn",
-    link: "https://linkedin.com/in/hosnaqasmei",
-    target: "_blank",
-    rel: "noopener noreferrer",
-  },
-  {
-    platform: "Email",
-    link: "mailto:hello@hosnaqasmei.com",
+    platform: "Mail",
+    href: "mailto:reza.nikravesh80@gmail.com",
   },
 ];
