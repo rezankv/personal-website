@@ -1,18 +1,24 @@
-import { formatDate, formatReadingTime } from "@app/lib/utils";
 import Link from "next/link";
-import { allPosts } from "contentlayer/generated";
 import { notFound } from "next/navigation";
-import { MdxViewer } from "@app/lib/components/MdxViewer";
+
+// components
+import { MdxViewer } from "@app/components";
+
+// utils
+import { formatDate, formatReadingTime } from "@app/utils";
 
 // constants
 import { routes } from "@app/constants";
+
+// content
+import { postService } from "@app/lib/contents";
 
 export const revalidate = 60;
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return allPosts.map(({ slug }) => ({
+  return postService.getAll().map(({ slug }) => ({
     slug,
   }));
 }
@@ -23,7 +29,7 @@ const SinglePostPage = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
-  const post = allPosts.find((post) => post.slug === slug);
+  const post = postService.getAll().find((post) => post.slug === slug);
 
   if (!post) notFound();
 

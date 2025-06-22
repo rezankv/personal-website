@@ -1,6 +1,4 @@
 import Link from "next/link";
-import React from "react";
-import { allPosts } from "@app/.contentlayer/generated";
 import { compareDesc } from "date-fns";
 
 // constants
@@ -9,8 +7,11 @@ import { routes } from "@app/constants";
 // components
 import { PostCard } from "@app/components";
 
+// content
+import { postService } from "@app/contents";
+
 const PostsPage = () => {
-  const posts = allPosts.sort((a, b) =>
+  const posts = postService.getAll().sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date)),
   );
 
