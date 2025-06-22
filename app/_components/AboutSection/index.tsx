@@ -1,3 +1,4 @@
+// locals
 import { SocialLinks } from "./components";
 
 export const AboutSection = () => {

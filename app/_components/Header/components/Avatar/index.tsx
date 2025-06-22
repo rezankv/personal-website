@@ -1,8 +1,5 @@
 import Image from "next/image";
 
-// locals
-// import { OnlineIndicator } from "./components";
-
 export const Avatar = () => {
   return (
     <div className="group flex items-center gap-3 sm:gap-4">
