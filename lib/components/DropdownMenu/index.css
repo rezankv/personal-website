@@ -1,0 +1,13 @@
+@reference "../../styles/index.css";
+@import "@szhsin/react-menu/dist/index.css";
+@import "@szhsin/react-menu/dist/transitions/zoom.css";
+
+.dropdown {
+  @apply bg-popover rounded-xl px-1;
+}
+.dropdown .dropdown-item {
+  @apply text-popover-foreground text-sm md:text-base;
+}
+.dropdown .dropdown-item:hover {
+  @apply bg-transparent;
+}

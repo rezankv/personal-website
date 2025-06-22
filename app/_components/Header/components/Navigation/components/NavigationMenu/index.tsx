@@ -28,7 +28,7 @@ export const NavigationMenu = () => {
   ];
   return (
     <DropdownMenu
-      triggerClassName="md:hidden order-2"
+      triggerClassName="md:hidden"
       trigger={
         <IconButton className="cursor-pointer">
           <MenuIcon />

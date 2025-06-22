@@ -11,7 +11,7 @@ export const IconButton = ({
   ...props
 }: IconButtonProps) => {
   return (
-    <button
+    <span
       className={cn(
         "ring-offset-background focus-visible:ring-ring border-input hover:bg-accent text-muted-foreground hover:text-foreground inline-flex size-10 items-center justify-center rounded-md border bg-transparent whitespace-nowrap transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
         className,
@@ -19,6 +19,6 @@ export const IconButton = ({
       {...props}
     >
       {children}
-    </button>
+    </span>
   );
 };

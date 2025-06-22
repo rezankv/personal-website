@@ -7,8 +7,7 @@ import {
   MenuDivider,
   MenuHeader,
 } from "@szhsin/react-menu";
-import "@szhsin/react-menu/dist/index.css";
-import '@szhsin/react-menu/dist/transitions/zoom.css';
+import './index.css'
 import { ReactNode } from "react";
 
 export interface DropdownMenuItem {
@@ -41,7 +40,7 @@ export const DropdownMenu = ({
       transition
       align={align}
       direction={direction}
-      menuStyle={{ borderRadius: "8px", backgroundColor: "var(--popover)",padding:'4px' }}
+      menuClassName="dropdown"
     >
       {items.map((item, index) => {
         if (item.type === "divider") return <MenuDivider key={index} />;
@@ -49,7 +48,7 @@ export const DropdownMenu = ({
           return <MenuHeader key={index}>{item.label}</MenuHeader>;
         return (
           <MenuItem
-            className="!text-popover-foreground hover:!bg-transparent !text-sm md:!text-base"
+            className="dropdown-item"
             key={index}
             onClick={item.onClick}
             disabled={item.disabled}
