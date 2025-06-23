@@ -30,8 +30,10 @@ export const NavigationMenu = () => {
     <DropdownMenu
       triggerClassName="md:hidden"
       trigger={
-        <IconButton className="cursor-pointer">
-          <MenuIcon />
+        <IconButton asChild className="cursor-pointer">
+          <span>  {/* do not remove this span element :)  */}
+            <MenuIcon />
+          </span>
         </IconButton>
       }
       items={navItems.map(({ label, href, isActive }) => ({
