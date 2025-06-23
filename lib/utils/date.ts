@@ -1,3 +1,8 @@
+import { compareDesc } from "date-fns";
+
+// content
+import { Post } from "@app/contents";
+
 export const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
 
@@ -14,3 +19,9 @@ export const formatReadingTime = (content: string): number => {
   const words = content.trim().split(/\s+/).length;
   return Math.ceil(words / wordsPerMinute);
 };
+
+export const sortPostsByDateDesc = (posts: Post[]): Post[] => {
+  return [...posts].sort((a, b) =>
+    compareDesc(new Date(a.date), new Date(b.date))
+  );
+}
