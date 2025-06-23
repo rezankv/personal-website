@@ -1,4 +1,5 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
+import rehypePrism from 'rehype-prism-plus';
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
@@ -41,4 +42,7 @@ export const Project = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: "content",
   documentTypes: [Post, Project],
+  mdx: {
+    rehypePlugins: [[rehypePrism, { showLineNumbers: true }]]
+  }
 });
