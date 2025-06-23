@@ -7,7 +7,7 @@ import {
   MenuDivider,
   MenuHeader,
 } from "@szhsin/react-menu";
-import './index.css'
+import "./index.css";
 import { ReactNode } from "react";
 
 export interface DropdownMenuItem {
