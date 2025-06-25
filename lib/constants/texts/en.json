@@ -1,0 +1,89 @@
+{
+  "platforms": {
+    "github": "github",
+    "instagram": "instagram",
+    "linkedin": "linkedin",
+    "telegram": "telegram",
+    "x": "x",
+    "mail": "email"
+  },
+  "RootLayout": {
+    "Header": {
+      "Avatar": {
+        "title": "Reza Nikravesh",
+        "subtitle": "Web Developer"
+      },
+      "Navigation": {
+        "blog": "Blog",
+        "projects": "Projects"
+      },
+      "LocaleMenu": {
+        "en": "English",
+        "fa": "فارسی"
+      }
+    },
+    "Footer": {
+      "title": "Reza Nikravesh"
+    },
+    "pages": {
+      "NotFoundPage": {
+        "title": "Oops! Page not found",
+        "description": "The page you’re looking for doesn’t exist or has been moved.",
+        "back": "Back to Home"
+      },
+      "ErrorPage": {
+        "title": "Something went wrong",
+        "description": "We’re experiencing some technical issues. Please try again later.",
+        "back": "Back to Home"
+      },
+      "HomePage": {
+        "AboutSection": {
+          "title": "About me",
+          "description": "Hi, I'm Reza. I'm based in Los Angeles, California. In addition to coding, I also make YouTube videos, sharing my knowledge and experience on web & mobile development."
+        },
+        "ProjectsSection": {
+          "title": "Featured Projects",
+          "more": "View all projects"
+        },
+        "PostsSection": {
+          "title": "Latest Posts",
+          "more": "View all posts"
+        },
+        "ExperienceSection": {
+          "title": "Work Experiences",
+          "list": {
+            "1": {
+              "title": "Software Engineer at XYZ Corp",
+              "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
+              "date": "February 2022 - April 2025"
+            },
+            "2": {
+              "title": "Frontend Developer at XYZ Corp",
+              "description": "Developed and  web applications using React web applications using React web applications using React web applications using React web applications using React and Node.js.",
+              "date": "March 2012 - April 2025"
+            },
+            "3": {
+              "title": "Software Engineer at XYZ Corp",
+              "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
+              "date": "February 2022 - April 2025"
+            }
+          }
+        }
+      },
+      "ProjectsPage": {
+        "title": "Projects",
+        "SingleProjectPage": {
+          "back": "Back to projects",
+          "readTimeLabel": "min read"
+        }
+      },
+      "PostsPage": {
+        "title": "Posts",
+        "SinglePostPage": {
+          "back": "Back to posts",
+          "readTimeLabel": "min read"
+        }
+      }
+    }
+  }
+}

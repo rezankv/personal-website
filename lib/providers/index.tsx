@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { NextIntlClientProvider } from "next-intl";
 
 // locals
 import { ThemeProvider } from "./Theme";
@@ -11,9 +12,11 @@ interface ProvidersProps {
 export const Providers = ({ children }: ProvidersProps) => {
   return (
     <>
-      <ThemeProvider>
-        <LoaderProvider>{children}</LoaderProvider>
-      </ThemeProvider>
+      <NextIntlClientProvider>
+        <ThemeProvider>
+          <LoaderProvider>{children}</LoaderProvider>
+        </ThemeProvider>
+      </NextIntlClientProvider>
     </>
   );
 };

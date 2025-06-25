@@ -29,8 +29,11 @@ export const ShowMore = ({ children }: ShowMoreProps) => {
         <div className="from-background pointer-events-none absolute right-0 bottom-0 left-0 h-42 bg-gradient-to-t to-transparent" />
       )}
       {!isOpen && (
-        <IconButton className="bg-background absolute bottom-0 animate-bounce cursor-pointer rounded-full">
-          <ArrowDown onClick={() => setIsOpen(true)} />
+        <IconButton
+          onClick={() => setIsOpen(true)}
+            className="bg-background absolute bottom-0 animate-bounce cursor-pointer rounded-full"
+        >
+          <ArrowDown />
         </IconButton>
       )}
     </div>

@@ -12,10 +12,14 @@
   --muted-foreground: oklch(0.5 0 0);
   --muted-foreground-2: oklch(0.7 0 0);
   --border: oklch(0.9037 0 0);
-
+  /* 
   --font-sans: DM Sans, sans-serif;
   --font-serif: DM Sans, sans-serif;
   --font-mono: DM Sans, sans-serif;
+*/
+  --font-sans: Vazirmatn, sans-serif;
+  --font-serif: Vazirmatn, sans-serif;
+  --font-mono: Vazirmatn, sans-serif;
   --radius: 0.5rem;
   --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
   --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
@@ -30,7 +34,9 @@
   --shadow-xl:
     0px 1px 3px 0px hsl(0 0% 0% / 0.17), 0px 8px 10px -1px hsl(0 0% 0% / 0.17);
   --shadow-2xl: 0px 1px 3px 0px hsl(0 0% 0% / 0.43);
+  /*
   --tracking-normal: 0.025em;
+  */
 }
 
 .dark {
@@ -43,9 +49,14 @@
   --muted-foreground-2: oklch(0.5 0 0);
   --border: oklch(0.2809 0 0);
 
+ /* 
   --font-sans: DM Sans, sans-serif;
   --font-serif: DM Sans, sans-serif;
   --font-mono: DM Sans, sans-serif;
+*/
+--font-sans: Vazirmatn, sans-serif;
+  --font-serif: Vazirmatn, sans-serif;
+  --font-mono: Vazirmatn, sans-serif;
   --radius: 0.5rem;
   --shadow-2xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);
   --shadow-xs: 0px 1px 3px 0px hsl(0 0% 0% / 0.09);

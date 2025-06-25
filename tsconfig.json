@@ -26,6 +26,7 @@
       "@app/components": ["./lib/components/index.ts"],
       "@app/utils": ["./lib/utils/index.ts"],
       "@app/contents": ["./lib/contents/index.ts"],
+      "@app/i18n/*": ["./i18n/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     }
   },

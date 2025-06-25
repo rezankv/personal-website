@@ -1,10 +1,24 @@
 import { allProjects, Project } from "contentlayer/generated";
 
+export type ProjectFilter = Partial<Project>
+
 export class ProjectRepository {
-  getAllProjects(): Project[] {
-    return allProjects;
+
+  getAll(filters: ProjectFilter = {}): Project[] {
+    return allProjects.filter(project =>
+      Object.entries(filters).every(([key, value]) => {
+        return project[key as keyof Project] === value;
+      })
+    );
   }
-  getProjectBySlug(slug: string): Project | undefined {
-    return allProjects.find((project) => project.slug === slug);
+  
+  getOne(filters: Partial<Project> = {}): Project | undefined {
+    return allProjects.find(project =>
+      Object.entries(filters).every(([key, value]) => {
+        return project[key as keyof Project] === value;
+      })
+    );
   }
+
+   
 }

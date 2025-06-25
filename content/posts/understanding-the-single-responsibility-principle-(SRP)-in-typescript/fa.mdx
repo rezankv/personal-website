@@ -1,0 +1,172 @@
+---
+title: "آموزش سالید به زبان ساده: اصل اول"
+date: Sat Jun 15 2025 14:42:54 GMT+0330
+slug: understanding-the-single-responsibility-principle-(SRP)-in-typescript
+lang: fa
+---
+Th **Single Responsibility Principle (SRP)** is the first and one of the most crucial principles of the SOLID design principles in software engineering. Introduced by Robert C. Martin (Uncle Bob), SRP states:
+
+> **این یه نقل قول بزرگ از رابرت مارتینه**
+
+سالید یکی از مهم ترین چیز هاییه که باید بلد باشی
+
+
+## 🚀 حالا بگو این چیه؟
+
+SRP تاکید می‌کند که هر ماژول، کلاس یا تابع باید فقط **یک وظیفه مشخص** داشته باشد. اگر یک بخش از کد بیش از یک مسئولیت داشته باشد، تغییر در یکی از مسئولیت‌ها می‌تواند روی بقیه تاثیر بگذارد و کد را شکننده و نگهداری آن را دشوار کند.
+
+### ❌ مثال نقض اصل SRP
+
+بیایید یک مثال ببینیم که در آن اصل SRP رعایت نشده است:
+
+<CodeBlock title="Typescript" raw={`class UserManager {
+  createUser(name: string, email: string) {
+    // logic to create a user
+  }
+
+  saveToDatabase(user: any) {
+    // logic to save user to database
+  }
+
+  sendWelcomeEmail(user: any) {
+    // logic to send email
+  }
+}`}>
+```ts
+class UserManager {
+  createUser(name: string, email: string) {
+    // logic to create a user
+  }
+
+  saveToDatabase(user: any) {
+    // logic to save user to database
+  }
+
+  sendWelcomeEmail(user: any) {
+    // logic to send email
+  }
+}
+```
+</CodeBlock>
+
+در این مثال، UserManager سه کار انجام می‌دهد:
+	1. مدیریت منطق ساخت کاربر
+	2. انجام عملیات پایگاه داده
+	3. ارسال ایمیل
+
+این‌ها سه مسئولیت جداگانه هستند. اگر منطق ایمیل تغییر کند، باید کلاس UserManager را تغییر دهیم. این باعث وابستگی بخش‌های نامرتبط به هم می‌شود.
+
+
+✅ اعمال SRP: ساختار بهتر
+
+می‌توانیم کلاس بالا را با تقسیم مسئولیت‌ها به کلاس‌های جداگانه بازنویسی کنیم:
+```ts
+class User {
+  constructor(public name: string, public email: string) {}
+}
+
+class UserRepository {
+  save(user: User) {
+    // logic to save user to database
+  }
+}
+
+class EmailService {
+  sendWelcomeEmail(user: User) {
+    // logic to send welcome email
+  }
+}
+
+class UserService {
+  constructor(
+    private userRepository: UserRepository,
+    private emailService: EmailService
+  ) {}
+
+  createUser(name: string, email: string) {
+    const user = new User(name, email);
+    this.userRepository.save(user);
+    this.emailService.sendWelcomeEmail(user);
+  }
+}
+```
+حالا داریم:
+	• User: مدل دامنه را نمایش می‌دهد.
+	• UserRepository: فقط مسئول ذخیره‌سازی داده است.
+	• EmailService: منطق مربوط به ایمیل را مدیریت می‌کند.
+	• UserService: ساخت کاربر را هماهنگ می‌کند اما مسئولیت‌های دیگر را واگذار می‌کند.
+
+
+💡 مزایای رعایت SRP
+
+با رعایت SRP مزایای زیر را به دست می‌آوریم:
+	• نگهداری آسان‌تر: اگر منطق پایگاه داده تغییر کند، فقط UserRepository باید تغییر کند.
+	• تست‌پذیری بهتر: هر کلاس را می‌توان به صورت مستقل تست کرد.
+	• خوانایی بالاتر: کلاس‌های کوچک‌تر راحت‌تر خوانده و فهمیده می‌شوند.
+	• انعطاف‌پذیری بیشتر: به راحتی می‌توان سرویس ایمیل یا لایه پایگاه داده را بدون تاثیر روی منطق کاربر جایگزین کرد.
+
+
+🧪 مثال تست واحد
+
+می‌بینید که تست هر مسئولیت چقدر ساده است:
+
+// Test EmailService
+const emailService = new EmailService();
+emailService.sendWelcomeEmail(new User("Jane", "jane@example.com"));
+
+// Test UserRepository
+const userRepository = new UserRepository();
+userRepository.save(new User("John", "john@example.com"));
+
+نیازی به درگیر شدن با ساخت کاربر یا وابستگی‌ها نیست – هر کلاس مستقل است.
+
+
+🧱 SRP فراتر از کلاس‌ها: توابع هم
+
+SRP فقط برای کلاس‌ها نیست — برای توابع هم صدق می‌کند. از نوشتن توابعی که چند کار انجام می‌دهند پرهیز کنید.
+
+❌ مثال بد
+```ts
+function generateReport(data: any) {
+  // gather data
+  // format data
+  // send report via email
+}
+```
+✅ مثال خوب
+```ts
+function fetchData(): any {
+  // logic to fetch data
+}
+
+function formatReport(data: any): string {
+  // logic to format data
+}
+
+function sendReport(report: string) {
+  // logic to send report
+}
+```
+هر تابع حالا فقط یک مسئولیت دارد.
+
+
+🧠 جمع‌بندی
+
+اصل مسئولیت واحد (SRP) مفهومی ساده اما بسیار قدرتمند است. این اصل باعث طراحی ماژولار می‌شود که هر بخش فقط یک هدف مشخص دارد. با رعایت SRP در کد TypeScript خود:
+	• کد تمیزتری خواهید داشت،
+	• برنامه‌تان راحت‌تر تست و توسعه می‌یابد،
+	• و فرآیند توسعه چابک‌تر می‌شود.
+
+همیشه از خود بپرسید:
+
+«اگر X را تغییر دهم، آیا بخش‌های نامرتبط این کلاس یا تابع هم تحت تاثیر قرار می‌گیرند؟»
+
+اگر جواب بله است، بهتر است SRP را رعایت کنید.
+
+
+📌 SEO Keywords
+
+Single Responsibility Principle, TypeScript SOLID Principles, Clean Code TypeScript, SRP Example, SOLID in TypeScript, Code Refactoring
+
+
+اگه خواستی مقالات بیشتری هم درمورد بقیه اصول SOLID یا مباحث clean code و design pattern برات بنویسم، فقط بگو.

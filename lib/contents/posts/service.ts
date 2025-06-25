@@ -1,30 +1,16 @@
-import { Post } from "contentlayer/generated";
-
 // locals
-import { PostRepository } from "./repository";
+import { Post } from "./type";
+import { PostFilter, PostRepository } from "./repository";
 
-type GetAllOptions = {
-  sort?: (posts: Post[]) => Post[];
-  filter?: (post: Post) => boolean;
-};
 
 export class PostService {
-  constructor(private readonly repo: PostRepository) {}
+  constructor(private readonly repo: PostRepository) { }
 
-  getAll(options?: GetAllOptions): Post[] {
-    let posts = this.repo.getAllPosts();
-
-    if (options?.filter) {
-      posts = posts.filter(options.filter);
-    }
-
-    if (options?.sort) {
-      posts = options.sort(posts);
-    }
-
+  getAll(filters: PostFilter = {}): Post[] {
+    const posts = this.repo.getAll(filters);
     return posts;
   }
-  getBySlug(slug: string): Post | undefined {
-    return this.repo.getPostBySlug(slug);
+  getOne(filters: PostFilter): Post | undefined {
+    return this.repo.getOne(filters);
   }
 }

@@ -1,12 +1,16 @@
 import { compareDesc } from "date-fns";
 
 // content
-import { Post } from "@app/contents";
+import { Document } from "contentlayer/core";
 
-export const formatDate = (dateString: string): string => {
+
+// i18n
+import { Locale } from "@app/i18n/routing";
+
+export const formatDate = (dateString: string,locale:Locale): string => {
   const date = new Date(dateString);
 
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString(locale, {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -20,8 +24,8 @@ export const formatReadingTime = (content: string): number => {
   return Math.ceil(words / wordsPerMinute);
 };
 
-export const sortPostsByDateDesc = (posts: Post[]): Post[] => {
-  return [...posts].sort((a, b) =>
+export const sortDocumentByDateDesc = <T extends Document>(document: T[]): T[] => {
+  return [...document].sort((a, b) =>
     compareDesc(new Date(a.date), new Date(b.date))
   );
 }
