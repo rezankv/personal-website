@@ -11,6 +11,9 @@ import { Locale, localeDir, routing } from "@app/i18n/routing";
 // providers
 import { Providers } from "@app/providers";
 
+// styles
+import "@app/styles";
+
 // utils
 import { cn } from "@app/utils";
 
