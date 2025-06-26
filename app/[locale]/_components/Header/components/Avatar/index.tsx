@@ -1,9 +1,8 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-export const Avatar =  () => {
+export const Avatar = () => {
   const t = useTranslations("RootLayout.Header.Avatar");
-
 
   return (
     <div className="group flex items-center gap-3 sm:gap-4">

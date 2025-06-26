@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState } from 'react';
-import { Check, Copy } from 'lucide-react';
+import { useState } from "react";
+import { Check, Copy } from "lucide-react";
 
 // components
 import { IconButton } from "@app/components";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const CopyButton = ({ text }: { text: any })=> {
+export const CopyButton = ({ text }: { text: any }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const copy = async () => {
@@ -30,4 +30,4 @@ export const CopyButton = ({ text }: { text: any })=> {
       <Icon className="h-4 w-4" />
     </IconButton>
   );
-}
+};

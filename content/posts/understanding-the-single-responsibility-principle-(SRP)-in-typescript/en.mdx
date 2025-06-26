@@ -11,7 +11,6 @@ The **Single Responsibility Principle (SRP)** is the first and one of the most c
 
 This principle is foundational for writing maintainable, testable, and clean code. In this article, we’ll dive deep into SRP, its importance, and how to apply it in real-world TypeScript projects.
 
-
 ## 🚀 What is the Single Responsibility Principle?
 
 The SRP emphasizes **separation of concerns**. Every module, class, or function should have **one and only one job**. If it has more than one responsibility, changes in one responsibility might impact the other, making the code fragile and harder to maintain.
@@ -25,14 +24,15 @@ Let’s look at an example where SRP is violated:
     // logic to create a user
   }
 
-  saveToDatabase(user: any) {
-    // logic to save user to database
-  }
+saveToDatabase(user: any) {
+// logic to save user to database
+}
 
-  sendWelcomeEmail(user: any) {
-    // logic to send email
-  }
+sendWelcomeEmail(user: any) {
+// logic to send email
+}
 }`}>
+
 ```ts
 class UserManager {
   createUser(name: string, email: string) {
@@ -48,22 +48,23 @@ class UserManager {
   }
 }
 ```
+
 </CodeBlock>
 
-In this example, UserManager is doing three things:
-	1.	Managing user creation logic
-	2.	Handling database operations
-	3.	Sending emails
+In this example, UserManager is doing three things: 1. Managing user creation logic 2. Handling database operations 3. Sending emails
 
 These are three separate responsibilities. If the email logic changes, the UserManager class will need to be updated. This tightly couples unrelated concerns.
-
 
 ✅ Applying SRP: Better Structure
 
 We can refactor the above class by splitting responsibilities into separate classes:
+
 ```ts
 class User {
-  constructor(public name: string, public email: string) {}
+  constructor(
+    public name: string,
+    public email: string,
+  ) {}
 }
 
 class UserRepository {
@@ -81,7 +82,7 @@ class EmailService {
 class UserService {
   constructor(
     private userRepository: UserRepository,
-    private emailService: EmailService
+    private emailService: EmailService,
   ) {}
 
   createUser(name: string, email: string) {
@@ -91,21 +92,20 @@ class UserService {
   }
 }
 ```
-Now we have:
-	•	User: Represents the domain model.
-	•	UserRepository: Responsible only for data storage.
-	•	EmailService: Handles email-related logic.
-	•	UserService: Coordinates user creation but delegates other responsibilities.
 
+Now we have:
+• User: Represents the domain model.
+• UserRepository: Responsible only for data storage.
+• EmailService: Handles email-related logic.
+• UserService: Coordinates user creation but delegates other responsibilities.
 
 💡 Benefits of Following SRP
 
 By applying SRP, we gain several advantages:
-	•	Better Maintainability: When a change occurs in the database logic, only UserRepository needs to change.
-	•	Improved Testability: Each class can be tested independently with unit tests.
-	•	Higher Readability: Smaller classes are easier to read and understand.
-	•	More Flexibility: Easy to replace email service or database layer without affecting user logic.
-
+• Better Maintainability: When a change occurs in the database logic, only UserRepository needs to change.
+• Improved Testability: Each class can be tested independently with unit tests.
+• Higher Readability: Smaller classes are easier to read and understand.
+• More Flexibility: Easy to replace email service or database layer without affecting user logic.
 
 🧪 Example Unit Tests
 
@@ -121,12 +121,12 @@ userRepository.save(new User("John", "john@example.com"));
 
 No need to deal with user creation or dependencies – each class is independent.
 
-
 🧱 SRP Beyond Classes: Functions Too
 
 SRP isn’t just for classes — it applies to functions as well. Avoid writing functions that do multiple things.
 
 ❌ Bad Example
+
 ```ts
 function generateReport(data: any) {
   // gather data
@@ -134,7 +134,9 @@ function generateReport(data: any) {
   // send report via email
 }
 ```
+
 ✅ Good Example
+
 ```ts
 function fetchData(): any {
   // logic to fetch data
@@ -148,15 +150,15 @@ function sendReport(report: string) {
   // logic to send report
 }
 ```
-Each function now has a single responsibility.
 
+Each function now has a single responsibility.
 
 🧠 Conclusion
 
 The Single Responsibility Principle is a simple yet powerful concept. It encourages modular design, where each component has one clear purpose. By respecting SRP in your TypeScript code:
-	•	You make your code cleaner,
-	•	Your application becomes easier to test and extend,
-	•	And your development process becomes more agile.
+• You make your code cleaner,
+• Your application becomes easier to test and extend,
+• And your development process becomes more agile.
 
 Always ask yourself:
 
@@ -164,10 +166,8 @@ Always ask yourself:
 
 If the answer is yes, consider applying SRP.
 
-
 📌 SEO Keywords
 
 Single Responsibility Principle, TypeScript SOLID Principles, Clean Code TypeScript, SRP Example, SOLID in TypeScript, Code Refactoring
-
 
 اگه خواستی مقالات بیشتری هم درمورد بقیه اصول SOLID یا مباحث clean code و design pattern برات بنویسم، فقط بگو.

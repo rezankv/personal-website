@@ -31,7 +31,7 @@ export const ShowMore = ({ children }: ShowMoreProps) => {
       {!isOpen && (
         <IconButton
           onClick={() => setIsOpen(true)}
-            className="bg-background absolute bottom-0 animate-bounce cursor-pointer rounded-full"
+          className="bg-background absolute bottom-0 animate-bounce cursor-pointer rounded-full"
         >
           <ArrowDown />
         </IconButton>

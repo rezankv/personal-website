@@ -1,4 +1,3 @@
-
 // locals
 import {
   AboutSection,
@@ -6,7 +5,6 @@ import {
   PostsSection,
   ProjectSection,
 } from "./_components";
-
 
 export default function Home() {
   return (

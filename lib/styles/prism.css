@@ -33,44 +33,36 @@ pre[class*="language-"] {
 .token.rule,
 .token.pseudo-class,
 .token.important {
-  
   color: var(--color-blue-600);
 }
 
 .token.module {
-  
   color: var(--color-purple-600);
 }
 
 .token.attr-value {
-  
   color: var(--color-blue-600);
 }
 
 .token.string {
-  
   color: var(--color-orange-600);
 }
 
 .token.class {
-  
   color: var(--color-teal-600);
 }
 
 .token.punctuation,
 .token.attr-equals {
-  
   color: var(--color-zinc-600);
 }
 
 .token.unit,
 .language-css .token.function {
-  
   color: var(--color-sky-600);
 }
 
 .token.comment {
-  
   color: var(--color-emerald-600);
   opacity: 0.7;
 }
@@ -78,7 +70,6 @@ pre[class*="language-"] {
 .token.property,
 .token.operator,
 .token.combinator {
-  
   color: var(--color-zinc-600);
 }
 
@@ -89,7 +80,6 @@ pre[class*="language-"] {
 :is(.dark .token.selector .class),
 :is(.dark .token.selector.class),
 :is(.dark .token.function) {
-  
   color: var(--color-pink-400);
 }
 
@@ -98,22 +88,18 @@ pre[class*="language-"] {
 :is(.dark .token.rule),
 :is(.dark .token.pseudo-class),
 :is(.dark .token.important) {
-  
   color: var(--color-blue-300);
 }
 
 :is(.dark .token.module) {
-  
   color: var(--color-purple-300);
 }
 
 :is(.dark .token.attr-value) {
-  
   color: var(--color-blue-300);
 }
 
 :is(.dark .token.string) {
-  
   color: var(--color-orange-300);
 }
 
@@ -208,7 +194,8 @@ pre[class*="language-"] {
   left: 2rem;
   background: var(--colors-zinc-200);
   color: var(--color-zinc-800);
-  font-family: var(--fontFamily-mono-);  padding: 0.25rem 1.5rem;
+  font-family: var(--fontFamily-mono-);
+  padding: 0.25rem 1.5rem;
   border-radius: 0.5rem 0.5rem 0 0;
   border-top: 4px solid var(--colors-indigo-600);
   font-size: 0.8rem;

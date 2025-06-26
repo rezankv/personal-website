@@ -18,7 +18,7 @@ import { Link } from "@app/i18n/navigation";
 
 export const NavigationMenu = () => {
   const pathname = usePathname();
-  const locale = useLocale()
+  const locale = useLocale();
   const t = useTranslations("RootLayout.Header.Navigation");
 
   const navItems = [
@@ -50,7 +50,7 @@ export const NavigationMenu = () => {
           <Link
             className={cn(
               "text-muted-foreground w-full",
-              isActive && "text-foreground underline font-medium",
+              isActive && "text-foreground font-medium underline",
             )}
             locale={locale}
             href={href}

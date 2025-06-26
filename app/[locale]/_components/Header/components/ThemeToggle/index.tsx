@@ -12,7 +12,7 @@ export const ThemeToggle = () => {
   return (
     <IconButton
       onClick={toggleThemeHandler}
-      className="group cursor-pointer transition "
+      className="group cursor-pointer transition"
       title="Toggle theme"
       aria-label="Toggle theme"
     >

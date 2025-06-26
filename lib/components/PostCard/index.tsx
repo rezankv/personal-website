@@ -16,13 +16,13 @@ export const PostCard = async ({ post }: { post: Post }) => {
   const iconClassNameBasedOnLocale: Partial<Record<Locale, string>> = {
     fa: "rotate-y-180",
   };
-  
+
   return (
     <div className="group md:hover:bg-muted flex cursor-pointer flex-row items-center justify-between gap-4 rounded-lg px-4 py-1 duration-300 md:py-3">
       <div className="flex flex-col">
         <h2 className="text-sm">{post.title}</h2>
         <time className="text-muted-foreground text-sm">
-          {formatDate(post.date,locale)}
+          {formatDate(post.date, locale)}
         </time>
       </div>
       <ExternalLink

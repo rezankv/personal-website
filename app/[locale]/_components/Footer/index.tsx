@@ -11,7 +11,7 @@ import { capitalizeFirstLetter } from "@app/utils";
 export const Footer = async () => {
   const locale = await getLocale();
   const t = await getTranslations();
-  
+
   const links = getSocialLinks(t);
 
   return (

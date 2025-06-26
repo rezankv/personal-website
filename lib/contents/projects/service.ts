@@ -4,7 +4,7 @@ import { Project } from "contentlayer/generated";
 import { ProjectFilter, ProjectRepository } from "./repository";
 
 export class ProjectService {
-  constructor(private readonly repo: ProjectRepository) { }
+  constructor(private readonly repo: ProjectRepository) {}
 
   getAll(filters: ProjectFilter = {}): Project[] {
     const projects = this.repo.getAll(filters);

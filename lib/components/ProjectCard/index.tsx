@@ -17,7 +17,7 @@ export const ProjectCard = async ({ project }: { project: Project }) => {
   const iconClassNameBasedOnLocale: Partial<Record<Locale, string>> = {
     fa: "rotate-y-180",
   };
-  
+
   return (
     <div className="group md:hover:bg-muted flex cursor-pointer flex-row items-center justify-between gap-4 rounded-lg px-4 py-1 duration-300 md:py-3">
       <div className="flex flex-row items-center gap-4">
