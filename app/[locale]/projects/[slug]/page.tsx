@@ -1,5 +1,4 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 // components
@@ -16,6 +15,7 @@ import { projectService } from "@app/contents";
 
 // i18n
 import { Locale } from "@app/i18n/routing";
+import { Link } from "@app/i18n/navigation";
 
 export const revalidate = 60;
 
@@ -38,7 +38,9 @@ const SingleProjectPage = async ({
 
   if (!project) notFound();
 
-  const t = await getTranslations("RootLayout.pages.ProjectsPage.SingleProjectPage");
+  const t = await getTranslations(
+    "RootLayout.pages.ProjectsPage.SingleProjectPage",
+  );
   const readingTime = formatReadingTime(project.body.code).toLocaleString(
     locale,
     {
@@ -53,6 +55,7 @@ const SingleProjectPage = async ({
   return (
     <div className="animate-fade-in flex flex-col gap-8 p-4">
       <Link
+        locale={locale}
         href={routes.PROJECTS_ROUTE}
         className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors"
       >

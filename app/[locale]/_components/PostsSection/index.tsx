@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 // content
 import { postService } from "@app/contents";
@@ -14,6 +13,7 @@ import { PostCard } from "@app/components";
 
 // i18n
 import { Locale } from "@app/i18n/routing";
+import { Link } from "@app/i18n/navigation";
 
 export const PostsSection = async () => {
   const t = await getTranslations("RootLayout.pages.HomePage.PostsSection");
@@ -40,7 +40,11 @@ export const PostsSection = async () => {
       <span className="font-medium">{t("title")}</span>
       {posts.map((post) => {
         return (
-          <Link key={post.slug} href={routes.SINGLE_POST_ROUTE(post.slug)}>
+          <Link
+            locale={locale}
+            key={post.slug}
+            href={routes.SINGLE_POST_ROUTE(post.slug)}
+          >
             <PostCard post={post} />
           </Link>
         );

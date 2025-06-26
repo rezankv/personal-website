@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 
 // constants
@@ -8,10 +8,13 @@ import { routes } from "@app/constants";
 
 // utils
 import { cn } from "@app/utils";
-import Link from "next/link";
+
+// i18n
+import { Link } from "@app/i18n/navigation";
 
 export const NavigationList = () => {
   const t = useTranslations("RootLayout.Header.Navigation");
+  const locale = useLocale();
   const pathname = usePathname();
 
   const navItems = [
@@ -31,6 +34,7 @@ export const NavigationList = () => {
       {navItems.map((navItem) => (
         <li key={navItem.href}>
           <Link
+            locale={locale}
             href={navItem.href}
             className={cn(
               "hover:text-foreground text-sm transition-colors sm:text-base",

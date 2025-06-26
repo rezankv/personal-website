@@ -1,5 +1,4 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 // components
@@ -16,6 +15,7 @@ import { postService } from "@app/contents";
 
 // i18n
 import { Locale } from "@app/i18n/routing";
+import { Link } from "@app/i18n/navigation";
 
 export const revalidate = 60;
 
@@ -52,6 +52,7 @@ const SinglePostPage = async ({
   return (
     <div className="animate-fade-in flex flex-col gap-8 p-4">
       <Link
+        locale={locale}
         href={routes.POSTS_ROUTE}
         className="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 text-sm transition-colors"
       >
@@ -60,7 +61,10 @@ const SinglePostPage = async ({
           width="16"
           height="16"
           viewBox="0 0 16 16"
-          className={cn("transition-transform group-hover:translate-x-0.5",iconClassNameBasedOnLocale[locale])}
+          className={cn(
+            "transition-transform group-hover:translate-x-0.5",
+            iconClassNameBasedOnLocale[locale],
+          )}
         >
           <path
             fill="currentColor"

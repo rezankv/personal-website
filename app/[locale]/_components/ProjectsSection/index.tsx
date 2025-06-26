@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 // content
 import { projectService } from "@app/contents";
@@ -11,6 +10,7 @@ import { routes } from "@app/constants";
 
 // i18n
 import { Locale } from "@app/i18n/routing";
+import { Link } from "@app/i18n/navigation";
 
 // components
 import { ProjectCard } from "@app/components";
@@ -32,6 +32,7 @@ export const ProjectSection = async () => {
       <div className="flex flex-col gap-4 md:gap-1">
         {featuredProjects.map((project) => (
           <Link
+            locale={locale}
             key={project._id}
             href={routes.SINGLE_PROJECT_ROUTE(project.slug)}
           >

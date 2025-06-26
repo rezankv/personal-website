@@ -1,5 +1,4 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import Link from "next/link";
 
 // constants
 import { routes } from "@app/constants";
@@ -12,11 +11,12 @@ import { ProjectCard } from "@app/components";
 
 // i18n
 import { Locale } from "@app/i18n/routing";
+import { Link } from "@app/i18n/navigation";
 
 const ProjectsPage = async () => {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("RootLayout.pages.ProjectsPage");
-  
+
   const projects = projectService.getAll({ lang: locale });
 
   return (
@@ -26,6 +26,7 @@ const ProjectsPage = async () => {
         {projects.map((project) => {
           return (
             <Link
+              locale={locale}
               key={project.url}
               href={routes.SINGLE_PROJECT_ROUTE(project.slug)}
             >
