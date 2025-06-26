@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 // i18n
@@ -9,13 +9,15 @@ import { Locale } from "@app/i18n/routing";
 // constants
 import { routes } from "@app/constants";
 
-const NotfoundPage = () => {
-  const pathname = usePathname();
+const RootPage = () => {
   const router = useRouter();
-  const locale = (pathname.split("/")[1] as Locale) || "fa";
 
   useEffect(() => {
-    router.replace(routes.NOTFOUND_ROUTE(locale));
+    const cookies = document.cookie.split("; ");
+    const cookie = cookies.find((c) => c.startsWith("NEXT_LOCALE=")) || "";
+    const locale = (cookie.split("=")[1] as Locale) || "fa";
+
+    router.replace(`/${locale}/${routes.HOME_ROUTE}`);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -26,4 +28,4 @@ const NotfoundPage = () => {
   );
 };
 
-export default NotfoundPage;
+export default RootPage;
