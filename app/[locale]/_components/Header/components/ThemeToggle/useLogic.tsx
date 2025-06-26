@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { MonitorCog, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 // providers
@@ -9,7 +9,7 @@ import { Theme } from "@app/providers";
 import { Spinner } from "@app/components";
 
 export const useLogic = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, themes } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   /* -------------------------------------------------------------------------- */
@@ -22,20 +22,28 @@ export const useLogic = () => {
   /* -------------------------------------------------------------------------- */
   /*                                  Handlers                                  */
   /* -------------------------------------------------------------------------- */
-  const toggleThemeHandler = () => {
-    const _theme = theme as Theme;
-    setTheme(_theme === "light" ? "dark" : "light");
+  const changeThemeHandler = (currentTheme: Theme, themes: Theme[]) => {
+    const currentThemeIndex = themes.indexOf(currentTheme);
+    const nextThemeIndex = (currentThemeIndex + 1) % themes.length;
+    const nextThem = themes[nextThemeIndex];
+    setTheme(nextThem);
   };
 
   const renderIconHandler = (theme: Theme): ReactNode => {
     if (!mounted) return <Spinner />;
 
     const icons: Record<Theme, ReactNode> = {
-      dark: <Sun />,
-      light: <Moon />,
+      dark:  <Moon />,
+      light:<Sun />,
+      system: <MonitorCog />,
     };
     return icons[theme];
   };
 
-  return { toggleThemeHandler, theme: theme as Theme, renderIconHandler };
+  return {
+    themes,
+    changeThemeHandler,
+    theme: theme as Theme,
+    renderIconHandler,
+  };
 };

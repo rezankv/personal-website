@@ -1,7 +1,7 @@
 import { ThemeProvider as NextThemeProvider } from "next-themes";
 import { ReactNode } from "react";
 
-export type Theme = "light" | "dark";
+export type Theme = "light" | "dark" | "system";
 interface ThemeProviderProps {
   children: ReactNode;
 }
@@ -10,7 +10,6 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     <>
       <NextThemeProvider
         attribute="class"
-        defaultTheme="light"
         enableSystem
         disableTransitionOnChange
       >
