@@ -2,7 +2,7 @@ import Head from "next/head";
 import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { Vazirmatn } from "next/font/google";
+import { DM_Sans, Vazirmatn } from "next/font/google";
 
 // i18n
 import { Locale, localeDir, routing } from "@app/i18n/routing";
@@ -19,9 +19,15 @@ import { Footer, Header } from "./_components";
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
 });
-// const dmSans = DM_Sans({
-//   subsets: ["latin"],
-// });
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+});
+
+const fontClassName: Record<Locale, string> = {
+  fa: vazirmatn.className,
+  en: dmSans.className,
+};
 
 export const metadata: Metadata = {
   title: "Reza Nikravesh | Software Developer",
@@ -87,8 +93,7 @@ export default async function RootLayout({
       <body
         className={cn(
           "bg-background text-foreground flex min-h-screen flex-col items-center",
-          vazirmatn.className,
-          // dmSans.className
+          fontClassName,
         )}
       >
         <Providers>
