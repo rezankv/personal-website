@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import Head from "next/head";
 import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
@@ -73,6 +74,10 @@ export const metadata: Metadata = {
   },
 };
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 export default async function RootLayout({
   children,
   params,
@@ -84,6 +89,9 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
+  // Enable static rendering
+  setRequestLocale(locale);
 
   return (
     <html suppressHydrationWarning lang={locale} dir={localeDir[locale]}>

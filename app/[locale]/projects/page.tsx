@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 // constants
 import { routes } from "@app/constants";
@@ -13,8 +13,13 @@ import { ProjectCard } from "@app/components";
 import { Locale } from "@app/i18n/routing";
 import { Link } from "@app/i18n/navigation";
 
-const ProjectsPage = async () => {
-  const locale = (await getLocale()) as Locale;
+const ProjectsPage = async ({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) => {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations("RootLayout.pages.ProjectsPage");
 
   const projects = projectService.getAll({ lang: locale });

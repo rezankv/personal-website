@@ -1,3 +1,5 @@
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
 // constants
 import { routes } from "@app/constants";
 
@@ -8,15 +10,21 @@ import { PostCard } from "@app/components";
 import { postService } from "@app/contents";
 
 // i18n
-import { getLocale, getTranslations } from "next-intl/server";
 import { Locale } from "@app/i18n/routing";
 import { Link } from "@app/i18n/navigation";
 
 // utils
 import { sortDocumentByDateDesc } from "@app/utils";
 
-const PostsPage = async () => {
-  const locale = (await getLocale()) as Locale;
+const PostsPage = async ({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) => {
+  const { locale } = await params;
+
+  setRequestLocale(locale);
+
   const t = await getTranslations("RootLayout.pages.PostsPage");
   const posts = sortDocumentByDateDesc(postService.getAll({ lang: locale }));
 

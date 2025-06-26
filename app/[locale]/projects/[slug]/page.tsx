@@ -1,4 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 // components
@@ -30,10 +30,12 @@ export async function generateStaticParams() {
 const SingleProjectPage = async ({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: Locale }>;
 }) => {
-  const locale = (await getLocale()) as Locale;
-  const { slug } = await params;
+  const { locale, slug } = await params;
+
+  setRequestLocale(locale);
+
   const project = projectService.getOne({ slug });
 
   if (!project) notFound();
