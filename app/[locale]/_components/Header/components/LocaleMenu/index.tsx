@@ -16,7 +16,7 @@ import {
 import { cn } from "@app/utils";
 
 // i18n
-import { usePathname, useRouter } from "@app/i18n/navigation";
+import { Link, usePathname } from "@app/i18n/navigation";
 import { Locale, localeLabel, routing } from "@app/i18n/routing";
 
 const rtlFont = Vazirmatn({ subsets: ["arabic"] });
@@ -28,36 +28,37 @@ const localeClassName: Partial<Record<Locale, string>> = {
 export const LocaleMenu = () => {
   const currentLocale = useLocale();
   const pathname = usePathname();
-  const router = useRouter();
 
   const menuItems = routing.locales.map((locale) => ({
+    locale,
     className: localeClassName[locale],
     label: localeLabel[locale],
     isActive: locale === currentLocale,
-    callback: () => router.replace(pathname, { locale }),
+    href: pathname,
   }));
 
   return (
-    <DropdownMenu  >
+    <DropdownMenu>
       <DropdownMenuTrigger asChild className="order-2 cursor-pointer">
         <IconButton>
           <Languages />
         </IconButton>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {menuItems.map(({ className, isActive, callback, label }) => (
+        {menuItems.map(({ className, locale, isActive, href, label }) => (
           <DropdownMenuItem asChild key={label}>
-            <span
-              onClick={callback}
+            <Link
               className={cn(
-                "text-muted-foreground cursor-pointer inline-block w-full hover:underline",
+                "text-muted-foreground inline-block w-full cursor-pointer hover:underline",
                 isActive && "text-foreground font-medium underline",
                 className,
               )}
+              href={href}
+              locale={locale}
               key={label}
             >
               {label}
-            </span>
+            </Link>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
