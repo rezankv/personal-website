@@ -5,6 +5,8 @@ import { useRouter, useParams } from "next/navigation";
 
 // i18n
 import { Locale } from "@app/i18n/routing";
+
+// constants
 import { routes } from "@app/constants";
 
 const NotfoundPage = () => {
