@@ -19,7 +19,7 @@ export const ProjectCard = async ({ project }: { project: Project }) => {
   };
 
   return (
-    <div className="group md:hover:bg-muted flex cursor-pointer flex-row items-center justify-between gap-4 rounded-lg px-4 py-1 duration-300 md:py-3">
+    <div className="group hover:bg-muted flex cursor-pointer flex-row items-center justify-between gap-4 rounded-lg px-4 py-1 duration-300 md:py-3">
       <div className="flex flex-row items-center gap-4">
         <Image
           width={100}
@@ -38,7 +38,7 @@ export const ProjectCard = async ({ project }: { project: Project }) => {
       <ExternalLink
         size={16}
         className={cn(
-          "scale-0 transform transition-transform duration-300 md:group-hover:scale-100",
+          "scale-0 transform transition-transform duration-300 group-hover:scale-100",
           iconClassNameBasedOnLocale[locale],
         )}
       />
