@@ -55,7 +55,7 @@ const SingleProjectPage = async ({
   };
 
   return (
-    <div className="animate-fade-in flex flex-col gap-8 p-4">
+    <div className="animate-fade-in-up flex flex-col gap-8 p-4">
       <Link
         locale={locale}
         href={routes.PROJECTS_ROUTE}

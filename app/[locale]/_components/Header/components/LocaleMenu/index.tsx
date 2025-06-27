@@ -4,7 +4,13 @@ import { Vazirmatn } from "next/font/google";
 import { useLocale } from "next-intl";
 
 // components
-import { DropdownMenu, IconButton } from "@app/components";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  IconButton,
+} from "@app/components";
 
 // utils
 import { cn } from "@app/utils";
@@ -32,33 +38,29 @@ export const LocaleMenu = () => {
   }));
 
   return (
-    <DropdownMenu
-      trigger={
-        <IconButton asChild className="cursor-pointer order-2">
-          <span>
-            {" "}
-            {/* do not remove this span element :)  */}
-            <Languages />
-          </span>
+    <DropdownMenu  >
+      <DropdownMenuTrigger asChild className="order-2 cursor-pointer">
+        <IconButton>
+          <Languages />
         </IconButton>
-      }
-      items={menuItems.map(({ callback, className, label, isActive }) => ({
-        label: (
-          <span
-            onClick={callback}
-            className={cn(
-              "text-muted-foreground inline-block w-full hover:underline",
-              isActive && "text-foreground font-medium underline",
-              className,
-            )}
-            key={label}
-          >
-            {label}
-          </span>
-        ),
-      }))}
-      align="end"
-      direction="bottom"
-    />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        {menuItems.map(({ className, isActive, callback, label }) => (
+          <DropdownMenuItem asChild key={label}>
+            <span
+              onClick={callback}
+              className={cn(
+                "text-muted-foreground cursor-pointer inline-block w-full hover:underline",
+                isActive && "text-foreground font-medium underline",
+                className,
+              )}
+              key={label}
+            >
+              {label}
+            </span>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };

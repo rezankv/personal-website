@@ -5,7 +5,13 @@ import { usePathname } from "next/navigation";
 import { MenuIcon } from "lucide-react";
 
 // components
-import { DropdownMenu, IconButton } from "@app/components";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  IconButton,
+} from "@app/components";
 
 // constants
 import { routes } from "@app/constants";
@@ -34,34 +40,29 @@ export const NavigationMenu = () => {
     },
   ];
   return (
-    <DropdownMenu
-      triggerClassName="md:hidden "
-      trigger={
-        <IconButton asChild className="cursor-pointer">
-          <span>
-            {" "}
-            {/* do not remove this span element :)  */}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild className="md:hidden">
+          <IconButton className="cursor-pointer">
             <MenuIcon />
-          </span>
-        </IconButton>
-      }
-      items={navItems.map(({ label, href, isActive }) => ({
-        label: (
-          <Link
-            className={cn(
-              "text-muted-foreground w-full",
-              isActive && "text-foreground font-medium underline",
-            )}
-            locale={locale}
-            href={href}
-            key={href}
-          >
-            {label}
-          </Link>
-        ),
-      }))}
-      align="end"
-      direction="bottom"
-    />
+          </IconButton>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          {navItems.map(({ isActive, href, label }) => (
+            <DropdownMenuItem asChild key={href}>
+              <Link
+                className={cn(
+                  "text-muted-foreground hover:text-foreground w-full",
+                  isActive && "text-foreground font-medium underline",
+                )}
+                locale={locale}
+                href={href}
+                key={href}
+              >
+                {label}
+              </Link>
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
   );
 };

@@ -28,7 +28,7 @@ export default async function Home({
   setRequestLocale(locale);
 
   return (
-    <div className="animate-fade-in mx-4 mt-4 flex flex-col gap-10">
+    <div className="animate-fade-in-up mx-4 mt-4 flex flex-col gap-10">
       <AboutSection />
       <ProjectSection />
       <PostsSection />

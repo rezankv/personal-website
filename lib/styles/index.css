@@ -74,8 +74,8 @@
 }
 
 @theme {
-  --animate-fade-in: fade-in 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-  @keyframes fade-in {
+  --animate-fade-in-up: fade-in-up 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  @keyframes fade-in-up {
     from {
       opacity: 0;
       transform: translateY(10px);
@@ -83,6 +83,18 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+  --animate-fade-out-down: fade-out-down 0.2s
+    cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+  @keyframes fade-out-down {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(10px);
     }
   }
 }

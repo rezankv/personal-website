@@ -25,7 +25,7 @@ const ProjectsPage = async ({
   const projects = projectService.getAll({ lang: locale });
 
   return (
-    <div className="animate-fade-in flex flex-col gap-2 md:py-4">
+    <div className="animate-fade-in-up flex flex-col gap-2 md:py-4">
       <h2 className="mx-4 text-xl font-bold">{t("title")}</h2>
       <div className="flex flex-col gap-4 md:gap-1">
         {projects.map((project) => {
