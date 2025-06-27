@@ -3,7 +3,7 @@ import { NavigationList, NavigationMenu } from "./components";
 
 export const Navigation = () => {
   return (
-    <div className="mx-2 flex items-center">
+    <div className="flex items-center md:mx-2 order-3 md:order-none">
       <NavigationMenu />
       <NavigationList />
     </div>

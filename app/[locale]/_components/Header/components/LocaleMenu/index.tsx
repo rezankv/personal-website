@@ -34,7 +34,7 @@ export const LocaleMenu = () => {
   return (
     <DropdownMenu
       trigger={
-        <IconButton asChild className="cursor-pointer">
+        <IconButton asChild className="cursor-pointer order-2">
           <span>
             {" "}
             {/* do not remove this span element :)  */}

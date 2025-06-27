@@ -15,7 +15,7 @@ export const ThemeToggle = () => {
   return (
     <IconButton
       onClick={() => changeThemeHandler(theme, themes as Theme[])}
-      className="group cursor-pointer transition"
+      className="group cursor-pointer transition order-1"
       title="Toggle theme"
       aria-label="Toggle theme"
     >

@@ -35,7 +35,7 @@ export const NavigationMenu = () => {
   ];
   return (
     <DropdownMenu
-      triggerClassName="md:hidden"
+      triggerClassName="md:hidden "
       trigger={
         <IconButton asChild className="cursor-pointer">
           <span>
