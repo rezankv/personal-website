@@ -15,6 +15,7 @@ const NotfoundPage = () => {
 
   useEffect(() => {
     router.push(routes.NOTFOUND_ROUTE(locale));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <html>
