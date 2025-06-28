@@ -1,4 +1,7 @@
 {
+  "METADATA": {
+    "author": "Reza Nikravesh"
+  },
   "platforms": {
     "github": "github",
     "instagram": "instagram",
@@ -37,6 +40,20 @@
         "back": "Back to Home"
       },
       "HomePage": {
+        "METADATA": {
+          "title": "Reza Nikravesh | Web Developer",
+          "description": "I’m Reza Nikravesh, a web developer based in Dezful, Iran. Here, I showcase the projects I’ve worked on and share articles that I write about my journey, experiences, and what I learn along the way.",
+          "keywords": {
+            "1": "software development",
+            "2": "web development",
+            "3": "React",
+            "4": "Next.js",
+            "5": "JavaScript",
+            "6": "TypeScript",
+            "7": "portfolio",
+            "8": "programming blog"
+          }
+        },
         "AboutSection": {
           "title": "About me",
           "description": "I’m Reza, a web developer based in Dezful, Iran. Here, I showcase the projects I’ve worked on and share articles that I write about my journey, experiences, and what I learn along the way."
@@ -80,6 +97,20 @@
         }
       },
       "ProjectsPage": {
+        "METADATA": {
+          "title": "Reza Nikravesh | Projects",
+          "description": "I’m Reza Nikravesh, a web developer based in Dezful, Iran. Here, I showcase the projects I’ve worked on ",
+          "keywords": {
+            "1": "github",
+            "2": "",
+            "3": "React",
+            "4": "Next.js",
+            "5": "JavaScript",
+            "6": "TypeScript",
+            "7": "portfolio",
+            "8": "programming project"
+          }
+        },
         "title": "Projects",
         "SingleProjectPage": {
           "back": "Back to projects",
@@ -87,6 +118,20 @@
         }
       },
       "PostsPage": {
+        "METADATA": {
+          "title": "Reza Nikravesh | Blog",
+          "description": "I’m Reza, a web developer based in Dezful, Iran. Here, I share articles that I write about my journey, experiences, and what I learn along the way.",
+          "keywords": {
+            "1": "article",
+            "2": "blog",
+            "3": "React",
+            "4": "Next.js",
+            "5": "JavaScript",
+            "6": "TypeScript",
+            "7": "web development",
+            "8": "programming"
+          }
+        },
         "title": "Posts",
         "SinglePostPage": {
           "back": "Back to posts",

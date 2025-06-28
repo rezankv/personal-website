@@ -1,6 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
 import Head from "next/head";
-import type { Metadata } from "next";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { DM_Sans, Vazirmatn } from "next/font/google";
@@ -31,50 +30,6 @@ const dmSans = DM_Sans({
 const fontClassName: Record<Locale, string> = {
   fa: vazirmatn.className,
   en: dmSans.className,
-};
-
-export const metadata: Metadata = {
-  title: "Reza Nikravesh | Software Developer",
-  description:
-    "Software developer sharing technical blog posts and showcasing personal and professional projects focused on modern web development.",
-  keywords: [
-    "software development",
-    "web development",
-    "React",
-    "Next.js",
-    "JavaScript",
-    "TypeScript",
-    "portfolio",
-    "programming blog",
-  ],
-  authors: [{ name: "Reza Nikravesh" }],
-  creator: "Reza Nikravesh",
-  metadataBase: new URL(process.env.WEBSITE_URL!),
-  openGraph: {
-    title: "Reza Nikravesh | Software Developer",
-    description:
-      "Software developer sharing technical blog posts and showcasing personal and professional projects focused on modern web development.",
-    url: process.env.WEBSITE_URL!,
-    siteName: "Reza Nikravesh | Software Developer",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 567,
-        alt: "توضیح عکس",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Reza Nikravesh | Software Developer",
-    description:
-      "Software developer sharing technical blog posts and showcasing personal and professional projects focused on modern web development.",
-    images: ["/og.png"],
-    creator: "@rezankv",
-  },
 };
 
 export function generateStaticParams() {
