@@ -17,7 +17,7 @@ export const Timeline = ({ items, className, ...props }: TimelineProps) => {
     >
       {items.map((item, index) => (
         <li className="ms-4 mb-10" key={`${item.title?.toString()}-${index}`}>
-          <div className="border-background bg-border absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border"></div>
+          <div className="border-background bg-border dark:bg-muted-foreground absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border"></div>
           <time className="text-muted-foreground-2 mb-1 text-sm leading-none font-normal">
             {item.date}
           </time>

@@ -54,26 +54,26 @@
           "list": {
             "1": {
               "title": "React Developer at Jundi-Shapur University Of Technology",
-              "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
-              "date": "January 2021 - October 2022",
+              "description": "Collaborated with a team of developers on building a class management web application for the University of Jundi Shapur. The project was developed using React, TypeScript, Redux, and Material UI (MUI). My responsibilities included feature development, researching and implementing best practices to improve code quality and maintainability, as well as reviewing pull requests to ensure consistency and performance across the codebase.",
+              "date": "January 2021 - October 2022 (Dezful, Iran / Remote)",
               "link": "https://jsu.ac.ir"
             },
             "2": {
               "title": "React Developer at Bent Oak Systems",
-              "description": "Developed and  web applications using React web applications using React web applications using React web applications using React web applications using React and Node.js.",
-              "date": "October 2022 - May 2023",
-              "link":"https://bentoak.systems"
+              "description": "Contributed to a large-scale project consisting of multiple applications including admin panels and client applications, using technologies such as React, TypeScript, and React Query. Worked closely with backend developers, designers, and QA engineers to develop and deliver new features with high quality. The project followed Scrum, Agile methodology and tools like Jira were used by the project manager to organize and track the team’s work. My main responsibility was implementing new features and ensuring a smooth integration within the overall system.",
+              "date": "October 2022 - May 2023 (United Kingdom / Remote)",
+              "link": "https://bentoak.systems"
             },
             "3": {
               "title": "Frontend Developer at 7Learn",
-              "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
-              "date": "March 2024 - July 2024",
+              "description": "Implemented pixel-perfect UI based on Figma designs using tools such as Sass, Handlebars, jQuery, and Vite. Developed pages and components from scratch, ensuring responsiveness and cross-browser compatibility. Gained hands-on experience configuring Vite for optimal development performance. Additionally, I designed and implemented a clean and efficient development workflow using git hooks and github action to improve code consistency and team productivity.",
+              "date": "March 2024 - July 2024 (Tehran, Iran / Remote)",
               "link": "https://7learn.com"
             },
             "4": {
               "title": "Founder at Nozh",
-              "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
-              "date": "June 2024 - Today",
+              "description": "Worked on a variety of applications, including admin panels, API integration and development, Telegram mini-apps, and WordPress-based websites. Since I was responsible for most parts of the development process, I dedicated significant time to research and applying effective, practical solutions. I aim to share the insights and lessons I’ve learned through articles on this website.",
+              "date": "June 2024 - Today (Dezful, Iran / Remote)",
               "link": "https://linkedin.com/company/nozh"
             }
           }
