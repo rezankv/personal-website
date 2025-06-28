@@ -50,7 +50,6 @@ export const Project = defineDocumentType(() => ({
     author: { type: 'enum', options: ["Reza Nikravesh"] },
 
     isFeatured: { type: "boolean", required: true },
-    description: { type: "string", required: true },
     liveLink: { type: "string", required: true },
     icon: { type: "string", required: true },
   },
