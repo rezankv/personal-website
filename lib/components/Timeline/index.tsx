@@ -21,7 +21,7 @@ export const Timeline = ({ items, className, ...props }: TimelineProps) => {
           <time className="text-muted-foreground-2 mb-1 text-sm leading-none font-normal">
             {item.date}
           </time>
-          <span className="text-foreground block font-semibold">
+          <span className="text-foreground block font-semibold rtl:font-medium">
             {item.title}
           </span>
           <div className="text-muted-foreground mb-4 text-sm font-normal">

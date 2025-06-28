@@ -39,8 +39,8 @@
       },
       "HomePage": {
         "AboutSection": {
-          "title": "سلام!",
-          "description": " من رضا نیک روش٬ توسعه دهنده نرم افزار هستم. اینجا پروژه ها و مقالاتم رو با شما به اشتراک میزارم. از طریق لینک های زیر میتونید با من در ارتباط باشید."
+          "title": "این منم!",
+          "description": "من رضا نیک‌روش، توسعه دهنده نرم‌افزار هستم. اینجا پروژه هایی که در انجام شون مشارکت داشتم رو با شما به اشتراک میزارم. همچنین مقالاتی درمورد مسیر حرفه‌ای، تجربیات و چیزهایی که در طول این راه یاد‌گرفتم رو منتشر میکنم. از طریق لینک های زیر میتونید با من در ارتباط باشید."
         },
         "ProjectsSection": {
           "title": "آخرین پروژه ها",
@@ -51,22 +51,31 @@
           "more": "مقالات بیشتر"
         },
         "ExperienceSection": {
-          "title": "مسیر من",
+          "title": "تجربیات من",
           "list": {
             "1": {
-              "title": "مهندس نرم افزار",
-              "description": "در این پوزیشن، مسئول طراحی و پیاده‌سازی رابط کاربری یک پنل مدیریت تحت وب بودم. تمرکز اصلی پروژه روی نمایش داده‌های پیچیده، فیلترگذاری، و تجربه کاربری ساده و روان بود. از React و TypeScript به همراه معماری component-base برای توسعه استفاده می‌کردم.",
-              "date": "فروردین ۱۴۰۳ - مهر ۱۴۰۵"
+              "title": "توسعه دهنده ریکت در دانشگاه صنعتی جندی شاپور ",
+              "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
+              "date": "فروردین ۱۳۹۹ - فروردین ۱۴۰۰",
+              "link": "https://jsu.ac.ir"
             },
             "2": {
-              "title": "مهندس نرم افزار",
-              "description": "در این پوزیشن، مسئول طراحی و پیاده‌سازی رابط کاربری یک پنل مدیریت تحت وب بودم. تمرکز اصلی پروژه روی نمایش داده‌های پیچیده، فیلترگذاری، و تجربه کاربری ساده و روان بود. از React و TypeScript به همراه معماری component-base برای توسعه استفاده می‌کردم.",
-              "date": "فروردین ۱۴۰۳ - مهر ۱۴۰۵"
+              "title": "توسعه دهنده ریکت در بنتوک سیستم",
+              "description": "Developed and  web applications using React web applications using React web applications using React web applications using React web applications using React and Node.js.",
+              "date": "فروردین ۱۳۹۹ - فروردین ۱۴۰۰",
+              "link": "https://bentoak.systems"
             },
             "3": {
-              "title": "مهندس نرم افزار",
-              "description": "در این پوزیشن، مسئول طراحی و پیاده‌سازی رابط کاربری یک پنل مدیریت تحت وب بودم. تمرکز اصلی پروژه روی نمایش داده‌های پیچیده، فیلترگذاری، و تجربه کاربری ساده و روان بود. از React و TypeScript به همراه معماری component-base برای توسعه استفاده می‌کردم.",
-              "date": "فروردین ۱۴۰۳ - مهر ۱۴۰۵"
+              "title": "توسعه دهنده فرانت‌اند در سون‌لرن",
+              "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
+              "date": "فروردین ۱۳۹۹ - فروردین ۱۴۰۰",
+              "link": "https://7learn.com"
+            },
+            "4": {
+              "title": "توسعه دهنده نرم‌افزار در نوژ",
+              "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
+              "date": "فروردین ۱۳۹۹ - فروردین ۱۴۰۰",
+              "link": "https://linkedin.com/company/nozh"
             }
           }
         }

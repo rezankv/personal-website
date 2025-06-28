@@ -9,7 +9,7 @@ export const AboutSection = () => {
   return (
     <div className="flex flex-col gap-2">
       <span className="font-medium">{t("title")}</span>
-      <p>{t("description")}</p>
+      <p className="rtl:font-light">{t("description")}</p>
       <SocialLinks />
     </div>
   );

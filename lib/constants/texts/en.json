@@ -39,7 +39,7 @@
       "HomePage": {
         "AboutSection": {
           "title": "About me",
-          "description": "Hi, I'm Reza. I'm based in Los Angeles, California. In addition to coding, I also make YouTube videos, sharing my knowledge and experience on web & mobile development."
+          "description": "I’m Reza, a web developer based in Dezful, Iran. Here, I showcase the projects I’ve worked on and share articles that I write about my journey, experiences, and what I learn along the way."
         },
         "ProjectsSection": {
           "title": "Featured Projects",
@@ -50,22 +50,31 @@
           "more": "View all posts"
         },
         "ExperienceSection": {
-          "title": "Work Experiences",
+          "title": "My Experiences",
           "list": {
             "1": {
-              "title": "Software Engineer at XYZ Corp",
+              "title": "React Developer at Jundi-Shapur University Of Technology",
               "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
-              "date": "February 2022 - April 2025"
+              "date": "February 2022 - April 2025",
+              "link": "https://jsu.ac.ir"
             },
             "2": {
-              "title": "Frontend Developer at XYZ Corp",
+              "title": "React Developer at Bent Oak Systems",
               "description": "Developed and  web applications using React web applications using React web applications using React web applications using React web applications using React and Node.js.",
-              "date": "March 2012 - April 2025"
+              "date": "March 2012 - April 2025",
+              "link":"https://bentoak.systems"
             },
             "3": {
-              "title": "Software Engineer at XYZ Corp",
+              "title": "Frontend Developer at 7Learn",
               "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
-              "date": "February 2022 - April 2025"
+              "date": "February 2022 - April 2025",
+              "link": "https://7learn.com"
+            },
+            "4": {
+              "title": "Founder at Nozh",
+              "description": "Developed and maintained web applications using React and Node.js.Developed and maintained web applications using React and Node.js.",
+              "date": "February 2022 - April 2025",
+              "link": "https://linkedin.com/company/nozh"
             }
           }
         }
