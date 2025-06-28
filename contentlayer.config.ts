@@ -4,15 +4,25 @@ import rehypePrism from "rehype-prism-plus";
 // i18n
 import { routing } from "./i18n/routing";
 
+
 export const Post = defineDocumentType(() => ({
   name: "Post",
   filePathPattern: `posts/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
-    slug: { type: "string", required: true },
     date: { type: "date", required: true },
     lang: { type: "enum", options: routing.locales, required: true },
+    slug: { type: "string", required: true },
+    summery: { type: "string", required: true },
+    tags: {
+      type: "list", of: {
+        type: "string"
+      }, required: true
+    },
+    author: { type: 'enum', options: ["Reza Nikravesh"] },
+
+
   },
   computedFields: {
     url: {
@@ -28,13 +38,21 @@ export const Project = defineDocumentType(() => ({
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
-    slug: { type: "string", required: true },
     date: { type: "date", required: true },
+    lang: { type: "enum", options: routing.locales, required: true },
+    slug: { type: "string", required: true },
+    summery: { type: "string", required: true },
+    tags: {
+      type: "list", of: {
+        type: "string"
+      }, required: true
+    },
+    author: { type: 'enum', options: ["Reza Nikravesh"] },
+
     isFeatured: { type: "boolean", required: true },
     description: { type: "string", required: true },
     liveLink: { type: "string", required: true },
     icon: { type: "string", required: true },
-    lang: { type: "enum", options: routing.locales, required: true },
   },
   computedFields: {
     url: {
