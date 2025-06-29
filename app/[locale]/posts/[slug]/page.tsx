@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
@@ -16,7 +17,6 @@ import { postService } from "@app/contents";
 // i18n
 import { Locale } from "@app/i18n/routing";
 import { Link } from "@app/i18n/navigation";
-import { Metadata } from "next";
 
 export async function generateMetadata({
   params,
@@ -32,7 +32,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.summery,
-    keywords: post.tags,
+    keywords: post.keywords,
     authors: [{ name: post.author }],
     creator: post.author,
     // openGraph: {

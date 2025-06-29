@@ -32,7 +32,7 @@ export async function generateMetadata({
   return {
     title: project.title,
     description: project.summery,
-    keywords: project.tags,
+    keywords: project.keywords,
     authors: [{ name: project.author }],
     creator: project.author,
     // openGraph: {

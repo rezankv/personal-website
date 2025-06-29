@@ -20,6 +20,11 @@ export const Post = defineDocumentType(() => ({
         type: "string"
       }, required: true
     },
+    keywords: {
+      type: "list", of: {
+        type: "string"
+      }, required: true
+    },
     author: { type: 'enum', options: ["Reza Nikravesh"] },
 
 
@@ -43,6 +48,11 @@ export const Project = defineDocumentType(() => ({
     slug: { type: "string", required: true },
     summery: { type: "string", required: true },
     tags: {
+      type: "list", of: {
+        type: "string"
+      }, required: true
+    },
+    keywords: {
       type: "list", of: {
         type: "string"
       }, required: true
