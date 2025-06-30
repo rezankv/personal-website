@@ -105,7 +105,7 @@ const SingleProjectPage = async ({
 
   setRequestLocale(locale);
 
-  const project = projectService.getOne({ slug });
+  const project = projectService.getOne({ slug, lang: locale });
 
   if (!project) notFound();
 

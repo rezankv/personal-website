@@ -26,7 +26,7 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const post = postService.getOne({ slug });
+  const post = postService.getOne({ slug, lang: locale });
   if (!post) notFound();
 
   return {
