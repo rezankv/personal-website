@@ -3,6 +3,9 @@
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { useEffect, useState } from "react";
 
+// i18n
+import { Link } from "@app/i18n/navigation";
+
 // locals
 import { CodeBlock } from "..";
 
@@ -18,5 +21,5 @@ export const MdxViewer = ({ content }: MdxViewerProps) => {
 
   const MdxContent = useMDXComponent(content);
 
-  return <>{isShow && <MdxContent components={{ CodeBlock }} />}</>;
+  return <>{isShow && <MdxContent components={{ CodeBlock, Link }} />}</>;
 };
