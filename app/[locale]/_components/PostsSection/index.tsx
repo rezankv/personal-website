@@ -15,10 +15,13 @@ import { PostCard } from "@app/components";
 import { Locale } from "@app/i18n/routing";
 import { Link } from "@app/i18n/navigation";
 
+// utils
+import { sortDocumentByDateDesc } from "@app/utils";
+
 export const PostsSection = async () => {
   const t = await getTranslations("RootLayout.pages.HomePage.PostsSection");
   const locale = (await getLocale()) as Locale;
-  const posts = postService.getAll({ lang: locale }).slice(0, 3);
+  const posts = sortDocumentByDateDesc(postService.getAll({ lang: locale }).slice(0,3));
 
   const arrowIconBasedOnLocale: Record<Locale, ReactNode> = {
     en: (
