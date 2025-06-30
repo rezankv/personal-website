@@ -25,7 +25,7 @@ export const Post = defineDocumentType(() => ({
         type: "string"
       }, required: true
     },
-    author: { type: 'enum', options: ["Reza Nikravesh"] },
+    author: { type: 'string', required: true },
 
 
   },
@@ -57,8 +57,7 @@ export const Project = defineDocumentType(() => ({
         type: "string"
       }, required: true
     },
-    author: { type: 'enum', options: ["Reza Nikravesh"] },
-
+    author: { type: 'string', required: true },
     isFeatured: { type: "boolean", required: true },
     liveLink: { type: "string", required: true },
     icon: { type: "string", required: true },
