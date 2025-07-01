@@ -4,13 +4,248 @@ date: Mon Jun 30 2025 10:23:47 GMT+0330
 slug: solid-simplified-single-responsibility-principle
 lang: fa
 summery: "اصل تک مسئولیتی می‌گوید هر کلاس یا ماژول باید فقط یک مسئولیت داشته باشد. در این مقاله یاد می‌گیریم چطور با تفکیک مسئولیت‌ها، کدی بنویسیم که ساده‌تر تست، نگهداری و توسعه داده شود."
-tags: ['سالید', 'مهندسی نرم افزار','کد تمیز']
-keywords: ["سالید","اصول سالید",'مهندسی نرم افزار', 'کد تمیز',"آموزش سالید" ,"آموزش solid"]
+tags: ["سالید", "مهندسی نرم افزار", "کد تمیز"]
+keywords:
+  [
+    "سالید",
+    "اصول سالید",
+    "مهندسی نرم افزار",
+    "کد تمیز",
+    "آموزش سالید",
+    "آموزش solid",
+  ]
 author: رضا نیک روش
 ---
+
+import { routes } from "@app/constants";
+
 ## مقدمه
-در دنیای توسعه نرم‌افزار، نوشتن کدی که فقط «کار کنه» کافی نیست. برنامه‌هایی که با رشد پروژه دچار پیچیدگی، باگ‌های پنهان، و هزینه نگهداری بالا می‌شن، معمولاً از اصول درست طراحی پیروی نکردن. یکی از مهم‌ترین مجموعه اصولی که به کمک ما میاد تا بتونیم کدی تمیز، قابل توسعه، و قابل نگهداری بنویسیم، اصول SOLID هست.
+
+در دنیای توسعه نرم‌افزار، نوشتن کدی که فقط «کار کنه» کافی نیست. برنامه‌هایی که با رشد پروژه دچار پیچیدگی، باگ‌های پنهان، و هزینه نگهداری بالا می‌شن، معمولاً از اصول درست طراحی پیروی نکردن. یکی از مهم‌ترین اصولی که به کمک ما میاد تا بتونیم کدی تمیز، قابل توسعه، و قابل نگهداری بنویسیم، اصول SOLID هست.
 
 SOLID مجموعه‌ای از پنج اصل که توسط <Link href="https://en.wikipedia.org/wiki/Robert_C._Martin" target="_blank">Robert C. Martin</Link> معرفی شده. این اصول به ما کمک می‌کنن که وابستگی‌های نادرست رو حذف کنیم، تغییرات رو بدون آسیب زدن به بخش‌های دیگه پیاده کنیم، و از پیچیدگی بی‌مورد در معماری جلوگیری کنیم. رعایت این اصول، مخصوصاً تو پروژه‌های تیمی و بلندمدت، باعث میشه توسعه نرم‌افزار به تجربه‌ای لذت‌بخش‌تر و قابل اعتمادتر تبدیل بشه.
 
 در سری مقالات "اصول سالید به زبان ساده" قراره این ۵ اصل رو با هم دیگه یادبگیریم.
+
+## اصل اول SOLID: اصل تک‌وظیفه‌ای (Single Responsibility Principle)
+
+اصل تک وظیفه ای یا Single Responsibility میگه:
+
+> هر کلاس، ماژول یا تابع باید فقط یک دلیل برای تغییر داشته باشه.
+
+یعنی یه کلاس یا ماژول نباید مسئول چندین وظیفه باشه. اگر کلاس شما هم وظیفه ذخیره داده رو داره، هم پردازش، هم نمایش، هم اعتبارسنجی، یعنی چند دلیل برای تغییر داره.
+
+مثال زیر رو ببین تا متوجه منظورم بشی.
+
+<CodeBlock title="Typescript" raw={`class UserManager {
+  createUser(user: any) {
+    // ذخیره در دیتابیس
+  }
+
+validateUser(user: any) {
+// چک کردن فیلدها
+}
+
+sendWelcomeEmail(user: any) {
+// ارسال ایمیل
+}
+}`}>
+
+```ts
+class UserManager {
+  createUser(user: any) {
+    // ذخیره در دیتابیس
+  }
+
+  validateUser(user: any) {
+    // چک کردن فیلدها
+  }
+
+  sendWelcomeEmail(user: any) {
+    // ارسال ایمیل
+  }
+}
+```
+
+</CodeBlock>
+ این کلاس ۳ مسئولیت داره:
+*	ایجاد کاربر
+*	اعتبارسنجی کاربر
+*	ارسال ایمیل
+
+حالا کد زیر رو ببین که طبق اصل تک‌وظیفه ای نوشته شده.
+
+<CodeBlock title="Typescript" raw={`
+  class UserValidator {
+  validate(user: any) {
+    // اعتبارسنجی کاربر
+  }
+}
+
+class UserRepository {
+create(user: any) {
+// ذخیره در دیتابیس
+}
+}
+
+class EmailService {
+sendWelcomeEmail(user: any) {
+// ارسال ایمیل خوش‌آمد
+}
+}`}>
+
+```ts
+class UserValidator {
+  validate(user: any) {
+    // اعتبارسنجی کاربر
+  }
+}
+
+class UserRepository {
+  create(user: any) {
+    // ذخیره در دیتابیس
+  }
+}
+
+class EmailService {
+  sendWelcomeEmail(user: any) {
+    // ارسال ایمیل خوش‌آمد
+  }
+}
+```
+
+</CodeBlock>
+همونطور که میبینی هر کلاس فقط یک وظیفه داره. این یعنی اگر سیاست ارسال ایمیل عوض شه، فقط EmailService تغییر می‌کنه.
+
+یک مثال دیگه میزنم.
+
+<CodeBlock title="Typescript" raw={`function printInvoice(order: { items: string[]; total: number }) {
+  // ۱. محاسبه مالیات
+  const tax = order.total * 0.09;
+
+// ۲. چاپ فاکتور
+console.log("Items:", order.items.join(", "));
+console.log("Total:", order.total);
+console.log("Tax:", tax);
+
+// ۳. ذخیره در لاگ فایل
+console.log("Saving invoice log...");
+}`}>
+
+```ts
+function printInvoice(order: { items: string[]; total: number }) {
+  // ۱. محاسبه مالیات
+  const tax = order.total * 0.09;
+
+  // ۲. چاپ فاکتور
+  console.log("Items:", order.items.join(", "));
+  console.log("Total:", order.total);
+  console.log("Tax:", tax);
+
+  // ۳. ذخیره در لاگ فایل
+  console.log("Saving invoice log...");
+}
+```
+
+</CodeBlock>
+
+این تابع ۳ تا کار جدا می‌کنه:
+
+- محاسبه مالیات
+- نمایش فاکتور
+- ذخیره لاگ
+
+یعنی:
+
+    *	اگه قوانین مالیاتی تغییر کنه  باید این تابع تغییر کنه
+    *	اگه نوع نمایش عوض شه  این تابع تغییر می‌کنه
+    *	اگه بخوای لاگ رو به جای کنسول، تو فایل ذخیره کنی  باز هم این تابع باید تغییر کنه
+
+پس این تابع چند «دلیل برای تغییر» داره. این یعنی نقض SRP.
+
+حالا نسخه اصلاح شده رو ببین.
+
+<CodeBlock title="Typescript" raw={`class TaxCalculator {
+  static calculate(total: number): number {
+    return total * 0.09;
+  }
+}
+
+class InvoicePrinter {
+static print(order: { items: string[]; total: number }) {
+const tax = TaxCalculator.calculate(order.total);
+console.log("Items:", order.items.join(", "));
+console.log("Total:", order.total);
+console.log("Tax:", tax);
+}
+}
+
+class Logger {
+static log(message: string) {
+console.log("Log:", message);
+}
+}
+
+function processInvoice(order: { items: string[]; total: number }) {
+InvoicePrinter.print(order);
+Logger.log("Invoice printed for order.");
+}
+`}>
+
+```ts
+class TaxCalculator {
+  static calculate(total: number): number {
+    return total * 0.09;
+  }
+}
+
+class InvoicePrinter {
+  static print(order: { items: string[]; total: number }) {
+    const tax = TaxCalculator.calculate(order.total);
+    console.log("Items:", order.items.join(", "));
+    console.log("Total:", order.total);
+    console.log("Tax:", tax);
+  }
+}
+
+class Logger {
+  static log(message: string) {
+    console.log("Log:", message);
+  }
+}
+
+function processInvoice(order: { items: string[]; total: number }) {
+  InvoicePrinter.print(order);
+  Logger.log("Invoice printed for order.");
+}
+```
+
+</CodeBlock>
+چه فرقی کرد؟
+	*	اگه قوانین مالیاتی تغییر کنن، فقط TaxCalculator رو تغییر می‌دی.
+	*	اگر فاکتور بخوای تو فایل چاپ شه، فقط InvoicePrinter رو تغییر می‌دی.
+	*	کدت تمیزتر، تست‌پذیرتر، و قابل توسعه‌تره.
+
+### چرا اصل SRP مهمه؟
+
+وقتی یک کلاس یا تابع چند مسئولیت داره، وابستگی‌ها به هم گره می‌خورن. این یعنی:
+
+- تغییر توی یه بخش از مسئولیت باعث باگ در بخش دیگه می‌شه.
+- تست‌نویسی سخت‌تر می‌شه.
+-     کد قابل استفاده مجدد نیست.
+- فهمیدن و تغییر دادن کد دشوار می‌شه.
+
+فرض کن یه کلاس داری که هم دیتا رو از دیتابیس می‌گیره، هم اون رو فرمت می‌کنه، هم روی UI نمایش می‌ده. حالا اگه نیاز باشه دیتابیس عوض شه یا ساختار نمایش تغییر کنه، باید این کلاس رو تغییر بدی، که ممکنه روی بخش‌های دیگه هم تأثیر بزاره. این یعنی شکنندگی کد.
+
+### مزایای رعایت این اصل
+
+    *	کاهش پیچیدگی کدها
+    *	افزایش تست‌پذیری (Unit Test راحت‌تر نوشته می‌شه)
+    *	افزایش خوانایی و فهم سریع‌تر کد
+    *	امکان توسعه راحت‌تر
+    *	افزایش قابلیت استفاده مجدد (Reusable Code)
+
+    ### یاد گرفتی؟
+    اگر این اصل رو به خوبی درک کردی برو چنتا مثال حتما حل کن. اگر اطمینان داری که مفهومش به خوبی برات جا افتاده برو مقاله بعدی رو بخون.
+    
+    <Link href={routes.SINGLE_POST_ROUTE('solid-simplified-open-close-principle')}>سالید به زبان ساده: اصل دوم</Link>

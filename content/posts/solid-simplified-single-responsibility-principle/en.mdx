@@ -14,3 +14,234 @@ In the world of software development, writing code that “just works” is not 
 SOLID is a collection of five principles introduced by <Link href="https://en.wikipedia.org/wiki/Robert_C._Martin" target="_blank">Robert C. Martin</Link>. These principles help us eliminate improper dependencies, make changes without breaking other parts of the system, and avoid unnecessary architectural complexity. Following these principles is especially valuable in long-term and team-based projects, making software development a more enjoyable and reliable experience.
 
 In this “SOLID Simplified” series, we’ll learn these five principles together in a straightforward way. 
+
+import {routes} from '@app/constants'
+
+## First SOLID Principle: Single Responsibility Principle (SRP)
+
+The Single Responsibility Principle says:
+
+> A class, module, or function should have only one reason to change.
+
+That means a class or module shouldn’t be responsible for multiple tasks. If your class handles data storage, processing, display, and validation all at once, it has multiple reasons to change.
+
+Here’s an example to show what that looks like:
+
+<CodeBlock title="Typescript" raw={`class UserManager {
+  createUser(user: any) {
+    // save to DB
+  }
+
+validateUser(user: any) {
+// validate fileds
+}
+
+sendWelcomeEmail(user: any) {
+// send email
+}
+}`}>
+
+```ts
+class UserManager {
+  createUser(user: any) {
+    // save to DB
+  }
+
+  validateUser(user: any) {
+    // validate fileds
+  }
+
+  sendWelcomeEmail(user: any) {
+    // send email
+  }
+}
+```
+
+</CodeBlock>
+This class has three responsibilities:
+* Creating a user
+*	Validating the user
+*	Sending a welcome email
+
+Let’s refactor it:
+
+<CodeBlock title="Typescript" raw={`
+  class UserValidator {
+  validate(user: any) {
+    // validate fields
+  }
+}
+
+class UserRepository {
+create(user: any) {
+// save to DB
+}
+}
+
+class EmailService {
+sendWelcomeEmail(user: any) {
+// send email
+}
+}`}>
+
+```ts
+class UserValidator {
+  validate(user: any) {
+    // validate fields
+  }
+}
+
+class UserRepository {
+  create(user: any) {
+    // save to DB
+  }
+}
+
+class EmailService {
+  sendWelcomeEmail(user: any) {
+    // send email
+  }
+}
+```
+
+</CodeBlock>
+Now each class has only one responsibility. So if the email-sending policy changes, only the EmailService needs to be updated.
+
+Here’s another example:
+
+<CodeBlock title="Typescript" raw={`
+function printInvoice(order: { items: string[]; total: number }) {
+  //  Calculate tax
+  const tax = order.total * 0.09;
+
+// Print invoice
+console.log("Items:", order.items.join(", "));
+console.log("Total:", order.total);
+console.log("Tax:", tax);
+
+// save to log
+console.log("Saving invoice log...");
+}
+`}>
+
+```ts
+function printInvoice(order: { items: string[]; total: number }) {
+  //  Calculate tax
+  const tax = order.total * 0.09;
+
+  // Print invoice
+  console.log("Items:", order.items.join(", "));
+  console.log("Total:", order.total);
+  console.log("Tax:", tax);
+
+  // save to log
+  console.log("Saving invoice log...");
+}
+```
+
+</CodeBlock>
+
+This function does three separate things:
+
+- Calculates tax
+- Displays the invoice
+- Logs the invoice
+
+So:
+
+    *	If tax rules change → this function must change
+    *	If the invoice format changes → this function must change
+    *	If logging moves to a file instead of the console → this function must change again
+
+That’s multiple reasons to change, which violates SRP.
+
+Let’s fix it:
+
+<CodeBlock title="Typescript" raw={`class TaxCalculator {
+  static calculate(total: number): number {
+    return total * 0.09;
+  }
+}
+
+class InvoicePrinter {
+static print(order: { items: string[]; total: number }) {
+const tax = TaxCalculator.calculate(order.total);
+console.log("Items:", order.items.join(", "));
+console.log("Total:", order.total);
+console.log("Tax:", tax);
+}
+}
+
+class Logger {
+static log(message: string) {
+console.log("Log:", message);
+}
+}
+
+function processInvoice(order: { items: string[]; total: number }) {
+InvoicePrinter.print(order);
+Logger.log("Invoice printed for order.");
+}
+`}>
+
+```ts
+class TaxCalculator {
+  static calculate(total: number): number {
+    return total * 0.09;
+  }
+}
+
+class InvoicePrinter {
+  static print(order: { items: string[]; total: number }) {
+    const tax = TaxCalculator.calculate(order.total);
+    console.log("Items:", order.items.join(", "));
+    console.log("Total:", order.total);
+    console.log("Tax:", tax);
+  }
+}
+
+class Logger {
+  static log(message: string) {
+    console.log("Log:", message);
+  }
+}
+
+function processInvoice(order: { items: string[]; total: number }) {
+  InvoicePrinter.print(order);
+  Logger.log("Invoice printed for order.");
+}
+```
+
+</CodeBlock>
+What’s the difference?
+
+- If tax rules change → only TaxCalculator changes
+- If the invoice needs to be printed to a file → only InvoicePrinter changes
+- Your code is now cleaner, more testable, and easier to maintain
+
+### Why Is SRP Important?
+
+When a class or function has multiple responsibilities, those responsibilities become tightly coupled, leading to:
+
+    *	Bugs when one part changes another unexpectedly
+    *	Difficult unit testing
+    *	Poor reusability
+    *	Hard-to-understand and fragile code
+
+Imagine a class that fetches data from the DB, formats it, and renders it in the UI. If the database or the UI changes, the class must be updated, and this might affect other parts too. That’s fragile architecture.
+
+### Benefits of SRP
+
+- Reduced complexity
+- Easier unit testing
+- Improved readability
+- Simpler to extend and maintain
+- Better code reusability
+
+
+### Got It?
+    If you fully understand SRP, go solve a few examples to reinforce the concept. Once you’re confident, read the next article
+
+<Link href={routes.SINGLE_POST_ROUTE("solid-simplified-open-close-principle")}>
+  The Open-Closed Principle
+</Link>
