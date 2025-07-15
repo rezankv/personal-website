@@ -37,3 +37,155 @@ Below, you can find a list of the previous parts in the series, which I recommen
   >
     SOLID Simplified: Single Responsibility Principle
   </Link>
+
+## The Second SOLID Principle: Open/Closed Principle
+
+This principle says:
+
+> **Classes, modules, or functions should be open for extension but closed for modification.**
+
+But what does that mean?
+
+It means we should be able to **add new functionality without modifying existing code**. This is usually achieved through **inheritance** or **polymorphism**.
+
+### Let’s look at an example:
+
+❌ **Violating the OCP**
+
+<CodeBlock title="Typescript" raw={`class SalaryCalculator {
+  calculate(employee: { type: string; baseSalary: number }): number {
+    if (employee.type === "developer") {
+      return employee.baseSalary + 1000000;
+    } else if (employee.type === "manager") {
+      return employee.baseSalary + 5000000;
+    } else {
+      return employee.baseSalary;
+    }
+  }
+}`}>
+
+```ts
+class SalaryCalculator {
+  calculate(employee: { type: string; baseSalary: number }): number {
+    if (employee.type === "developer") {
+      return employee.baseSalary + 1000000;
+    } else if (employee.type === "manager") {
+      return employee.baseSalary + 5000000;
+    } else {
+      return employee.baseSalary;
+    }
+  }
+}
+```
+
+</CodeBlock>
+
+What’s the problem?
+
+If you later want to add a new role (like “intern”), you’ll have to change the original class. That means the code is not closed to modification.
+
+#### ✅ Proper OCP Implementation
+
+Let’s restructure things so each role handles its own salary calculation:
+
+<CodeBlock title="“Typescript”" raw={`interface Employee {
+baseSalary: number;
+calculateSalary(): number;
+}
+
+class Developer implements Employee {
+constructor(public baseSalary: number) {}
+calculateSalary(): number {
+return this.baseSalary + 1000000;
+}
+}
+
+class Manager implements Employee {
+constructor(public baseSalary: number) {}
+calculateSalary(): number {
+return this.baseSalary + 5000000;
+}
+}
+
+class Intern implements Employee {
+constructor(public baseSalary: number) {}
+calculateSalary(): number {
+return this.baseSalary;
+}
+}
+
+function printSalary(employee: Employee) {
+console.log(“Salary:”, employee.calculateSalary());
+}`}>
+
+```ts
+interface Employee {
+  baseSalary: number;
+  calculateSalary(): number;
+}
+
+class Developer implements Employee {
+  constructor(public baseSalary: number) {}
+  calculateSalary(): number {
+    return this.baseSalary + 1000000;
+  }
+}
+
+class Manager implements Employee {
+  constructor(public baseSalary: number) {}
+  calculateSalary(): number {
+    return this.baseSalary + 5000000;
+  }
+}
+
+class Intern implements Employee {
+  constructor(public baseSalary: number) {}
+  calculateSalary(): number {
+    return this.baseSalary;
+  }
+}
+
+function printSalary(employee: Employee) {
+  console.log("Salary:", employee.calculateSalary());
+}
+```
+
+</CodeBlock>
+
+Now, if a new role is introduced, we just create a new class—no need to touch the existing ones.
+
+#### Why is the Open/Closed Principle important?
+
+- ✅ No risk of breaking existing logic
+- ✅ Different teams can add new features independently
+- ✅ Unit tests remain intact
+- ✅ The system becomes more scalable
+
+#### How do we apply this principle?
+
+- Use interfaces or abstract classes to define common behavior
+- Use dependency injection to pass in dependencies
+- Extend functionality through inheritance or composition
+
+#### ⚠️ Note
+
+OCP doesn’t mean “always use inheritance.”
+Sometimes, composition is a better choice depending on the context.
+
+#### Summary
+
+The Open/Closed Principle helps your code resist change while remaining extendable.
+Remember: less modification = fewer bugs = lower cost.
+
+#### Got it?
+
+If you understood the principle, try writing your own example or applying it to a project.
+Ready for the next one? Check out the next article:
+
+<Link
+  href={routes.SINGLE_POST_ROUTE(
+    "solid-simplified-liskov-substitution-principle",
+  )}
+>
+  SOLID Simplified: The Third Principle
+</Link>

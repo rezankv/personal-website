@@ -1,9 +1,9 @@
 ---
 title: "اصول سالید به زبان ساده: اصل دوم"
-date: Mon Jul 1 2025 10:23:47 GMT+0330
+date: Mon Jul 15 2025 23:30:00 GMT+0330
 slug: solid-simplified-open-close-principle
 lang: fa
-summery: "در این مقاله با اصل Open/Closed از اصول SOLID آشنا می‌شوید؛ اصلی که کمک می‌کند کدهایی بنویسید که برای توسعه باز و برای تغییر بسته باشند، و با استفاده از آن می‌توانید بدون تغییر کدهای قبلی، قابلیت‌های جدید اضافه کنید."
+summery: "اصل باز-بسته می‌گوید کلاس‌ها باید برای توسعه باز و برای تغییر بسته باشند. در این مقاله یاد می‌گیریم چطور قابلیت‌های جدید اضافه کنیم بدون اینکه کدهای قبلی رو دست‌کاری کنیم."
 tags: ["سالید", "مهندسی نرم افزار", "کد تمیز"]
 keywords:
   [
@@ -11,15 +11,16 @@ keywords:
     "اصول سالید",
     "مهندسی نرم افزار",
     "کد تمیز",
-    "آموزش سالید",
+    "اصل باز بسته",
     "آموزش solid",
   ]
 author: رضا نیک روش
 ---
 
-import {routes} from '@app/constants'
+import { routes } from "@app/constants";
 
 ## مقدمه
+
 در دنیای توسعه نرم‌افزار، نوشتن کدی که فقط «کار کنه» کافی نیست. برنامه‌هایی که با رشد پروژه دچار پیچیدگی، باگ‌های پنهان، و هزینه نگهداری بالا می‌شن، معمولاً از اصول درست طراحی پیروی نکردن. یکی از مهم‌ترین اصولی که به کمک ما میاد تا بتونیم کدی تمیز، قابل توسعه، و قابل نگهداری بنویسیم، اصول SOLID هست.
 
 SOLID مجموعه‌ای از پنج اصل که توسط <Link href="https://en.wikipedia.org/wiki/Robert_C._Martin" target="_blank">Robert C. Martin</Link> معرفی شده. این اصول به ما کمک می‌کنن که وابستگی‌های نادرست رو حذف کنیم، تغییرات رو بدون آسیب زدن به بخش‌های دیگه پیاده کنیم، و از پیچیدگی بی‌مورد در معماری جلوگیری کنیم. رعایت این اصول، مخصوصاً تو پروژه‌های تیمی و بلندمدت، باعث میشه توسعه نرم‌افزار به تجربه‌ای لذت‌بخش‌تر و قابل اعتمادتر تبدیل بشه.
@@ -27,4 +28,160 @@ SOLID مجموعه‌ای از پنج اصل که توسط <Link href="https://e
 در سری مقالات "اصول سالید به زبان ساده" قراره این ۵ اصل رو با هم دیگه یادبگیریم.
 در لیست پایین قسمت های قبلی که منتشر شده رو میتونید ببینید که بهتون توصیه میکنم اول اونا رو مطالعه کنید.
 
-* <Link href={routes.SINGLE_POST_ROUTE('solid-simplified-single-responsibility-principle')}>سالید به زبان ساده: اصل اول</Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE(
+      "solid-simplified-single-responsibility-principle",
+    )}
+  >
+    سالید به زبان ساده: اصل اول
+  </Link>
+
+## اصل دوم SOLID: اصل باز-بسته (Open/Closed Principle)
+
+این اصل میگه:
+
+> **کلاس‌ها، ماژول‌ها یا توابع باید برای گسترش باز و برای تغییر بسته باشند.**
+
+یعنی چی؟
+
+یعنی باید بتونیم **بدون تغییر دادن کدهای موجود**، قابلیت‌های جدید اضافه کنیم. این کار معمولاً با استفاده از **وراثت** یا **پلی‌مورفیسم** انجام می‌شه.
+
+### بیاید یه مثال بزنیم:
+
+❌ نقض اصل OCP
+
+<CodeBlock title="Typescript" raw={`class SalaryCalculator {
+  calculate(employee: { type: string; baseSalary: number }): number {
+    if (employee.type === "developer") {
+      return employee.baseSalary + 1000000;
+    } else if (employee.type === "manager") {
+      return employee.baseSalary + 5000000;
+    } else {
+      return employee.baseSalary;
+    }
+  }
+}`}>
+
+```ts
+class SalaryCalculator {
+  calculate(employee: { type: string; baseSalary: number }): number {
+    if (employee.type === "developer") {
+      return employee.baseSalary + 1000000;
+    } else if (employee.type === "manager") {
+      return employee.baseSalary + 5000000;
+    } else {
+      return employee.baseSalary;
+    }
+  }
+}
+```
+
+</CodeBlock>
+
+### مشکل چیه؟
+
+اگه بعداً نقش جدیدی اضافه بشه (مثلاً “intern”) باید کلاس اصلی رو تغییر بدی. این یعنی کد برای توسعه باز نیست، برای تغییر هم بسته نیست.
+
+### ✅ پیاده‌سازی درست اصل OCP
+
+بیایم کاری کنیم که هر نقش خودش روش محاسبه حقوق رو داشته باشه:
+
+<CodeBlock title="“Typescript”" raw={`interface Employee {
+baseSalary: number;
+calculateSalary(): number;
+}
+
+class Developer implements Employee {
+constructor(public baseSalary: number) {}
+calculateSalary(): number {
+return this.baseSalary + 1000000;
+}
+}
+
+class Manager implements Employee {
+constructor(public baseSalary: number) {}
+calculateSalary(): number {
+return this.baseSalary + 5000000;
+}
+}
+
+class Intern implements Employee {
+constructor(public baseSalary: number) {}
+calculateSalary(): number {
+return this.baseSalary;
+}
+}
+
+function printSalary(employee: Employee) {
+console.log(“حقوق:”, employee.calculateSalary());
+}`}>
+
+```ts
+interface Employee {
+  baseSalary: number;
+  calculateSalary(): number;
+}
+
+class Developer implements Employee {
+  constructor(public baseSalary: number) {}
+  calculateSalary(): number {
+    return this.baseSalary + 1000000;
+  }
+}
+
+class Manager implements Employee {
+  constructor(public baseSalary: number) {}
+  calculateSalary(): number {
+    return this.baseSalary + 5000000;
+  }
+}
+
+class Intern implements Employee {
+  constructor(public baseSalary: number) {}
+  calculateSalary(): number {
+    return this.baseSalary;
+  }
+}
+
+function printSalary(employee: Employee) {
+  console.log("حقوق:", employee.calculateSalary());
+}
+```
+
+</CodeBlock>
+
+حالا اگه نقش جدید اضافه بشه، فقط یه کلاس جدید می‌سازیم، بدون اینکه به کلاس‌های قبلی دست بزنیم.
+
+### چرا اصل Open/Closed مهمه؟
+
+    *	وقتی کد اصلی رو دستکاری نکنی، احتمال باگ کمتره.
+    *	تیم‌های مختلف می‌تونن مستقل توسعه بدن.
+    *	تست‌ها خراب نمی‌شن چون کدهای اصلی دست نخورده می‌مونن.
+    *	سیستم مقیاس‌پذیرتر می‌شه.
+
+### چطوری این اصل رو رعایت کنیم؟
+
+- از Interface یا Abstract Class برای تعریف رفتار مشترک استفاده کن.
+- از Dependency Injection برای تزریق وابستگی‌ها استفاده کن.
+- رفتارها رو با وراثت یا ترکیب قابل توسعه کن.
+
+#### نکته مهم
+
+اصل OCP الزاماً یعنی “همیشه از وراثت استفاده کن” نیست. گاهی با ترکیب (Composition) هم می‌تونی همین مفهوم رو پیاده‌سازی کنی.
+
+### جمع‌بندی
+
+اصل باز-بسته کمک می‌کنه سیستم‌هامون در برابر تغییر مقاوم باشن ولی در عین حال توسعه‌پذیر باقی بمونن.
+یادت باشه، تغییر کمتر = باگ کمتر = هزینه کمتر.
+
+### یادگرفتی؟
+
+اگر مفهوم رو گرفتی، یه مثال براش بنویس یا اونو به پروژه‌ت اعمال کن. آماده‌ای برای اصل سوم؟ پس برو مقاله بعدی رو بخون:
+
+<Link
+  href={routes.SINGLE_POST_ROUTE(
+    "solid-simplified-liskov-substitution-principle",
+  )}
+>
+  سالید به زبان ساده: اصل سوم
+</Link>
