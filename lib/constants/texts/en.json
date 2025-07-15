@@ -137,6 +137,23 @@
           "back": "Back to posts",
           "readTimeLabel": "min read"
         }
+      },
+      "LinksPage":{
+        "METADATA": {
+          "title": "Reza Nikravesh | Links",
+          "description": "I’m Reza, a web developer based in Dezful, Iran. Here, I share articles that I write about my journey, experiences, and what I learn along the way.",
+          "keywords": {
+            "1": "article",
+            "2": "blog",
+            "3": "React",
+            "4": "Next.js",
+            "5": "JavaScript",
+            "6": "TypeScript",
+            "7": "web development",
+            "8": "programming"
+          }
+        },
+        "title":"My Links"
       }
     }
   }

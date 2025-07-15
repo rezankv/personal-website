@@ -7,4 +7,5 @@ export * from "./IconButton";
 export * from "./DropdownMenu";
 export * from "./CodeBlock";
 export * from "./Slot";
+export * from "./SocialLinks";
 export * from "./UI";

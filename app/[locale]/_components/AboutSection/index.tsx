@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
-// locals
-import { SocialLinks } from "./components";
+// components
+import { SocialLinks } from "@app/components";
 
 export const AboutSection = () => {
   const t = useTranslations("RootLayout.pages.HomePage.AboutSection");
