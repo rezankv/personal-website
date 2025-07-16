@@ -42,8 +42,8 @@ export default async function Image({}: {
         <img
           style={{ borderRadius: "50%" }}
           alt="reza nikravesh"
-          width={180}
-          height={180}
+          width={220}
+          height={220}
           src={logoSrc}
         />
         <div
@@ -56,13 +56,13 @@ export default async function Image({}: {
           <span
             style={{
               fontWeight: "900",
-              fontSize: "36px",
-              lineHeight: "42.5px",
+              fontSize: "42px",
+              lineHeight: "48.5px",
             }}
           >
             Reza Nikravesh
           </span>
-          <span style={{ color: "#9e9e9e", fontSize: "22px" }}>
+          <span style={{ color: "#9e9e9e", fontSize: "32px" }}>
             Web Developer
           </span>
         </div>
@@ -70,7 +70,7 @@ export default async function Image({}: {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="26px"
-            height="26px"
+            height="30px"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -89,7 +89,7 @@ export default async function Image({}: {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="26px"
-            height="26px"
+            height="30px"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -105,7 +105,7 @@ export default async function Image({}: {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="26px"
-            height="26px"
+            height="30px"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -121,7 +121,7 @@ export default async function Image({}: {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="26px"
-            height="26px"
+            height="30px"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
