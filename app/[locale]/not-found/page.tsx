@@ -1,9 +1,28 @@
+import { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 // i18n
 import { routes } from "@app/constants";
 import { Link } from "@app/i18n/navigation";
 import { Locale } from "@app/i18n/routing";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("RootLayout.pages.NotFoundPage.METADATA");
+  const globalMetadataT = await getTranslations("METADATA");
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    authors: [{ name: globalMetadataT("author") }],
+    creator: globalMetadataT("author"),
+  };
+}
 
 const NotfoundPage = async ({
   params,

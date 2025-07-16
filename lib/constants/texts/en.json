@@ -30,6 +30,10 @@
     },
     "pages": {
       "NotFoundPage": {
+        "METADATA": {
+          "title": "Reza Nikravesh | Not found",
+          "description": "I’m Reza Nikravesh, a web developer based in Dezful, Iran. Here, I showcase the projects I’ve worked on and share articles that I write about my journey, experiences, and what I learn along the way."
+        },
         "title": "Oops! Page not found",
         "description": "The page you’re looking for doesn’t exist or has been moved.",
         "back": "Back to Home"
@@ -153,7 +157,7 @@
             "8": "programming"
           }
         },
-        "title":"My Links"
+        "title": "My Links"
       }
     }
   }
