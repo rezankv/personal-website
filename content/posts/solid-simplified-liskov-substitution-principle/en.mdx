@@ -1,16 +1,209 @@
 ---
 title: "SOLID Simplified: Liskov Substitution Principle"
-date: Mon Jul 2 2025 10:23:47 GMT+0330
+date: Mon Jul 16 2025 23:30:00 GMT+0330
 slug: solid-simplified-liskov-substitution-principle
 lang: en
 summery: "This article explains the Liskov Substitution Principle, ensuring that subclasses can replace their parent classes without breaking the application’s behavior."
-tags: ['solid', 'Software Engineering','clean code']
-keywords: ["open close principle","solid","solid principles",'Software Engineering', 'Clean Code', ]
+tags: ["solid", "Software Engineering", "clean code"]
+keywords:
+  [
+    "open close principle",
+    "solid",
+    "solid principles",
+    "Software Engineering",
+    "Clean Code",
+  ]
 author: Reza Nikravesh
 ---
+
+import { routes } from "@app/constants";
+
 ### Introduction
+
 In the world of software development, writing code that “just works” is not enough. Applications that become increasingly complex, buggy, and difficult to maintain as they grow often suffer from poor design practices. One of the most important sets of principles that helps us write clean, scalable, and maintainable code is the SOLID principles.
 
 SOLID is a collection of five principles introduced by <Link href="https://en.wikipedia.org/wiki/Robert_C._Martin" target="_blank">Robert C. Martin</Link>. These principles help us eliminate improper dependencies, make changes without breaking other parts of the system, and avoid unnecessary architectural complexity. Following these principles is especially valuable in long-term and team-based projects, making software development a more enjoyable and reliable experience.
 
 In this “SOLID Simplified” series, we’ll learn these five principles together in a straightforward way. Below, you can find a list of the previous parts in the series, which I recommend reading first if you haven’t already.
+
+- <Link
+    href={routes.SINGLE_POST_ROUTE(
+      "solid-simplified-single-responsibility-principle",
+    )}
+  >
+    SOLID Simplified: Single Responsibility Principle
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE("solid-simplified-open-close-principle")}
+  >
+    SOLID Simplified: Open/Close Principle
+  </Link>
+
+## The Third SOLID Principle: Liskov Substitution Principle (LSP)
+
+### Definition
+
+Liskov Substitution Principle says:
+
+> Subtypes must be substitutable for their base types without altering the correctness of the program.
+
+In other words if a function works correctly with an object of a base class, it should work
+just as well with an object of a subclass **without needing to know its actual
+type**.
+
+#### Benefits of Following LSP
+
+- ✅ Increases code reliability
+- ✅ Enhances code reusability
+- ✅ Enables easier and safer testing
+- ✅ Simplifies future development without risky changes
+
+#### What If You Don’t Follow It?
+
+- ❌ Unit tests may break because behaviors are inconsistent
+- ❌ The code becomes complex, fragile, and untrustworthy
+
+#### Bad Example (Violates LSP)
+
+<CodeBlock title="Typescript" raw={`class Bird {
+fly() {
+console.log("I can fly!");
+}
+}
+
+class Ostrich extends Bird {
+fly() {
+throw new Error("Ostriches can't fly!");
+}
+}
+
+function makeBirdFly(bird: Bird) {
+bird.fly();
+}
+
+const myBird = new Ostrich();
+makeBirdFly(myBird); // 💥 Throws error`}>
+
+```ts
+class Bird {
+  fly() {
+    console.log("I can fly!");
+  }
+}
+
+class Ostrich extends Bird {
+  fly() {
+    throw new Error("Ostriches can't fly!");
+  }
+}
+
+function makeBirdFly(bird: Bird) {
+  bird.fly();
+}
+
+const myBird = new Ostrich();
+makeBirdFly(myBird); // 💥 Throws error
+```
+
+</CodeBlock>
+
+#### Explanation
+
+The Ostrich class inherits from Bird, but overrides the fly() method in a way that breaks expectations.
+The makeBirdFly function assumes all birds can fly. When passed an Ostrich, it throws an error — which violates LSP.
+
+#### Fixed Example (Respects LSP)
+
+<CodeBlock title="Typescript" raw={`abstract class Bird {
+abstract move(): void;
+}
+
+class FlyingBird extends Bird {
+fly() {
+console.log(“I can fly!”);
+}
+
+move() {
+this.fly();
+}
+}
+
+class WalkingBird extends Bird {
+walk() {
+console.log(“I can walk!”);
+}
+
+move() {
+this.walk();
+}
+}
+
+function moveBird(bird: Bird) {
+bird.move();
+}
+
+const flying = new FlyingBird();
+const walking = new WalkingBird();
+
+moveBird(flying); // ✅ I can fly!
+moveBird(walking); // ✅ I can walk!`}>
+
+```ts
+abstract class Bird {
+  abstract move(): void;
+}
+
+class FlyingBird extends Bird {
+  fly() {
+    console.log("I can fly!");
+  }
+
+  move() {
+    this.fly();
+  }
+}
+
+class WalkingBird extends Bird {
+  walk() {
+    console.log("I can walk!");
+  }
+
+  move() {
+    this.walk();
+  }
+}
+
+function moveBird(bird: Bird) {
+  bird.move();
+}
+
+const flying = new FlyingBird();
+const walking = new WalkingBird();
+
+moveBird(flying); // ✅ I can fly!
+moveBird(walking); // ✅ I can walk!
+```
+
+</CodeBlock>
+
+#### Explanation
+
+In the correct version, we define a common behavior move() and let each subclass implement it based on its own capabilities.
+Now the moveBird() function doesn’t care which type of bird it gets — it just works, without breaking or crashing.
+
+#### Conclusion
+
+LSP is crucial for writing reliable, extensible, and bug-resistant code. Ignoring it leads to fragile systems and unexpected errors — especially in larger, modular applications.
+
+#### Golden Rule
+
+If replacing a parent class with a child class changes the behavior, something’s wrong!
+
+#### Got it?
+
+If you understood the principle, try writing your own example or applying it to a project.
+Ready for the next one? Check out the next article:
+
+<Link href={routes.SINGLE_POST_ROUTE("solid-simplified-interface-segregation")}>
+  SOLID Simplified: Interface Segregation Principle
+</Link>

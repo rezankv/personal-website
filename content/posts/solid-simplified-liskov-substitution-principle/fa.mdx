@@ -1,17 +1,210 @@
 ---
 title: "اصول سالید به زبان ساده: اصل سوم"
-date: Mon Jul 2 2025 10:23:47 GMT+0330
+date: Mon Jul 16 2025 23:30:00 GMT+0330
 slug: solid-simplified-liskov-substitution-principle
 lang: fa
 summery: "در این مقاله با اصل جایگزینی لیسکوف آشنا می‌شوید؛ اصلی که تضمین می‌کند کلاس‌های فرزند بتوانند بدون ایجاد اختلال در منطق برنامه، جایگزین کلاس والد خود شوند."
-tags: ['سالید', 'مهندسی نرم افزار','کد تمیز']
-keywords: ["سالید","اصول سالید",'مهندسی نرم افزار', 'کد تمیز',"آموزش سالید" ,"آموزش solid"]
+tags: ["سالید", "مهندسی نرم افزار", "کد تمیز"]
+keywords:
+  [
+    "سالید",
+    "اصول سالید",
+    "مهندسی نرم افزار",
+    "کد تمیز",
+    "آموزش سالید",
+    "آموزش solid",
+  ]
 author: رضا نیک روش
 ---
+
+import { routes } from "@app/constants";
+
 ## مقدمه
+
 در دنیای توسعه نرم‌افزار، نوشتن کدی که فقط «کار کنه» کافی نیست. برنامه‌هایی که با رشد پروژه دچار پیچیدگی، باگ‌های پنهان، و هزینه نگهداری بالا می‌شن، معمولاً از اصول درست طراحی پیروی نکردن. یکی از مهم‌ترین اصولی که به کمک ما میاد تا بتونیم کدی تمیز، قابل توسعه، و قابل نگهداری بنویسیم، اصول SOLID هست.
 
 SOLID مجموعه‌ای از پنج اصل که توسط <Link href="https://en.wikipedia.org/wiki/Robert_C._Martin" target="_blank">Robert C. Martin</Link> معرفی شده. این اصول به ما کمک می‌کنن که وابستگی‌های نادرست رو حذف کنیم، تغییرات رو بدون آسیب زدن به بخش‌های دیگه پیاده کنیم، و از پیچیدگی بی‌مورد در معماری جلوگیری کنیم. رعایت این اصول، مخصوصاً تو پروژه‌های تیمی و بلندمدت، باعث میشه توسعه نرم‌افزار به تجربه‌ای لذت‌بخش‌تر و قابل اعتمادتر تبدیل بشه.
 
 در سری مقالات "اصول سالید به زبان ساده" قراره این ۵ اصل رو با هم دیگه یادبگیریم.
 در لیست پایین قسمت های قبلی که منتشر شده رو میتونید ببینید که بهتون توصیه میکنم اول اونا رو مطالعه کنید.
+
+- <Link
+    href={routes.SINGLE_POST_ROUTE(
+      "solid-simplified-single-responsibility-principle",
+    )}
+  >
+    سالید به زبان ساده: اصل اول
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE("solid-simplified-open-close-principle")}
+  >
+    سالید به زبان ساده: اصل دوم
+  </Link>
+
+## اصل سوم SOLID: اصل جایگزینی لیسکوف (Liskov Substitution Principle - LSP)
+
+### تعریف
+
+اصل لیسکوف میگه:
+
+> هر کلاس فرعی باید بتواند به‌جای کلاس والد خود استفاده شود، بدون اینکه رفتار برنامه به‌طور کلی تغییر کند.
+
+یعنی اگر یه تابع، با یک شیء از کلاس والد درست کار می‌کنه، باید با شیء کلاس فرزند هم همون‌طور درست کار کنه، بدون اینکه نیاز به دونستن نوع واقعی اون شیء داشته باشه.
+
+#### مزیت استفاده از این اصل
+
+- ✅ افزایش قابلیت اطمینان کد
+- ✅ افزایش قابلیت استفاده مجدد
+- ✅ امکان تست بهتر و راحت‌تر
+- ✅ توسعه راحت‌تر و بدون نیاز به تغییرات مخرب
+
+#### اگر رعایت نکنیم، چی میشه؟
+
+- ❌ تست واحد (unit test) به درستی انجام نمیشه چون رفتارها متفاوتن
+- ❌ کد پیچیده، شکننده و غیر قابل اعتماد میشه
+
+#### مثال کد اشتباه (نقض اصل LSP)
+
+<CodeBlock title="Typescript" raw={`class Bird {
+fly() {
+console.log("I can fly!");
+}
+}
+
+class Ostrich extends Bird {
+fly() {
+throw new Error("Ostriches can't fly!");
+}
+}
+
+function makeBirdFly(bird: Bird) {
+bird.fly();
+}
+
+const myBird = new Ostrich();
+makeBirdFly(myBird); // 💥 خطا میده`}>
+
+```ts
+class Bird {
+  fly() {
+    console.log("I can fly!");
+  }
+}
+
+class Ostrich extends Bird {
+  fly() {
+    throw new Error("Ostriches can't fly!");
+  }
+}
+
+function makeBirdFly(bird: Bird) {
+  bird.fly();
+}
+
+const myBird = new Ostrich();
+makeBirdFly(myBird); // 💥 خطا میده
+```
+
+</CodeBlock>
+
+#### توضیح
+
+کلاس Ostrich از Bird ارث‌بری کرده، ولی رفتار fly() رو نقض کرده. تابع makeBirdFly انتظار داره که هر پرنده‌ای بتونه پرواز کنه. ولی وقتی یه شترمرغ پاس می‌دیم، تابع خطا می‌ده چون Ostrich اون انتظارات رو برآورده نمی‌کنه. این نقض اصل LSP ـه.
+
+#### اصلاح کد (رعایت اصل LSP)
+
+<CodeBlock title="Typescript" raw={`abstract class Bird {
+abstract move(): void;
+}
+
+class FlyingBird extends Bird {
+fly() {
+console.log("I can fly!");
+}
+
+move() {
+this.fly();
+}
+}
+
+class WalkingBird extends Bird {
+walk() {
+console.log("I can walk!");
+}
+
+move() {
+this.walk();
+}
+}
+
+function moveBird(bird: Bird) {
+bird.move();
+}
+
+const flying = new FlyingBird();
+const walking = new WalkingBird();
+
+moveBird(flying); // ✅ I can fly!
+moveBird(walking); // ✅ I can walk!`}>
+
+```ts
+abstract class Bird {
+  abstract move(): void;
+}
+
+class FlyingBird extends Bird {
+  fly() {
+    console.log("I can fly!");
+  }
+
+  move() {
+    this.fly();
+  }
+}
+
+class WalkingBird extends Bird {
+  walk() {
+    console.log("I can walk!");
+  }
+
+  move() {
+    this.walk();
+  }
+}
+
+function moveBird(bird: Bird) {
+  bird.move();
+}
+
+const flying = new FlyingBird();
+const walking = new WalkingBird();
+
+moveBird(flying); // ✅ I can fly!
+moveBird(walking); // ✅ I can walk!
+```
+
+</CodeBlock>
+
+#### توضیح
+
+تو نسخه درست، ما رفتار مشترک ()move رو تعریف کردیم و کلاس‌های FlyingBird و WalkingBird هرکدوم طبق توانایی خودشون پیاده‌سازیش کردن. حالا دیگه تابع ()moveBird نمی‌دونه با چه نوع پرنده‌ای طرفه، ولی بدون خطا اجرا می‌شه چون همه‌ی کلاس‌ها رفتار تعریف‌شده رو به‌درستی ارائه می‌دن.
+
+#### نتیجه‌گیری
+
+اصل LSP یه اصل خیلی مهمه برای طراحی کد قابل اعتماد. اگر رعایتش نکنیم، ممکنه باگ‌هایی ایجاد بشه که به‌راحتی پیدا نشن، مخصوصاً تو پروژه‌های بزرگ و ماژولار.
+
+#### قانون طلایی:
+
+اگر جای کلاس والد، کلاس فرزند بذاری و رفتارت تغییر کرد، یعنی یه جای کار میلنگه!
+
+### یادگرفتی؟
+
+اگر مفهوم رو گرفتی، یه مثال براش بنویس یا اونو به پروژه‌ت اعمال کن. آماده‌ای برای اصل سوم؟ پس برو مقاله بعدی رو بخون:
+
+<Link
+  href={routes.SINGLE_POST_ROUTE(
+    "solid-simplified-interface-segregation",
+  )}
+>
+  سالید به زبان ساده: اصل چهارم
+</Link>
