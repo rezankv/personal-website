@@ -21,7 +21,7 @@ export const size = {
 export default async function Image({}: {
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
-  const logoData = await readFile(join(process.cwd(), "public", "avatar.png"));
+  const logoData = await readFile(join(process.cwd(), "avatar.png"));
   const base64 = logoData.toString("base64");
   const logoSrc = `data:image/png;base64,${base64}`;
   return new ImageResponse(
@@ -66,7 +66,7 @@ export default async function Image({}: {
             Web Developer
           </span>
         </div>
-        <div style={{ display: "flex", gap: "20px",marginTop:"16px" }}>
+        <div style={{ display: "flex", gap: "20px", marginTop: "16px" }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="26px"
