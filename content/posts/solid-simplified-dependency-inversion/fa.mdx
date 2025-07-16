@@ -1,17 +1,214 @@
 ---
 title: "اصول سالید به زبان ساده: اصل پنجم"
-date: Mon Jul 4 2025 10:23:47 GMT+0330
+date: Mon Jul 18 2025 23:30:00 GMT+0330
 slug: solid-simplified-dependency-inversion
 lang: fa
 summery: "در این مقاله با اصل معکوس‌سازی وابستگی آشنا می‌شوید؛ اصلی که می‌گوید وابستگی‌ها باید به سمت انتزاع باشند نه پیاده‌سازی، تا سیستم‌ها انعطاف‌پذیرتر و قابل تست‌تر باشند."
-tags: ['سالید', 'مهندسی نرم افزار','کد تمیز']
-keywords: ["سالید","اصول سالید",'مهندسی نرم افزار', 'کد تمیز',"آموزش سالید" ,"آموزش solid"]
+tags: ["سالید", "مهندسی نرم افزار", "کد تمیز"]
+keywords:
+  [
+    "سالید",
+    "اصول سالید",
+    "مهندسی نرم افزار",
+    "کد تمیز",
+    "آموزش سالید",
+    "آموزش solid",
+  ]
 author: رضا نیک روش
 ---
+
+import { routes } from "@app/constants";
+
 ## مقدمه
+
 در دنیای توسعه نرم‌افزار، نوشتن کدی که فقط «کار کنه» کافی نیست. برنامه‌هایی که با رشد پروژه دچار پیچیدگی، باگ‌های پنهان، و هزینه نگهداری بالا می‌شن، معمولاً از اصول درست طراحی پیروی نکردن. یکی از مهم‌ترین اصولی که به کمک ما میاد تا بتونیم کدی تمیز، قابل توسعه، و قابل نگهداری بنویسیم، اصول SOLID هست.
 
 SOLID مجموعه‌ای از پنج اصل که توسط <Link href="https://en.wikipedia.org/wiki/Robert_C._Martin" target="_blank">Robert C. Martin</Link> معرفی شده. این اصول به ما کمک می‌کنن که وابستگی‌های نادرست رو حذف کنیم، تغییرات رو بدون آسیب زدن به بخش‌های دیگه پیاده کنیم، و از پیچیدگی بی‌مورد در معماری جلوگیری کنیم. رعایت این اصول، مخصوصاً تو پروژه‌های تیمی و بلندمدت، باعث میشه توسعه نرم‌افزار به تجربه‌ای لذت‌بخش‌تر و قابل اعتمادتر تبدیل بشه.
 
 در سری مقالات "اصول سالید به زبان ساده" قراره این ۵ اصل رو با هم دیگه یادبگیریم.
 در لیست پایین قسمت های قبلی که منتشر شده رو میتونید ببینید که بهتون توصیه میکنم اول اونا رو مطالعه کنید.
+
+- <Link
+    href={routes.SINGLE_POST_ROUTE(
+      "solid-simplified-single-responsibility-principle",
+    )}
+  >
+    سالید به زبان ساده: اصل اول
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE("solid-simplified-open-close-principle")}
+  >
+    سالید به زبان ساده: اصل دوم
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE(
+      "solid-simplified-liskov-substitution-principle",
+    )}
+  >
+    سالید به زبان ساده: اصل سوم
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE("solid-simplified-interface-segregation")}
+  >
+    سالید به زبان ساده: اصل چهارم
+  </Link>
+
+## اصل پنجم سالید: اصل معکوس وابستگی (Dependency Inversion Principle - DIP)
+
+### تعریف
+
+اصل معکوس وابستگی میگه:
+
+> ماژول‌های سطح بالا نباید به ماژول‌های سطح پایین وابسته باشن؛ هر دو باید به انتزاع (Abstraction) وابسته باشن.  
+> همچنین، انتزاع نباید به جزئیات وابسته باشه؛ بلکه جزئیات باید به انتزاع وابسته باشن.
+
+**یعنی چی؟**  
+یعنی به‌جای اینکه کلاس‌های اصلی به کلاس‌های ریزتر و جزئی وابسته باشن، همه‌چیز باید به واسطه‌ی یک واسط (interface یا abstraction) به هم متصل بشه. اینطوری کد قابل توسعه، قابل تست و قابل تعویض می‌مونه.
+
+#### مزیت استفاده از این اصل
+
+- ✅ کاهش وابستگی بین اجزای مختلف سیستم
+- ✅ امکان تغییر ماژول‌های داخلی بدون آسیب به ساختار کلی
+- ✅ قابلیت تست آسان‌تر (با Mock کردن interface ها)
+- ✅ افزایش انعطاف‌پذیری و توسعه‌پذیری سیستم
+
+#### اگر رعایت نکنیم، چی میشه؟
+
+- ❌ ماژول‌های اصلی به ماژول‌های جزئی گره می‌خورن و تغییر یکی باعث تغییر دیگری میشه
+- ❌ سیستم سخت‌تر تست و نگهداری میشه
+- ❌ اضافه کردن قابلیت جدید، باعث تغییرات زنجیره‌ای و ناخواسته میشه
+
+#### مثال کد اشتباه (نقض اصل DIP)
+
+<CodeBlock title="Typescript" raw={`class MySQLDatabase {
+save(data: string) {
+console.log(\`Saving '\${data}' to MySQL database...\`);
+}
+}
+
+class DataProcessor {
+private db: MySQLDatabase;
+
+constructor() {
+this.db = new MySQLDatabase();
+}
+
+process(data: string) {
+this.db.save(data);
+}
+}`}>
+
+```ts
+class MySQLDatabase {
+  save(data: string) {
+    console.log(`Saving '${data}' to MySQL database...`);
+  }
+}
+
+class DataProcessor {
+  private db: MySQLDatabase;
+
+  constructor() {
+    this.db = new MySQLDatabase();
+  }
+
+  process(data: string) {
+    this.db.save(data);
+  }
+}
+```
+
+</CodeBlock>
+
+#### توضیح
+
+کلاس DataProcessor مستقیماً به MySQLDatabase وابسته‌ست.
+یعنی اگر بخوایم دیتابیس رو به MongoDB تغییر بدیم، باید داخل DataProcessor هم دست ببریم.
+این وابستگی مستقیم به جزئیات، نقض اصل DIP ـه.
+
+اصلاح کد (رعایت اصل DIP)
+
+<CodeBlock title="Typescript" raw={`interface Database {
+save(data: string): void;
+}
+
+class MySQLDatabase implements Database {
+save(data: string) {
+console.log("Saving" + data + "to MySQL database…");
+}
+}
+
+class MongoDBDatabase implements Database {
+save(data: string) {
+console.log("Saving" + data + "to MongoDB database…");
+}
+}
+
+class DataProcessor {
+private db: Database;
+
+constructor(db: Database) {
+this.db = db;
+}
+
+process(data: string) {
+this.db.save(data);
+}
+}
+
+// استفاده:
+const db = new MongoDBDatabase();
+const processor = new DataProcessor(db);
+processor.process(“Hello!”);`}>
+
+```ts
+interface Database {
+  save(data: string): void;
+}
+
+class MySQLDatabase implements Database {
+  save(data: string) {
+    console.log(`Saving '${data}' to MySQL database...`);
+  }
+}
+
+class MongoDBDatabase implements Database {
+  save(data: string) {
+    console.log(`Saving '${data}' to MongoDB database...`);
+  }
+}
+
+class DataProcessor {
+  private db: Database;
+
+  constructor(db: Database) {
+    this.db = db;
+  }
+
+  process(data: string) {
+    this.db.save(data);
+  }
+}
+
+// استفاده:
+const db = new MongoDBDatabase();
+const processor = new DataProcessor(db);
+processor.process("Hello!");
+```
+
+</CodeBlock>
+
+#### توضیح
+
+ما یه interface به نام Database تعریف کردیم که کلاس‌های MySQLDatabase و MongoDBDatabase پیاده‌سازیش می‌کنن.
+کلاس DataProcessor دیگه به دیتابیس خاصی وابسته نیست؛ بلکه فقط به interface کلی وابسته‌ست.
+حالا می‌تونیم هر دیتابیسی که خواستیم تزریق کنیم، بدون اینکه کد DataProcessor تغییر کنه.
+
+#### نتیجه‌گیری
+
+اصل DIP به ما کمک می‌کنه وابستگی‌های مستقیم به جزئیات رو حذف کنیم و همه‌چیز رو به شکل انتزاعی طراحی کنیم.
+این باعث میشه کدمون ماژولار، قابل تست، و توسعه‌پذیر باشه.
+
+#### قانون طلایی:
+
+به abstraction وابسته باش، نه به implementation!

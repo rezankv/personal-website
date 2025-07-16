@@ -1,16 +1,213 @@
 ---
 title: "SOLID Simplified: Dependency Inversion Principle"
-date: Mon Jul 4 2025 10:23:47 GMT+0330
+date: Mon Jul 18 2025 23:30:00 GMT+0330
 slug: solid-simplified-dependency-inversion
 lang: en
 summery: "This article covers the Dependency Inversion Principle, which promotes depending on abstractions rather than concrete implementations to create flexible and testable systems."
-tags: ['solid', 'Software Engineering','clean code']
-keywords: ["open close principle","solid","solid principles",'Software Engineering', 'Clean Code', ]
+tags: ["solid", "Software Engineering", "clean code"]
+keywords:
+  [
+    "open close principle",
+    "solid",
+    "solid principles",
+    "Software Engineering",
+    "Clean Code",
+  ]
 author: Reza Nikravesh
 ---
+
+import { routes } from "@app/constants";
+
 ### Introduction
+
 In the world of software development, writing code that “just works” is not enough. Applications that become increasingly complex, buggy, and difficult to maintain as they grow often suffer from poor design practices. One of the most important sets of principles that helps us write clean, scalable, and maintainable code is the SOLID principles.
 
 SOLID is a collection of five principles introduced by <Link href="https://en.wikipedia.org/wiki/Robert_C._Martin" target="_blank">Robert C. Martin</Link>. These principles help us eliminate improper dependencies, make changes without breaking other parts of the system, and avoid unnecessary architectural complexity. Following these principles is especially valuable in long-term and team-based projects, making software development a more enjoyable and reliable experience.
 
 In this “SOLID Simplified” series, we’ll learn these five principles together in a straightforward way. Below, you can find a list of the previous parts in the series, which I recommend reading first if you haven’t already.
+
+- <Link
+    href={routes.SINGLE_POST_ROUTE(
+      "solid-simplified-single-responsibility-principle",
+    )}
+  >
+    SOLID Simplified: Single Responsibility Principle
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE("solid-simplified-open-close-principle")}
+  >
+    SOLID Simplified: Open/Close Principle
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE(
+      "solid-simplified-liskov-substitution-principle",
+    )}
+  >
+    SOLID Simplified: Liskov Substitution Principle
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE("solid-simplified-interface-segregation")}
+  >
+    SOLID Simplified: Interface Segregation Principle
+  </Link>
+
+## The Fifth SOLID Principle: Dependency Inversion Principle (DIP)
+
+### Definition
+
+The Dependency Inversion Principle states:
+
+> High-level modules should not depend on low-level modules. Both should depend on abstractions.  
+> Abstractions should not depend on details. Details should depend on abstractions.
+
+What does that mean?  
+Instead of making core classes depend directly on specific implementations, we use **interfaces or abstract layers** in between.  
+This keeps the system modular, testable, and easier to maintain.
+
+#### Benefits of Following DIP
+
+- ✅ Reduces tight coupling between system components
+- ✅ Allows changing internal modules without affecting the whole system
+- ✅ Makes testing easier (e.g., mocking interfaces)
+- ✅ Improves scalability and flexibility
+
+#### What If You Don’t Follow It?
+
+- ❌ Core modules become tightly coupled to low-level implementations
+- ❌ Changing a detail requires modifying unrelated classes
+- ❌ Code becomes harder to test, extend, and maintain
+
+#### Bad Example (Violates DIP)
+
+<CodeBlock title="Typescript" raw={`class MySQLDatabase {
+save(data: string) {
+console.log(\`Saving '\${data}' to MySQL database...\`);
+}
+}
+
+class DataProcessor {
+private db: MySQLDatabase;
+
+constructor() {
+this.db = new MySQLDatabase();
+}
+
+process(data: string) {
+this.db.save(data);
+}
+}`}>
+
+```ts
+class MySQLDatabase {
+  save(data: string) {
+    console.log(`Saving '${data}' to MySQL database...`);
+  }
+}
+
+class DataProcessor {
+  private db: MySQLDatabase;
+
+  constructor() {
+    this.db = new MySQLDatabase();
+  }
+
+  process(data: string) {
+    this.db.save(data);
+  }
+}
+```
+
+</CodeBlock>
+
+#### Explanation
+
+Here, DataProcessor directly depends on MySQLDatabase.
+If we want to switch to a different database like MongoDB, we must change the DataProcessor class, which breaks modularity.
+This violates DIP by depending on a concrete detail.
+
+#### Fixed Example (Respects DIP)
+
+<CodeBlock title="Typescript" raw={`interface Database {
+save(data: string): void;
+}
+
+class MySQLDatabase implements Database {
+save(data: string) {
+console.log("Saving" + data + "to MySQL database…");
+}
+}
+
+class MongoDBDatabase implements Database {
+save(data: string) {
+console.log("Saving" + data + "to MySQL database…");
+}
+}
+
+class DataProcessor {
+private db: Database;
+
+constructor(db: Database) {
+this.db = db;
+}
+
+process(data: string) {
+this.db.save(data);
+}
+}
+
+// Usage:
+const db = new MongoDBDatabase();
+const processor = new DataProcessor(db);
+processor.process(“Hello!”);`}>
+
+```ts
+interface Database {
+  save(data: string): void;
+}
+
+class MySQLDatabase implements Database {
+  save(data: string) {
+    console.log(`Saving '${data}' to MySQL database...`);
+  }
+}
+
+class MongoDBDatabase implements Database {
+  save(data: string) {
+    console.log(`Saving '${data}' to MongoDB database...`);
+  }
+}
+
+class DataProcessor {
+  private db: Database;
+
+  constructor(db: Database) {
+    this.db = db;
+  }
+
+  process(data: string) {
+    this.db.save(data);
+  }
+}
+
+// Usage:
+const db = new MongoDBDatabase();
+const processor = new DataProcessor(db);
+processor.process("Hello!");
+```
+
+</CodeBlock>
+
+#### Explanation
+
+We introduced an interface called Database which both MySQLDatabase and MongoDBDatabase implement.
+Now, DataProcessor depends only on the abstraction, not the implementation.
+We can swap databases without touching DataProcessor, making the system cleaner and more flexible.
+
+#### Conclusion
+
+DIP helps us eliminate rigid dependencies on concrete classes.
+By relying on abstractions instead of implementations, we build software that is easier to test, extend, and maintain.
+
+#### Golden Rule:
+
+Depend on abstractions, not on implementations!
