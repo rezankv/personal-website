@@ -1,16 +1,212 @@
 ---
 title: "SOLID Simplified: Interface Segregation Principle"
-date: Mon Jul 3 2025 10:23:47 GMT+0330
+date: Mon Jul 17 2025 23:30:00 GMT+0330
 slug: solid-simplified-interface-segregation
 lang: en
 summery: "This article explores the Interface Segregation Principle—favoring small, specific interfaces over large, general ones to keep implementations clean and focused."
-tags: ['solid', 'Software Engineering','clean code']
-keywords: ["open close principle","solid","solid principles",'Software Engineering', 'Clean Code', ]
+tags: ["solid", "Software Engineering", "clean code"]
+keywords:
+  [
+    "open close principle",
+    "solid",
+    "solid principles",
+    "Software Engineering",
+    "Clean Code",
+  ]
 author: Reza Nikravesh
 ---
+
+import { routes } from "@app/constants";
+
 ### Introduction
+
 In the world of software development, writing code that “just works” is not enough. Applications that become increasingly complex, buggy, and difficult to maintain as they grow often suffer from poor design practices. One of the most important sets of principles that helps us write clean, scalable, and maintainable code is the SOLID principles.
 
 SOLID is a collection of five principles introduced by <Link href="https://en.wikipedia.org/wiki/Robert_C._Martin" target="_blank">Robert C. Martin</Link>. These principles help us eliminate improper dependencies, make changes without breaking other parts of the system, and avoid unnecessary architectural complexity. Following these principles is especially valuable in long-term and team-based projects, making software development a more enjoyable and reliable experience.
 
 In this “SOLID Simplified” series, we’ll learn these five principles together in a straightforward way. Below, you can find a list of the previous parts in the series, which I recommend reading first if you haven’t already.
+
+- <Link
+    href={routes.SINGLE_POST_ROUTE(
+      "solid-simplified-single-responsibility-principle",
+    )}
+  >
+    SOLID Simplified: Single Responsibility Principle
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE("solid-simplified-open-close-principle")}
+  >
+    SOLID Simplified: Open/Close Principle
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE(
+      "solid-simplified-liskov-substitution-principle",
+    )}
+  >
+    SOLID Simplified: Liskov Substitution Principle
+  </Link>
+
+## The Fourth SOLID Principle : Interface Segregation Principle (ISP)
+
+### Definition
+
+The Interface Segregation Principle says:
+
+> No client should be forced to depend on methods it does not use.
+
+What does that mean?  
+Instead of creating one fat interface with many unrelated methods, we should split it into smaller, more focused interfaces.  
+This way, each class only implements what it **actually needs**.
+
+#### Benefits of Following ISP
+
+- ✅ Cleaner and more readable code
+- ✅ Reduces unnecessary dependencies
+- ✅ Easier to test and maintain
+- ✅ Improves flexibility and scalability
+
+#### What If You Don’t Follow It?
+
+- ❌ Classes may be forced to implement methods that are irrelevant to them
+- ❌ Changing one part of the interface can break unrelated classes
+- ❌ Introduces tight coupling and unnecessary complexity
+
+#### Bad Example (Violates ISP)
+
+<CodeBlock title="Typescript" raw={`interface Worker {
+work(): void;
+eat(): void;
+}
+
+class HumanWorker implements Worker {
+work() {
+console.log("Working...");
+}
+
+eat() {
+console.log("Eating...");
+}
+}
+
+class RobotWorker implements Worker {
+work() {
+console.log("Working like a robot...");
+}
+
+eat() {
+throw new Error("Robots don't eat!");
+}
+}`}>
+
+```ts
+interface Worker {
+  work(): void;
+  eat(): void;
+}
+
+class HumanWorker implements Worker {
+  work() {
+    console.log("Working...");
+  }
+
+  eat() {
+    console.log("Eating...");
+  }
+}
+
+class RobotWorker implements Worker {
+  work() {
+    console.log("Working like a robot...");
+  }
+
+  eat() {
+    throw new Error("Robots don't eat!");
+  }
+}
+```
+
+</CodeBlock>
+
+#### Explanation
+
+We have a single Worker interface with work() and eat() methods.
+It works for humans, but not for robots — since robots don’t eat!
+Now the RobotWorker class is forced to implement a method (eat) that doesn’t make sense for it. That violates ISP.
+
+Fixed Example (Respects ISP)
+
+<CodeBlock title="Typescript" raw={`interface Workable {
+work(): void;
+}
+
+interface Eatable {
+eat(): void;
+}
+
+class HumanWorker implements Workable, Eatable {
+work() {
+console.log(“Working…”);
+}
+
+eat() {
+console.log(“Eating…”);
+}
+}
+
+class RobotWorker implements Workable {
+work() {
+console.log(“Working like a robot…”);
+}
+}`}>
+
+```ts
+interface Workable {
+  work(): void;
+}
+
+interface Eatable {
+  eat(): void;
+}
+
+class HumanWorker implements Workable, Eatable {
+  work() {
+    console.log("Working...");
+  }
+
+  eat() {
+    console.log("Eating...");
+  }
+}
+
+class RobotWorker implements Workable {
+  work() {
+    console.log("Working like a robot...");
+  }
+}
+```
+
+</CodeBlock>
+
+#### Explanation
+
+We split the original interface into two smaller ones: Workable and Eatable.
+Now each class implements only what it needs.
+The code is simpler, cleaner, and free of unnecessary dependencies.
+
+#### Conclusion
+
+The Interface Segregation Principle helps us design interfaces that are clean, focused, and meaningful.
+By breaking large interfaces into smaller, role-specific ones, classes stay decoupled and easier to maintain.
+
+#### Golden Rule:
+
+No one should be forced to implement something they don’t need!
+
+#### Got it?
+
+If you understood the principle, try writing your own example or applying it to a project.
+Ready for the next one? Check out the next article:
+
+<Link href={routes.SINGLE_POST_ROUTE("solid-simplified-dependency-inversion")}>
+  SOLID Simplified: Dependency Inversion Principle
+</Link>

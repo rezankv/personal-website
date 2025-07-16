@@ -1,6 +1,6 @@
 ---
 title: "اصول سالید به زبان ساده: اصل چهارم"
-date: Mon Jul 3 2025 10:23:47 GMT+0330
+date: Mon Jul 17 2025 23:30:00 GMT+0330
 slug: solid-simplified-interface-segregation
 lang: fa
 summery: "در این مقاله با اصل تفکیک واسط آشنا می‌شوید؛ اصلی که ما را به ساختن اینترفیس‌های کوچک و خاص‌منظوره راهنمایی می‌کند تا کلاس‌ها مجبور نباشند متدهایی را پیاده‌سازی کنند که به آن‌ها نیازی ندارند."
@@ -8,6 +8,9 @@ tags: ['سالید', 'مهندسی نرم افزار','کد تمیز']
 keywords: ["سالید","اصول سالید",'مهندسی نرم افزار', 'کد تمیز',"آموزش سالید" ,"آموزش solid"]
 author: رضا نیک روش
 ---
+
+import {routes} from '@app/constants'
+
 ## مقدمه
 در دنیای توسعه نرم‌افزار، نوشتن کدی که فقط «کار کنه» کافی نیست. برنامه‌هایی که با رشد پروژه دچار پیچیدگی، باگ‌های پنهان، و هزینه نگهداری بالا می‌شن، معمولاً از اصول درست طراحی پیروی نکردن. یکی از مهم‌ترین اصولی که به کمک ما میاد تا بتونیم کدی تمیز، قابل توسعه، و قابل نگهداری بنویسیم، اصول SOLID هست.
 
@@ -15,3 +18,191 @@ SOLID مجموعه‌ای از پنج اصل که توسط <Link href="https://e
 
 در سری مقالات "اصول سالید به زبان ساده" قراره این ۵ اصل رو با هم دیگه یادبگیریم.
 در لیست پایین قسمت های قبلی که منتشر شده رو میتونید ببینید که بهتون توصیه میکنم اول اونا رو مطالعه کنید.
+
+- <Link
+    href={routes.SINGLE_POST_ROUTE(
+      "solid-simplified-single-responsibility-principle",
+    )}
+  >
+    سالید به زبان ساده: اصل اول
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE("solid-simplified-open-close-principle")}
+  >
+    سالید به زبان ساده: اصل دوم
+  </Link>
+- <Link
+    href={routes.SINGLE_POST_ROUTE("solid-simplified-liskov-substitution-principle")}
+  >
+    سالید به زبان ساده: اصل سوم
+  </Link>
+
+
+## اصل چهارم سالید: اصل تفکیک رابط (Interface Segregation Principle - ISP)
+
+### تعریف
+
+اصل تفکیک رابط میگه:
+
+> هیچ کلاس یا ماژولی نباید مجبور به پیاده‌سازی رابط‌هایی (Interfaceهایی) بشه که از اون‌ها استفاده نمی‌کنه.
+
+یعنی چی؟  
+یعنی به‌جای ساختن یه رابط بزرگ و چاق که کلی متد بی‌ربط داره، باید چندتا رابط کوچیک‌تر و تخصصی‌تر درست کنیم، تا هر کلاس فقط اون چیزی رو پیاده‌سازی کنه که واقعاً بهش نیاز داره.
+
+#### مزیت استفاده از این اصل
+
+- ✅ سادگی و خوانایی بیشتر در کد
+- ✅ کاهش وابستگی‌های غیرضروری
+- ✅ تست آسان‌تر کلاس‌ها
+- ✅ افزایش انعطاف‌پذیری و قابلیت نگهداری
+
+#### اگر رعایت نکنیم، چی میشه؟
+
+- ❌ کلاس‌ها مجبور می‌شن متدهایی رو پیاده‌سازی کنن که براشون بی‌معنیه
+- ❌ هر تغییری در رابط، ممکنه کلاس‌هایی رو تحت تأثیر قرار بده که هیچ ربطی به اون تغییر ندارن
+- ❌ وابستگی غیرضروری بین کلاس‌ها و رابط‌ها به وجود میاد
+
+#### مثال کد اشتباه (نقض اصل ISP)
+
+<CodeBlock title="Typescript" raw={`interface Worker {
+work(): void;
+eat(): void;
+}
+
+class HumanWorker implements Worker {
+work() {
+console.log("Working...");
+}
+
+eat() {
+console.log("Eating...");
+}
+}
+
+class RobotWorker implements Worker {
+work() {
+console.log("Working like a robot...");
+}
+
+eat() {
+throw new Error("Robots don't eat!");
+}
+}`}>
+
+```ts
+interface Worker {
+  work(): void;
+  eat(): void;
+}
+
+class HumanWorker implements Worker {
+  work() {
+    console.log("Working...");
+  }
+
+  eat() {
+    console.log("Eating...");
+  }
+}
+
+class RobotWorker implements Worker {
+  work() {
+    console.log("Working like a robot...");
+  }
+
+  eat() {
+    throw new Error("Robots don't eat!");
+  }
+}
+```
+
+</CodeBlock>
+
+#### توضیح
+
+ما یه interface کلی به اسم Worker داریم که شامل ()work و ()eat هست.
+انسان‌ها هر دو رو انجام می‌دن، ولی ربات‌ها فقط کار می‌کنن و غذا نمی‌خورن.
+الان RobotWorker مجبوره متد ()eat رو پیاده‌سازی کنه که اصلاً به دردش نمی‌خوره. این یعنی نقض اصل تفکیک رابط.
+
+#### اصلاح کد (رعایت اصل ISP)
+
+<CodeBlock title='Typescript' raw={`interface Workable {
+work(): void;
+}
+
+interface Eatable {
+eat(): void;
+}
+
+class HumanWorker implements Workable, Eatable {
+work() {
+console.log(“Working…”);
+}
+
+eat() {
+console.log(“Eating…”);
+}
+}
+
+class RobotWorker implements Workable {
+work() {
+console.log(“Working like a robot…”);
+}
+}`}>
+
+```ts
+interface Workable {
+  work(): void;
+}
+
+interface Eatable {
+  eat(): void;
+}
+
+class HumanWorker implements Workable, Eatable {
+  work() {
+    console.log("Working...");
+  }
+
+  eat() {
+    console.log("Eating...");
+  }
+}
+
+class RobotWorker implements Workable {
+  work() {
+    console.log("Working like a robot...");
+  }
+}
+```
+
+</CodeBlock>
+
+#### توضیح
+
+اینجا ما دو تا interface کوچیک‌تر تعریف کردیم: یکی برای Workable و یکی برای Eatable.
+حالا هر کلاس فقط همونی رو پیاده‌سازی می‌کنه که واقعا نیاز داره.
+کد ساده‌تر و تمیزتر شده، وابستگی‌های غیرضروری هم حذف شدن.
+
+#### نتیجه‌گیری
+
+اصل ISP به ما کمک می‌کنه تا رابط‌هامون رو منطقی و تمیز طراحی کنیم.
+با شکستن رابط‌های بزرگ به چند بخش کوچیک و هدف‌مند، کلاس‌ها فقط متدهایی رو پیاده‌سازی می‌کنن که واقعاً براشون کاربرد داره.
+
+#### قانون طلایی:
+
+هیچ‌کس نباید مجبور باشه چیزی رو پیاده‌سازی کنه که بهش نیاز نداره!
+
+
+
+### یادگرفتی؟
+
+اگر مفهوم رو گرفتی، یه مثال براش بنویس یا اونو به پروژه‌ت اعمال کن. آماده‌ای برای اصل سوم؟ پس برو مقاله بعدی رو بخون:
+
+<Link
+  href={routes.SINGLE_POST_ROUTE(
+    "solid-simplified-dependency-inversion",
+  )}
+>
+  سالید به زبان ساده: اصل پنجم
+</Link>
