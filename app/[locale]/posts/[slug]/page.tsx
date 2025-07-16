@@ -35,54 +35,6 @@ export async function generateMetadata({
     keywords: post.keywords,
     authors: [{ name: post.author }],
     creator: post.author,
-    // openGraph: {
-    //   title: t('home.title'),
-    //   description: t('home.description'),
-    //   locale: params.locale === 'fa' ? 'fa_IR' : 'en_US',
-    //   url: baseUrl + path,
-    //   siteName: 'نام سایت',
-    //   images: [
-    //     {
-    //       url: baseUrl + '/og.jpg',
-    //       width: 1200,
-    //       height: 630,
-    //       alt: t('home.title'),
-    //     },
-    //   ],
-    //   type: 'website',
-    // },
-    // twitter: {
-    //   card: 'summary_large_image',
-    //   title: t('home.title'),
-    //   description: t('home.description'),
-    //   images: [baseUrl + '/og.jpg'],
-    // },
-    /* ------------------------------------ from layout ----------------------------------- */
-    // openGraph: {
-    //   title: "Reza Nikravesh | Software Developer",
-    //   description:
-    //     "Software developer sharing technical blog posts and showcasing personal and professional projects focused on modern web development.",
-    //   url: process.env.WEBSITE_URL!,
-    //   siteName: "Reza Nikravesh | Software Developer",
-    //   images: [
-    //     {
-    //       url: "/og.png",
-    //       width: 1200,
-    //       height: 567,
-    //       alt: "توضیح عکس",
-    //     },
-    //   ],
-    //   locale: "en_US",
-    //   type: "website",
-    // },
-    // twitter: {
-    //   card: "summary_large_image",
-    //   title: "Reza Nikravesh | Software Developer",
-    //   description:
-    //     "Software developer sharing technical blog posts and showcasing personal and professional projects focused on modern web development.",
-    //   images: ["/og.png"],
-    //   creator: "@rezankv",
-    // },
   };
 }
 
