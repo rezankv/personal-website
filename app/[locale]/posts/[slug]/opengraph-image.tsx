@@ -1,18 +1,20 @@
 import { postService } from "@app/contents";
-import { Locale, routing } from "@app/i18n/routing";
+import { Locale, 
+  // routing
+ } from "@app/i18n/routing";
 import { ImageResponse } from "next/og";
 
-export const revalidate = 60;
+// export const revalidate = 60;
 
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
-export async function generateStaticParams() {
-  const locales = routing.locales;
-  return postService.getAll().map(({ slug }) => ({
-    slug,
-    locales,
-  }));
-}
+// export async function generateStaticParams() {
+//   const locales = routing.locales;
+//   return postService.getAll().map(({ slug }) => ({
+//     slug,
+//     locales,
+//   }));
+// }
 
 // Image metadata
 export const size = {
@@ -30,7 +32,7 @@ export default async function Image({
 }) {
   const { slug, locale } = await params;
   const post = postService.getOne({ slug, lang: locale });
-
+  console.log("✅✅✅✅✅✅✅",post?.title);
   return new ImageResponse(
     (
       // ImageResponse JSX element
