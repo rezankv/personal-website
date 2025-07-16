@@ -22,7 +22,8 @@ export default async function Image({}: {
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
   const logoData = await readFile(join(process.cwd(), "public", "avatar.png"));
-  const logoSrc = Uint8Array.from(logoData).buffer;
+  const base64 = logoData.toString("base64");
+  const logoSrc = `data:image/png;base64,${base64}`;
   return new ImageResponse(
     (
       <div
