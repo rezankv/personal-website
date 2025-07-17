@@ -9,7 +9,7 @@ export const size = {
   height: 630,
 };
 
-// export const dynamic = 'force-static'
+export const dynamic = 'force-static'
 
 // Image generation
 export default async function Image() {
