@@ -8,7 +8,7 @@ import {
   AboutSection,
   ExperienceSection,
   PostsSection,
-  ProjectSection,
+  // ProjectSection,
 } from "./_components";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -61,7 +61,7 @@ export default async function Home({
   return (
     <div className="animate-fade-in-up mx-4 mt-4 flex flex-col gap-10">
       <AboutSection />
-      <ProjectSection />
+      {/* <ProjectSection /> */}
       <PostsSection />
       <ExperienceSection />
     </div>

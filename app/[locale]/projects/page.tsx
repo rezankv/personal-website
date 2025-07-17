@@ -1,17 +1,17 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 // constants
-import { routes } from "@app/constants";
+// import { routes } from "@app/constants";
 
 // content
-import { projectService } from "@app/contents";
+// import { projectService } from "@app/contents";
 
 // components
-import { ProjectCard } from "@app/components";
+// import { ProjectCard } from "@app/components";
 
 // i18n
 import { Locale } from "@app/i18n/routing";
-import { Link } from "@app/i18n/navigation";
+// import { Link } from "@app/i18n/navigation";
 import { Metadata } from "next";
 
 export async function generateMetadata({
@@ -51,12 +51,12 @@ const ProjectsPage = async ({
   setRequestLocale(locale);
   const t = await getTranslations("RootLayout.pages.ProjectsPage");
 
-  const projects = projectService.getAll({ lang: locale });
+  // const projects = projectService.getAll({ lang: locale });
 
   return (
-    <div className="animate-fade-in-up flex flex-col gap-2 md:py-4">
-      <h2 className="mx-4 text-xl font-bold">{t("title")}</h2>
-      <div className="flex flex-col gap-4 md:gap-1">
+    <div className="animate-fade-in-up mx-4 flex flex-col gap-2 md:py-4">
+      <h2 className="text-xl font-bold">{t("title")}</h2>
+      {/* <div className="flex flex-col gap-4 md:gap-1">
         {projects.map((project) => {
           return (
             <Link
@@ -68,7 +68,12 @@ const ProjectsPage = async ({
             </Link>
           );
         })}
-      </div>
+      </div> */}
+      <p className="text-muted-foreground">
+        {locale === "fa"
+          ? "محتوا این صفحه به زودی بارگذاری خواهد شد."
+          : "Content will be available soon."}
+      </p>
     </div>
   );
 };
