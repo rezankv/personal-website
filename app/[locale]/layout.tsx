@@ -18,6 +18,7 @@ import { cn } from "@app/utils";
 
 // locals
 import { Footer, Header } from "./_components";
+import { Metadata } from "next";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
@@ -35,6 +36,10 @@ const fontClassName: Record<Locale, string> = {
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.WEBSITE_URL!),
+};
 
 export default async function RootLayout({
   children,

@@ -1,3 +1,4 @@
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 
 // i18n
@@ -10,7 +11,6 @@ import {
   PostsSection,
   // ProjectSection,
 } from "./_components";
-import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export const dynamicParams = false;
 
@@ -39,7 +39,6 @@ export async function generateMetadata({
     ],
     authors: [{ name: globalMetadataT("author") }],
     creator: globalMetadataT("author"),
-    metadataBase: new URL(process.env.WEBSITE_URL!),
   };
 }
 
