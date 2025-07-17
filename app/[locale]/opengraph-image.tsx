@@ -1,11 +1,5 @@
 import { ImageResponse } from "next/og";
 
-// i18n
-import {
-  Locale,
-  // routing
-} from "@app/i18n/routing";
-
 export const contentType = "image/png";
 
 export const alt = "Reza Nikravesh";
@@ -15,10 +9,10 @@ export const size = {
   height: 630,
 };
 
+export const dynamic = 'force-static'
+
 // Image generation
-export default async function Image({}: {
-  params: Promise<{ locale: Locale; slug: string }>;
-}) {
+export default async function Image() {
   const avatarUrl = `${process.env.WEBSITE_URL}/avatar.png`;
   const res = await fetch(avatarUrl);
   const logoArrayBuffer = await res.arrayBuffer();
