@@ -19,7 +19,7 @@ export const size = {
 export default async function Image({}: {
   params: Promise<{ locale: Locale; slug: string }>;
 }) {
-  const avatarUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/avatar.png`;
+  const avatarUrl = `${process.env.WEBSITE_URL}/avatar.png`;
   const res = await fetch(avatarUrl);
   const logoArrayBuffer = await res.arrayBuffer();
   const logoSrc = `data:image/png;base64,${Buffer.from(logoArrayBuffer).toString("base64")}`;
