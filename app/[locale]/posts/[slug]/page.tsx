@@ -17,6 +17,7 @@ import { postService } from "@app/contents";
 // i18n
 import { Locale } from "@app/i18n/routing";
 import { Link } from "@app/i18n/navigation";
+import Image from "next/image";
 
 export async function generateMetadata({
   params,
@@ -112,6 +113,15 @@ const SinglePostPage = async ({
       </section>
 
       <article className="prose dark:prose-invert">
+        {post.heroImage && (
+          <Image
+            width="1280"
+            height="720"
+            alt="hero-image"
+            src={post.heroImage}
+            className="rounded-xl"
+          />
+        )}
         <MdxViewer content={post.body.code} />
       </article>
     </div>

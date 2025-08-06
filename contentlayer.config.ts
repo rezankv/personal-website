@@ -15,6 +15,7 @@ export const Post = defineDocumentType(() => ({
     lang: { type: "enum", options: routing.locales, required: true },
     slug: { type: "string", required: true },
     summery: { type: "string", required: true },
+    heroImage: { type: "string", required: false },
     tags: {
       type: "list", of: {
         type: "string"
