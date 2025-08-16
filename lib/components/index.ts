@@ -9,3 +9,4 @@ export * from "./CodeBlock";
 export * from "./Slot";
 export * from "./SocialLinks";
 export * from "./UI";
+export * from "./ProjectIntroVideoPlayer";
