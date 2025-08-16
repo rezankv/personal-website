@@ -3,7 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
 // components
-import { MdxViewer } from "@app/components";
+import { MdxViewer, ProjectIntroVideoPlayer } from "@app/components";
 
 // utils
 import { cn, formatDate, formatReadingTime } from "@app/utils";
@@ -118,6 +118,7 @@ const SingleProjectPage = async ({
       </section>
 
       <article className="prose dark:prose-invert">
+        <ProjectIntroVideoPlayer src={project.introVideo}/>
         <MdxViewer content={project.body.code} />
       </article>
     </div>
