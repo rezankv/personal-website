@@ -26,7 +26,7 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const project = projectService.getOne({ slug });
+  const project = projectService.getOne({ slug, lang: locale });
   if (!project) notFound();
 
   return {
@@ -118,7 +118,7 @@ const SingleProjectPage = async ({
       </section>
 
       <article className="prose dark:prose-invert">
-        <ProjectIntroVideoPlayer src={project.introVideo}/>
+        <ProjectIntroVideoPlayer src={project.introVideo} />
         <MdxViewer content={project.body.code} />
       </article>
     </div>
