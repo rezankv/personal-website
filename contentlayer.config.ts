@@ -48,6 +48,7 @@ export const Project = defineDocumentType(() => ({
     lang: { type: "enum", options: routing.locales, required: true },
     slug: { type: "string", required: true },
     summery: { type: "string", required: true },
+    introVideo: { type: "string", required: false },
     tags: {
       type: "list", of: {
         type: "string"
