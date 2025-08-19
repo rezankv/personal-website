@@ -31,7 +31,7 @@ export const ProjectCard = async ({ project }: { project: Project }) => {
         <div className="flex flex-col">
           <h2 className="text-sm">{project.title}</h2>
           <span className="text-muted-foreground text-sm">
-            {project.summery}
+            {project.subtitle}
           </span>
         </div>
       </div>
