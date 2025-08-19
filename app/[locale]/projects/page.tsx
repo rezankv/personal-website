@@ -17,7 +17,6 @@ import { sortDocumentByDateDesc } from "@app/utils";
 // i18n
 import { Locale } from "@app/i18n/routing";
 
-
 export async function generateMetadata({
   params,
 }: {
@@ -55,7 +54,9 @@ const ProjectsPage = async ({
   setRequestLocale(locale);
   const t = await getTranslations("RootLayout.pages.ProjectsPage");
 
-  const projects = sortDocumentByDateDesc(projectService.getAll({ lang: locale }));
+  const projects = sortDocumentByDateDesc(
+    projectService.getAll({ lang: locale }),
+  );
 
   return (
     <div className="animate-fade-in-up mx-4 flex flex-col gap-2 md:py-4">
@@ -72,6 +73,11 @@ const ProjectsPage = async ({
             </Link>
           );
         })}
+        <p className="text-muted-foreground-2 italic  border-r border-r-3 border-r-black mt-5 pr-3">
+          {locale === "fa"
+            ? "سایر پروژه ها در روز های آینده اضافه خواهند شد..."
+            : "Rest of the projects will be available soon..."}
+        </p>
       </div>
     </div>
   );
