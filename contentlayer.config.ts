@@ -44,6 +44,7 @@ export const Project = defineDocumentType(() => ({
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
+    subtitle: { type: "string", required: false },
     date: { type: "date", required: true },
     lang: { type: "enum", options: routing.locales, required: true },
     slug: { type: "string", required: true },
