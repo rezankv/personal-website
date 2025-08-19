@@ -12,6 +12,9 @@ import { routes } from "@app/constants";
 import { Locale } from "@app/i18n/routing";
 import { Link } from "@app/i18n/navigation";
 
+// utils
+import { sortDocumentByDateDesc } from "@app/utils";
+
 // components
 import { ProjectCard } from "@app/components";
 
@@ -19,7 +22,7 @@ export const ProjectSection = async () => {
   const t = await getTranslations("RootLayout.pages.HomePage.ProjectsSection");
   const locale = (await getLocale()) as Locale;
 
-  const featuredProjects = projectService.getAll({ lang: locale }).slice(0, 3);
+  const featuredProjects = sortDocumentByDateDesc(projectService.getAll({ lang: locale }).slice(0, 3));
 
   const arrowIconBasedOnLocale: Record<Locale, ReactNode> = {
     en: <ArrowRight size={18} />,

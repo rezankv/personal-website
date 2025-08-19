@@ -11,6 +11,9 @@ import { projectService } from "@app/contents";
 // components
 import { ProjectCard } from "@app/components";
 
+// utils
+import { sortDocumentByDateDesc } from "@app/utils";
+
 // i18n
 import { Locale } from "@app/i18n/routing";
 
@@ -52,7 +55,7 @@ const ProjectsPage = async ({
   setRequestLocale(locale);
   const t = await getTranslations("RootLayout.pages.ProjectsPage");
 
-  const projects = projectService.getAll({ lang: locale });
+  const projects = sortDocumentByDateDesc(projectService.getAll({ lang: locale }));
 
   return (
     <div className="animate-fade-in-up mx-4 flex flex-col gap-2 md:py-4">
