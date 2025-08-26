@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { MediaHTMLAttributes } from "react";
 
@@ -9,9 +9,10 @@ export const ProjectIntroVideoPlayer = ({
   autoPlay = true,
   controlsList = "nodownload nofullscreen noremoteplayback",
   onContextMenu = () => false,
+  src,
   ...restProps
 }: MediaHTMLAttributes<HTMLVideoElement>) => {
-  return (
+  return src ? (
     <video
       onContextMenu={onContextMenu}
       controlsList={controlsList}
@@ -21,5 +22,5 @@ export const ProjectIntroVideoPlayer = ({
       playsInline={playsInline}
       {...restProps}
     ></video>
-  );
+  ) : null;
 };
