@@ -64,6 +64,7 @@ export const Project = defineDocumentType(() => ({
     isFeatured: { type: "boolean", required: true },
     liveLink: { type: "string", required: true },
     icon: { type: "string", required: true },
+    heroImage: { type: "string", required: false },
   },
   computedFields: {
     url: {
