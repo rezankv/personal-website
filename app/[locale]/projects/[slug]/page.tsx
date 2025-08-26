@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -118,6 +119,13 @@ const SingleProjectPage = async ({
       </section>
 
       <article className="prose dark:prose-invert">
+        <Image
+          className="rounded-lg shadow-2xl mx-auto"
+          width="900"
+          height="400"
+          src={project.heroImage as string}
+          alt="project hero image"
+        />
         <ProjectIntroVideoPlayer src={project.introVideo} />
         <MdxViewer content={project.body.code} />
       </article>
