@@ -20,6 +20,7 @@ export const ProjectIntroVideoPlayer = ({
       loop={loop}
       muted={muted}
       playsInline={playsInline}
+      src={src}
       {...restProps}
     ></video>
   ) : null;
