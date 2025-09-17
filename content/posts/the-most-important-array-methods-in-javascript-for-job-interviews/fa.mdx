@@ -1,0 +1,509 @@
+---
+title: "مهم‌ترین متدهای آرایه در جاوااسکریپت برای مصاحبه‌ "
+date: Mon Sep 15 2025 13:54:56 GMT+0330
+slug: the-most-important-array-methods-in-javascript-for-job-interview
+lang: fa
+summery: " در این مقاله مهمترین متد های کار با آرایه در جاوااسکریپت که از مهمترین مباحث مصاحبه شغلی است را خواهید آموخت."
+tags: ["مهندسی نرم افزار", "جاوااسکریپت", "آرایه", "مصاحبه"]
+keywords: ["مهندسی نرم افزار", "جاوااسکریپت", "آرایه", "مصاحبه"]
+author: رضا نیک روش
+heroImage: /posts/the-most-important-array-methods-in-javascript-for-job-interview/hero-image.webp
+---
+
+آرایه‌ها یکی از اصلی‌ترین انواع داده‌ در جاوااسکریپت هستند و کاربرد زیادی دارند. در مصاحبه‌های شغلی معمولاً از شما می‌پرسند که چطور داده‌ها را با متدهای آرایه مدیریت می‌کنید. در ادامه مهم‌ترین متدهای آرایه را بررسی می‌کنیم.
+
+### push
+
+- **کارکرد:** اضافه کردن یک یا چند عنصر به انتهای آرایه.
+- **ورودی:** یک یا چند مقدار برای اضافه شدن.
+- **خروجی:** طول جدید آرایه بعد از اضافه شدن عناصر.
+- **تغییر آرایه اصلی:** بله
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let numbers = [1, 2, 3];
+let newLength = numbers.push(4, 5);
+console.log(numbers); // [1, 2, 3, 4, 5]
+console.log(newLength); // 5`}>
+
+```js
+let numbers = [1, 2, 3];
+let newLength = numbers.push(4, 5);
+console.log(numbers); // [1, 2, 3, 4, 5]
+console.log(newLength); // 5
+```
+
+</CodeBlock>
+
+### pop
+
+    - **کارکرد:** حذف آخرین عنصر آرایه و برگرداندن آن.
+    - **ورودی:** ندارد
+    - **خروجی:** مقدار حذف شده
+    - **تغییر آرایه اصلی:** بله
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let fruits = ["apple", "banana", "orange"];
+let lastFruit = fruits.pop();
+console.log(fruits); // ["apple", "banana"]
+console.log(lastFruit); // "orange"`}>
+
+```js
+let fruits = ["apple", "banana", "orange"];
+let lastFruit = fruits.pop();
+console.log(fruits); // ["apple", "banana"]
+console.log(lastFruit); // "orange"
+```
+
+</CodeBlock>
+
+### shift
+
+    - **کارکرد:** حذف اولین عنصر آرایه و برگرداندن آن.
+    - **ورودی:** ندارد
+    - **خروجی:** عنصر حذف شده
+    - **تغییر آرایه اصلی:** بله
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let queue = [10, 20, 30];
+let first = queue.shift();
+console.log(queue); // [20, 30]
+console.log(first); // 10`}>
+
+```js
+let queue = [10, 20, 30];
+let first = queue.shift();
+console.log(queue); // [20, 30]
+console.log(first); // 10
+```
+
+</CodeBlock>
+
+### unshift
+
+    - **کارکرد:** اضافه کردن یک یا چند عنصر به ابتدای آرایه.
+    - **ورودی:** یک یا چند مقدار
+    - **خروجی:** طول جدید آرایه
+    - **تغییر آرایه اصلی:** بله
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let numbers = [2, 3];
+numbers.unshift(0, 1);
+console.log(numbers); // [0, 1, 2, 3]`}>
+
+```js
+let numbers = [2, 3];
+numbers.unshift(0, 1);
+console.log(numbers); // [0, 1, 2, 3]
+```
+
+</CodeBlock>
+
+### slice
+
+    - **کارکرد:** برش بخشی از آرایه و برگرداندن یک آرایه جدید
+    - **ورودی:** start index, end index (end اختیاری، عنصر end شامل نمی‌شود)
+    - **خروجی:** آرایه جدید
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let arr = [1, 2, 3, 4, 5];
+let part = arr.slice(1, 4);
+console.log(part); // [2, 3, 4]
+console.log(arr); // [1, 2, 3, 4, 5]`}>
+
+```js
+let arr = [1, 2, 3, 4, 5];
+let part = arr.slice(1, 4);
+console.log(part); // [2, 3, 4]
+console.log(arr); // [1, 2, 3, 4, 5]
+```
+
+</CodeBlock>
+
+### splice
+
+    - **کارکرد:** حذف، جایگزینی یا اضافه کردن عناصر در یک آرایه
+    - **ورودی:** start index, deleteCount, items…
+    - **خروجی:** آرایه‌ای شامل عناصر حذف شده
+    - **تغییر آرایه اصلی:** بله
+
+مثال‌ها:
+
+<CodeBlock title="Javascript" raw={`let arr = [1, 2, 3, 4, 5];
+// حذف
+let removed = arr.splice(2, 2);
+console.log(arr); // [1, 2, 5]
+console.log(removed); // [3, 4]
+
+// اضافه کردن
+arr.splice(2, 0, 6, 7);
+console.log(arr); // [1, 2, 6, 7, 5]
+
+// جایگزینی
+arr.splice(1, 2, 8, 9);
+console.log(arr); // [1, 8, 9, 7, 5]`}>
+
+```js
+let arr = [1, 2, 3, 4, 5];
+// حذف
+let removed = arr.splice(2, 2);
+console.log(arr); // [1, 2, 5]
+console.log(removed); // [3, 4]
+
+// اضافه کردن
+arr.splice(2, 0, 6, 7);
+console.log(arr); // [1, 2, 6, 7, 5]
+
+// جایگزینی
+arr.splice(1, 2, 8, 9);
+console.log(arr); // [1, 8, 9, 7, 5]
+```
+
+</CodeBlock>
+
+### forEach
+
+    - **کارکرد:** اجرای یک callback برای هر عنصر آرایه
+    - **ورودی:** تابع callback با پارامترهای (element, index, array)
+    - **خروجی:** ندارد (undefined)
+    - **تغییر آرایه اصلی:** خیر (مگر callback تغییر دهد)
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let arr = [1, 2, 3];
+arr.forEach(num => console.log(num * 2));
+// 2, 4, 6`}>
+
+```js
+let arr = [1, 2, 3];
+arr.forEach(num => console.log(num * 2));
+// 2, 4, 6
+```
+
+</CodeBlock>
+
+### map
+
+- **کارکرد:** تولید یک آرایه جدید با نتایج callback
+- **ورودی:** تابع callback با پارامترهای (element, index, array)
+- **خروجی:** آرایه جدید
+- **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let numbers = [1, 2, 3];
+let squared = numbers.map(n => n \* n);
+console.log(squared); // [1, 4, 9]
+console.log(numbers); // [1, 2, 3]`}>
+
+```js
+let numbers = [1, 2, 3];
+let squared = numbers.map(n => n \* n);
+console.log(squared); // [1, 4, 9]
+console.log(numbers); // [1, 2, 3]
+```
+
+</CodeBlock>
+
+### filter
+
+    - **کارکرد:** ایجاد یک آرایه جدید با عناصر که شرط callback را دارند
+    - **ورودی:** تابع callback (true/false)
+    - **خروجی:** آرایه جدید
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let nums = [1, 2, 3, 4, 5];
+let even = nums.filter(n => n % 2 === 0);
+console.log(even); // [2, 4]`}>
+
+```js
+let nums = [1, 2, 3, 4, 5];
+let even = nums.filter((n) => n % 2 === 0);
+console.log(even); // [2, 4]
+```
+
+</CodeBlock>
+
+### reduce
+
+    - **کارکرد:** کاهش آرایه به یک مقدار واحد با callback
+    - **ورودی:** callback(accumulator, currentValue, index, array), initialValue (اختیاری)
+    - **خروجی:** مقدار واحد (number, string, object…)
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let nums = [1, 2, 3, 4];
+let sum = nums.reduce((acc, n) => acc + n, 0);
+console.log(sum); // 10`}>
+
+```js
+let nums = [1, 2, 3, 4];
+let sum = nums.reduce((acc, n) => acc + n, 0);
+console.log(sum); // 10
+```
+
+</CodeBlock>
+
+### find
+
+    - **کارکرد:** برگرداندن اولین عنصر که شرط callback را دارد
+    - **ورودی:** تابع callback (true/false)
+    - **خروجی:** عنصر پیدا شده یا undefined
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let users = [{id:1,name:"Ali"}, {id:2,name:"Sara"}];
+let user = users.find(u => u.id === 2);
+console.log(user); // {id:2, name:"Sara"}`}>
+
+```js
+let users = [
+  { id: 1, name: "Ali" },
+  { id: 2, name: "Sara" },
+];
+let user = users.find((u) => u.id === 2);
+console.log(user); // {id:2, name:"Sara"}
+```
+
+</CodeBlock>
+
+### includes
+
+    - **کارکرد:** بررسی وجود یک عنصر در آرایه
+    - **ورودی:** مقدار برای چک کردن, start index (اختیاری)
+    - **خروجی:** true/false
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let fruits = ["apple","banana"];
+console.log(fruits.includes("banana")); // true
+console.log(fruits.includes("orange")); // false`}>
+
+```js
+let fruits = ["apple", "banana"];
+console.log(fruits.includes("banana")); // true
+console.log(fruits.includes("orange")); // false
+```
+
+</CodeBlock>
+
+### sort
+
+    - **کارکرد:** مرتب کردن آرایه
+    - **ورودی:** callback برای مقایسه (اختیاری)
+    - **خروجی:** آرایه مرتب شده
+    - **تغییر آرایه اصلی:** بله
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let nums = [3, 1, 4, 2];
+nums.sort((a,b) => a-b);
+console.log(nums); // [1,2,3,4]`}>
+
+```js
+let nums = [3, 1, 4, 2];
+nums.sort((a, b) => a - b);
+console.log(nums); // [1,2,3,4]
+```
+
+</CodeBlock>
+
+### reverse
+
+    - **کارکرد:** معکوس کردن آرایه
+    - **ورودی:** ندارد
+    - **خروجی:** آرایه معکوس شده
+    - **تغییر آرایه اصلی:** بله
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let arr = [1,2,3];
+arr.reverse();
+console.log(arr); // [3,2,1]`}>
+
+```js
+let arr = [1, 2, 3];
+arr.reverse();
+console.log(arr); // [3,2,1]
+```
+
+</CodeBlock>
+
+### indexOf
+
+    - **کارکرد:** پیدا کردن اولین موقعیت (اندیس) یک عنصر در آرایه
+    - **ورودی:** مقدار برای پیدا کردن, start index (اختیاری)
+    - **خروجی:** اندیس عنصر یا -1 اگر پیدا نشد
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let fruits = ["apple", "banana", "orange", "banana"];
+console.log(fruits.indexOf("banana")); // 1
+console.log(fruits.indexOf("grape")); // -1`}>
+
+```js
+let fruits = ["apple", "banana", "orange", "banana"];
+console.log(fruits.indexOf("banana")); // 1
+console.log(fruits.indexOf("grape")); // -1
+```
+
+</CodeBlock>
+
+### lastIndexOf
+
+    - **کارکرد:** پیدا کردن آخرین موقعیت یک عنصر در آرایه
+    - **ورودی:** مقدار برای پیدا کردن, start index (اختیاری)
+    - **خروجی:** اندیس عنصر یا -1
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let fruits = ["apple", "banana", "orange", "banana"];
+console.log(fruits.lastIndexOf("banana")); // 3`}>
+
+```js
+let fruits = ["apple", "banana", "orange", "banana"];
+console.log(fruits.lastIndexOf("banana")); // 3
+```
+
+</CodeBlock>
+
+
+### every
+
+    - **کارکرد:** بررسی اینکه همه عناصر آرایه شرطی را داشته باشند
+    - **ورودی:** callback (true/false)
+    - **خروجی:** true/false
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let nums = [2, 4, 6];
+console.log(nums.every(n => n % 2 === 0)); // true`}>
+
+```js
+let nums = [2, 4, 6];
+console.log(nums.every((n) => n % 2 === 0)); // true
+```
+
+</CodeBlock>
+
+### findIndex
+
+    - **کارکرد:** پیدا کردن اندیس اولین عنصری که شرط callback را داشته باشد
+    - **ورودی:** callback (true/false)
+    - **خروجی:** اندیس یا -1
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let users = [{id:1},{id:2},{id:3}];
+let idx = users.findIndex(u => u.id === 2);
+console.log(idx); // 1`}>
+
+```js
+let users = [{ id: 1 }, { id: 2 }, { id: 3 }];
+let idx = users.findIndex((u) => u.id === 2);
+console.log(idx); // 1
+```
+
+</CodeBlock>
+
+### concat
+
+    - **کارکرد:** ترکیب دو یا چند آرایه و برگرداندن آرایه جدید
+    - **ورودی:** یک یا چند آرایه یا مقدار
+    - **خروجی:** آرایه جدید
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let arr1 = [1,2];
+let arr2 = [3,4];
+let merged = arr1.concat(arr2);
+console.log(merged); // [1,2,3,4]
+console.log(arr1); // [1,2]`}>
+
+```js
+let arr1 = [1, 2];
+let arr2 = [3, 4];
+let merged = arr1.concat(arr2);
+console.log(merged); // [1,2,3,4]
+console.log(arr1); // [1,2]
+```
+
+</CodeBlock>
+
+### join
+
+    - **کارکرد:** تبدیل آرایه به رشته با جداکننده مشخص
+    - **ورودی:** separator (اختیاری، پیشفرض ,)
+    - **خروجی:** رشته
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let words = ["Hello", "World"];
+console.log(words.join(" ")); // "Hello World"
+console.log(words.join(",")); // "Hello,World"`}>
+
+```js
+let words = ["Hello", "World"];
+console.log(words.join(" ")); // "Hello World"
+console.log(words.join(",")); // "Hello,World"
+```
+
+</CodeBlock>
+
+### flat
+
+    - **کارکرد:** صاف کردن آرایه‌های تو در تو تا عمق مشخص
+    - **ورودی:** عمق (depth) اختیاری، پیشفرض 1
+    - **خروجی:** آرایه جدید
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let arr = [1, [2, [3, 4]]];
+console.log(arr.flat()); // [1, 2, [3,4]]
+console.log(arr.flat(2)); // [1, 2, 3, 4]"`}>
+
+```js
+let arr = [1, [2, [3, 4]]];
+console.log(arr.flat()); // [1, 2, [3,4]]
+console.log(arr.flat(2)); // [1, 2, 3, 4]
+```
+
+</CodeBlock>
+
+### flatMap
+
+    - **کارکرد:** ترکیب map و flat با عمق 1
+    - **ورودی:** callback
+    - **خروجی:** آرایه جدید
+    - **تغییر آرایه اصلی:** خیر
+
+مثال:
+
+<CodeBlock title="Javascript" raw={`let arr = [1, 2, 3];
+let result = arr.flatMap(n => [n, n*2]);
+console.log(result); // [1,2,2,4,3,6]`}>
+
+```js
+let arr = [1, 2, 3];
+let result = arr.flatMap((n) => [n, n * 2]);
+console.log(result); // [1,2,2,4,3,6]
+```
+
+</CodeBlock>
