@@ -22,7 +22,7 @@ export const ProjectSection = async () => {
   const t = await getTranslations("RootLayout.pages.HomePage.ProjectsSection");
   const locale = (await getLocale()) as Locale;
 
-  const featuredProjects = sortDocumentByDateDesc(projectService.getAll({ lang: locale }).slice(0, 3));
+  const featuredProjects = sortDocumentByDateDesc(projectService.getAll({ lang: locale })).slice(0, 3);
 
   const arrowIconBasedOnLocale: Record<Locale, ReactNode> = {
     en: <ArrowRight size={18} />,
