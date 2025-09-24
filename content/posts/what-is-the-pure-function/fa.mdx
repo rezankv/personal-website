@@ -1,0 +1,108 @@
+---
+title: "Pure function چیست؟"
+date: Wed Sep 24 2025 14:02:54 GMT+0330
+slug: what-is-the-pure-function
+lang: fa
+summery: "در این مقاله به بررسی pure function خواهیم پرداخت که یکی از مهم ترین مباحث برنامه نویسی تابعی است."
+tags: ["مصاحبه", "برنامه نویسی تابعی", "کد تمیز"]
+keywords: ["مصاحبه", "برنامه نویسی تابعی", "کد تمیز"]
+author: رضا نیک روش
+heroImage: /posts/what-is-the-pure-function/hero-image.webp
+---
+
+تابع خالص یا Pure Fucntion یکی از مفاهیم بنیادی در برنامه‌نویسی تابعی (Functional Programming) است. درک این مفهوم می‌تواند به نوشتن کدی قابل پیش‌بینی‌تر، تست‌پذیرتر و قابل نگهداری‌تر کمک کند.
+
+## تعریف Pure Function
+
+تابعی است که دو شرط اصلی زیر را داشته باشد.
+
+1. هر بار که تابع با ورودی‌های یکسان فراخوانی شود، همیشه خروجی یکسانی تولید می‌کند.
+
+<CodeBlock title="Typescript" raw={`
+// ✅
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3)); // همیشه 5همیشه `}>
+
+```ts
+// ✅
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3)); // خروجی همیشه ۵ است
+```
+
+</CodeBlock>
+
+2. تابع بدون Side Effect باشد.
+   تابع نباید وضعیت بیرونی (مانند تغییر متغیرهای global، دستکاری DOM، نوشتن در فایل یا پایگاه داده، و غیره) را تغییر دهد.
+
+<CodeBlock title="Typescript" raw={`
+// ❌ 
+let count = 0;
+function increase() {
+  count++; // تغییر وضعیت بیرونی
+  return count;
+}
+`}>
+
+```ts
+// ❌
+let count = 0;
+function increase() {
+  count++; // تغییر وضعیت بیرونی
+  return count;
+}
+```
+
+</CodeBlock>
+
+### دو مثال دیگر
+
+**✅ صحیح**
+
+<CodeBlock title="Typescript" raw={`
+function square(x) {
+  return x * x;
+}
+`}>
+
+```ts
+function square(x) {
+  return x * x;
+}
+```
+
+</CodeBlock>
+
+- همیشه برای ورودی یکسان، خروجی ثابت دارد.
+- هیچ متغیر بیرونی را تغییر نمی‌دهد.
+
+**❌ غلط**
+
+<CodeBlock title="Typescript" raw={`
+function getRandomNumber() {
+  return Math.random();
+}
+`}>
+
+```ts
+function getRandomNumber() {
+  return Math.random();
+}
+```
+
+</CodeBlock>
+
+- برای هر بار فراخوانی خروجی متفاوت است.
+
+## مزایای استفاده از Pure Function
+
+- تست پذیری بالا
+
+- قابل پیش بینی بودن
+
+- دیباگ آسان‌تر

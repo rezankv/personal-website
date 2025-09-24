@@ -1,0 +1,107 @@
+---
+title: "What is the Pure Function?"
+date: Wed Sep 24 2025 14:02:54 GMT+0330
+slug: what-is-the-pure-function
+lang: en
+summery: "In this article, we will explore pure functions, one of the most important concepts in functional programming."
+tags: ["Software Engineering", "Clean Code", "Pure Function"]
+keywords: ["Software Engineering", "Clean Code", "Pure Function"]
+author: Reza Nikravesh
+heroImage: /posts/what-is-the-pure-function/hero-image.webp
+---
+
+A **Pure Function** is one of the fundamental concepts in **Functional Programming**. Understanding this concept helps us write code that is more predictable, testable, and maintainable.
+
+## Definition of a Pure Function
+
+A function is considered pure if it meets the following two conditions:
+
+1. Whenever the function is called with the same inputs, it always returns the same output.
+
+<CodeBlock title="Typescript" raw={`
+// ✅
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3)); // always return 5 `}>
+
+```ts
+// ✅
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3)); // always return 5
+```
+
+</CodeBlock>
+
+2. The function has no **Side Effects**.  
+   It must not change any external state (such as modifying global variables, manipulating the DOM, writing to a file or database, etc.).
+
+<CodeBlock title="Typescript" raw={`
+// ❌ 
+let count = 0;
+function increase() {
+  count++; // changes outer variable
+  return count;
+}
+`}>
+
+```ts
+// ❌
+let count = 0;
+function increase() {
+  count++; // changes outer variable
+  return count;
+}
+```
+
+</CodeBlock>
+
+### Two More Examples
+
+**✅ Correct**
+
+<CodeBlock title="Typescript" raw={`
+function square(x) {
+  return x * x;
+}
+`}>
+
+```ts
+function square(x) {
+  return x * x;
+}
+```
+
+</CodeBlock>
+
+- Always returns the same result for the same input.
+- Does not modify any external variable.
+
+**❌ Incorrect**
+
+<CodeBlock title="Typescript" raw={`
+function getRandomNumber() {
+  return Math.random();
+}
+`}>
+
+```ts
+function getRandomNumber() {
+  return Math.random();
+}
+```
+
+</CodeBlock>
+
+- Produces a different result every time it is called.
+
+
+## Benefits of Using Pure Functions
+
+- High testability
+- Predictable behavior
+- Easier debugging
