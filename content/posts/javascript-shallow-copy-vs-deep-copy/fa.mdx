@@ -1,0 +1,255 @@
+---
+title: "آموزش Shallow Copy و Deep Copy در جاوااسکریپت"
+date: Thu Sep 25 2025 10:28:40 GMT+0330
+slug: javascript-shallow-copy-vs-deep-copy
+lang: fa
+summery: "در این مقاله به بررسی shallow copy و deep copy در جاوااسکریپت که یکی از مفاهیم مهم جاوااسکریپت است خواهیم پرداخت."
+tags: ["جاوااسکریپت", "کپی دیتا", "مصاحبه"]
+keywords: ["جاوااسکریپت", "کپی دیتا", "مصاحبه"]
+author: رضا نیک روش
+heroImage: /posts/javascript-shallow-copy-vs-deep-copy/hero-image.webp
+---
+
+وقتی در جاوااسکریپت با آبجکت‌ها و آرایه‌ها سروکار داریم، کپی گرفتن از ساختارهای داده یک کار رایج است. با این حال، توسعه‌دهندگان اغلب در انتخاب بین Shallow Copy و Deep Copy دچار تردید می‌شوند. نادیده گرفتن تفاوت این دو روش می‌تواند باعث بروز رفتارهای غیرمنتظره در کد شود. در این مقاله، این مفاهیم را بررسی می‌کنیم، تفاوت‌هایشان را مشخص می‌کنیم و زمان مناسب استفاده از هر کدام را توضیح می‌دهیم.
+
+## Shallow Copy چیست؟
+
+یک Shallow Copy یک آبجکت جدید ایجاد می‌کند که تنها خصوصیات **سطح اول آبجکت اصلی** را کپی می‌کند. برای مقادیر Primitive مثل اعداد، رشته‌ها یا بولین‌ها، مقدار واقعی کپی می‌شود. اما برای خصوصیات که خودشان آبجکت هستند (مثل آرایه‌ها یا آبجکت‌های تو در تو)، کپی فقط ارجاع به داده اصلی را نگه می‌دارد و یک نمونه کاملاً جدید ایجاد نمی‌کند.
+در نتیجه، با اینکه آبجکت جدید خصوصیات سطح اول خودش را دارد، هر آبجکت یا آرایه تو در تو هنوز بین نسخه اصلی و کپی مشترک است.
+
+### مثالی از Shallow Copy
+
+<CodeBlock title="Javascript" raw={
+  `
+  const original = {
+    name: "reza", age: 1,
+    details: {
+        phone: "09370999999",
+        email: "reza@gmail.com",
+        account: {
+            username: "rezankv",
+            password: "******"
+        }
+    }
+}
+
+// Shallow copy
+const shallowCopy = { ...original }
+
+// ایجاد تغییر در آبجکت درونی
+shallowCopy.details.account = { username: "", password: "" }
+
+// آبجکت اصلی هم تغییر میکند
+console.log("original: ", original.details.account) // output { username: "", password: "" }
+`
+}>
+
+```js
+const original = {
+  name: "reza",
+  age: 1,
+  details: {
+    phone: "09370999999",
+    email: "reza@gmail.com",
+    account: {
+      username: "rezankv",
+      password: "******",
+    },
+  },
+};
+
+// Shallow copy
+const shallowCopy = { ...original };
+
+// ایجاد تغییر در آبجکت درونی
+shallowCopy.details.account = { username: "", password: "" };
+
+// آبجکت اصلی هم تغییر میکند
+console.log("original: ", original.details.account); // output: { username: "", password: "" }
+```
+
+</CodeBlock>
+
+یک نکته مهم در مورد Shallow Copy وجود دارد که باید در نظر گرفت. وقتی از خصوصیات سطح اول صحبت می‌کنیم، منظور خصوصیاتی مثل name، age یا details است. با این حال، خود خصوصیت details نیاز به توجه ویژه دارد. اگر کل آبجکت details را دوباره مقدار دهی کنیم، برای مثال:
+
+<CodeBlock title="Javascript" raw={
+  `
+shallowCopy.details = {
+  phone: "",
+  email: "",
+  account: {
+    username: "",
+    password: "",
+  },
+};
+  `
+}>
+```js
+shallowCopy.details = {
+  phone: "",
+  email: "",
+  account: {
+    username: "",
+    password: "",
+  },
+};
+
+````
+</CodeBlock>
+
+در این حالت، فقط نسخه کپی تغییر می‌کند و آبجکت اصلی بدون تغییر باقی می‌ماند.
+اما اگر یک خصوصیت تو در تو را تغییر دهید، مانند:
+
+<CodeBlock title="Javascript" raw={
+  `
+shallowCopy.details.email = "ali@gmail.com";
+  `
+}>
+```js
+shallowCopy.details.email = "ali@gmail.com";
+
+````
+
+</CodeBlock>
+
+در این صورت، آبجکت اصلی نیز تحت تأثیر قرار می‌گیرد. این اتفاق می‌افتد زیرا هر چیزی فراتر از سطح اول هنوز به همان مکان حافظه در آبجکت اصلی اشاره می‌کند.
+
+### نحوه ایجاد Shallow Copy
+
+1. استفاده از عملگر Spread `(...)`
+
+<CodeBlock title="Javascript" raw={
+  `
+  const shallowCopy = { ...originalObject };
+  `
+}>
+```js
+const shallowCopy = { ...originalObject };
+
+````
+</CodeBlock>
+
+2. با استفاده از ` ()Object.assign `
+
+<CodeBlock title="Javascript" raw={
+  `
+const shallowCopy = Object.assign({}, originalObject);
+  `
+}>
+```js
+const shallowCopy = Object.assign({}, originalObject);
+
+````
+
+</CodeBlock>
+
+اگرچه این روش‌ها سریع و آسان هستند، اما برای آبجکت‌های تو در تو و پیچیده مناسب نیستند.
+
+## Deep Copy چیست؟
+
+یک Deep Copy تمام خصوصیات آبجکت اصلی، از جمله هر آبجکت یا آرایه تو در تو، را تکثیر می‌کند. این اطمینان را می‌دهد که آبجکت جدید کاملاً مستقل است و هر تغییری در نسخه کپی، روی آبجکت اصلی تاثیری نخواهد گذاشت.
+Deep Copy به‌ویژه زمانی اهمیت پیدا می‌کند که با ساختارهای داده پیچیده یا چندسطحی کار می‌کنیم و حفظ یکپارچگی داده و جلوگیری از اثرات جانبی ناخواسته ضروری است.
+
+### مثال از Deep Copy
+
+<CodeBlock title="Javascript" raw={
+  `
+const original = {
+    name: "reza", age: 1,
+    details: {
+        phone: "09370999999",
+        email: "reza@gmail.com",
+        account: {
+            username: "rezankv",
+            password: "******"
+        }
+    }
+}
+
+// Deep copy
+const deepCopy = JSON.parse(JSON.stringify(original));
+
+// تغییر در آبجکت درونی
+deepCopy.details.email = "ali@gmail.com";
+
+// آبجکت اصلی بدون تغییر باقی میماند
+console.log(original.details.email); // Output: "reza@gmail.com"
+`
+}>
+
+```js
+const original = {
+  name: "reza",
+  age: 1,
+  details: {
+    phone: "09370999999",
+    email: "reza@gmail.com",
+    account: {
+      username: "rezankv",
+      password: "******",
+    },
+  },
+};
+
+// Deep copy
+const deepCopy = JSON.parse(JSON.stringify(original));
+
+// تغییر در آبجکت درونی
+deepCopy.details.email = "ali@gmail.com";
+
+// آبجکت اصلی بدون تغییر باقی میماند
+console.log(original.details.email); // Output: "reza@gmail.com"
+```
+
+</CodeBlock>
+
+### نحوه انجام Deep Copy
+
+1. با استفاده از `()JSON.stringify` و `()JSON.parse`
+
+- • آبجکت را به یک رشته تبدیل می‌کند و سپس دوباره آن را به یک آبجکت جدید تبدیل می‌کند.
+- محدودیت‌ها:
+  - نمی‌تواند ارجاع‌های دایره‌ای (circular references) را مدیریت کند.
+  - خصوصیاتی مانند توابع، undefined یا Symbol را نادیده می‌گیرد. برای مثال اگر در آبجکت کلیدی با مقدار undefined وجود داشته باشد، در آبجکت کپی شده آن کلید حذف خواهد شد.
+
+<CodeBlock title="Javascript"
+raw={`
+const deepCopy = JSON.parse(JSON.stringify(original));
+`}
+>
+```js
+const deepCopy = JSON.parse(JSON.stringify(original));
+```
+</CodeBlock>
+
+<CodeBlock title="Javascript"
+raw={`
+const original = {name:"reza", phone: undefined}
+const deepCopy = JSON.parse(JSON.stringify(original)); // Output: {name: "reza"}
+`}
+>
+```js
+const original = {name:"reza", phone: undefined}
+const deepCopy = JSON.parse(JSON.stringify(original)); // Output: {name: "reza"}
+```
+</CodeBlock>
+
+2. با استفاده از کتابخانه ها:
+   - کتابخانه‌هایی مانند <a href='https://lodash.com/' target='_blank'>Lodash</a> روش‌های قدرتمندی برای Deep Copy ارائه می‌دهند.
+
+<CodeBlock title="Javascript"
+raw={`
+
+const _ = require('lodash');
+const deepCopy = _.cloneDeep(originalObject);
+
+`}
+
+>
+
+```js
+const _ = require("lodash");
+const deepCopy = _.cloneDeep(originalObject);
+```
+
+</CodeBlock>

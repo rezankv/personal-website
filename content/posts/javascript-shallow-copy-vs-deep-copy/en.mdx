@@ -1,0 +1,261 @@
+---
+title: "JavaScript Shallow Copy vs Deep Copy"
+date: Thu Sep 25 2025 10:28:40 GMT+0330
+slug: javascript-shallow-copy-vs-deep-copy
+lang: en
+summery: "In this article, we will explore the shallow copy and deep copy, one of the most important concepts in javascript."
+tags: ["javascript", "shallow-copy", "deep-copy", "interview"]
+keywords: ["javascript", "shallow-copy", "deep-copy", "interview"]
+author: Reza Nikravesh
+heroImage: /posts/javascript-shallow-copy-vs-deep-copy/hero-image.webp
+---
+
+When dealing with objects and arrays in JavaScript, copying data structures is a frequent task. Yet, developers often struggle with choosing between a shallow copy and a deep copy. Overlooking the distinction can cause unexpected behavior in your code. In this article, we’ll explore these concepts, highlight their differences, and discuss when each should be used.
+
+## What Is the Shallow Copy?
+
+A shallow copy generates a new object that duplicates only the top-level properties of the original. For primitive values such as numbers, strings, or booleans, the actual value is copied. However, when it comes to properties that are objects (like arrays or nested objects), the copy only holds a reference to the original data rather than creating an entirely new instance.
+
+As a result, although the new object has its own set of top-level properties, any nested objects or arrays are still shared between the original and the copy.
+
+### Example of a Shallow Copy
+
+<CodeBlock title="Javascript" raw={
+  `
+  const original = {
+    name: "reza", age: 1,
+    details: {
+        phone: "09370999999",
+        email: "reza@gmail.com",
+        account: {
+            username: "rezankv",
+            password: "******"
+        }
+    }
+}
+
+// Shallow copy
+const shallowCopy = { ...original }
+
+// Modify the nested object in the shallow copy
+shallowCopy.details.account = { username: "", password: "" }
+
+// Original object is also affected
+console.log("original: ", original.details.account) // output { username: "", password: "" }
+`
+}>
+
+```js
+const original = {
+  name: "reza",
+  age: 1,
+  details: {
+    phone: "09370999999",
+    email: "reza@gmail.com",
+    account: {
+      username: "rezankv",
+      password: "******",
+    },
+  },
+};
+
+// Shallow copy
+const shallowCopy = { ...original };
+
+// Modify the nested object in the shallow copy
+shallowCopy.details.account = { username: "", password: "" };
+
+// Original object is also affected
+console.log("original: ", original.details.account); // output: { username: "", password: "" }
+```
+
+</CodeBlock>
+
+There’s an important point to keep in mind about shallow copies. When we talk about top-level properties, we mean properties like `name`, `age`, or `details`. However, the details property itself deserves special attention. If you reassign the entire details object, for example:
+
+<CodeBlock title="Javascript" raw={
+  `
+shallowCopy.details = {
+  phone: "",
+  email: "",
+  account: {
+    username: "",
+    password: "",
+  },
+};
+  `
+}>
+```js
+shallowCopy.details = {
+  phone: "",
+  email: "",
+  account: {
+    username: "",
+    password: "",
+  },
+};
+
+````
+</CodeBlock>
+
+in this case, only the copy is updated, and the original object remains unchanged.
+But if you modify a nested property, such as:
+
+<CodeBlock title="Javascript" raw={
+  `
+shallowCopy.details.email = "ali@gmail.com";
+  `
+}>
+```js
+shallowCopy.details.email = "ali@gmail.com";
+
+````
+
+</CodeBlock>
+
+then the original object will also be affected. This happens because anything beyond the top level is still referencing the same memory location in the original object.
+
+### How to Create a Shallow Copy
+
+1. Using the Spread Operator `(...)`
+
+<CodeBlock title="Javascript" raw={
+  `
+  const shallowCopy = { ...originalObject };
+  `
+}>
+```js
+const shallowCopy = { ...originalObject };
+
+````
+</CodeBlock>
+
+2. Using ` Object.assign() `
+
+<CodeBlock title="Javascript" raw={
+  `
+const shallowCopy = Object.assign({}, originalObject);
+  `
+}>
+```js
+const shallowCopy = Object.assign({}, originalObject);
+
+````
+
+</CodeBlock>
+
+While these methods are fast and easy, they are not suitable for deeply nested objects.
+
+## What Is The Deep Copy?
+
+A deep copy replicates all properties of the original object, including every nested object or array. This guarantees that the new object is entirely independent, so any modifications to the copy will not impact the original.
+
+Deep copying becomes especially important when working with complex or deeply nested data structures, where maintaining data integrity and preventing unintended side effects is crucial.
+
+### Example of a Deep Copy
+
+<CodeBlock title="Javascript" raw={
+  `
+const original = {
+    name: "reza", age: 1,
+    details: {
+        phone: "09370999999",
+        email: "reza@gmail.com",
+        account: {
+            username: "rezankv",
+            password: "******"
+        }
+    }
+}
+
+// Deep copy using JSON methods
+const deepCopy = JSON.parse(JSON.stringify(original));
+
+// Modify the nested object in the deep copy
+deepCopy.details.email = "ali@gmail.com";
+
+// Original object remains unchanged
+console.log(original.details.email); // Output: "reza@gmail.com"
+`
+}>
+
+```js
+const original = {
+  name: "reza",
+  age: 1,
+  details: {
+    phone: "09370999999",
+    email: "reza@gmail.com",
+    account: {
+      username: "rezankv",
+      password: "******",
+    },
+  },
+};
+
+// Deep copy using JSON methods
+const deepCopy = JSON.parse(JSON.stringify(original));
+
+// Modify the nested object in the deep copy
+deepCopy.details.email = "ali@gmail.com";
+
+// Original object remains unchanged
+console.log(original.details.email); // Output: "reza@gmail.com"
+```
+
+</CodeBlock>
+
+### How to Create a Deep Copy
+
+1. Using `JSON.stringify()` and `JSON.parse()`
+
+- Converts the object into a JSON string and then parses it back into a new object.
+- Limitations:
+  - Cannot handle circular references.
+  - Ignores properties like functions, undefined, or Symbol. For example, if an object has a key with the value undefined, that key will be removed in the copied object.
+
+<CodeBlock title="Javascript"
+raw={`
+
+const deepCopy = JSON.parse(JSON.stringify(originalObject));
+
+`}
+
+>
+
+```js
+const deepCopy = JSON.parse(JSON.stringify(originalObject));
+```
+
+</CodeBlock>
+<CodeBlock title="Javascript"
+raw={`
+const original = {name:"reza", phone: undefined}
+const deepCopy = JSON.parse(JSON.stringify(original)); // Output: {name: "reza"}
+`}
+>
+```js
+const original = {name:"reza", phone: undefined}
+const deepCopy = JSON.parse(JSON.stringify(original)); // Output: {name: "reza"}
+```
+</CodeBlock>
+
+2. Using Libraries:
+   - Libraries like <a href='https://lodash.com/' target='_blank'>Lodash</a> provide robust deep cloning methods.
+
+<CodeBlock title="Javascript"
+raw={`
+
+const _ = require('lodash');
+const deepCopy = _.cloneDeep(originalObject);
+
+`}
+
+>
+
+```js
+const _ = require("lodash");
+const deepCopy = _.cloneDeep(originalObject);
+```
+
+</CodeBlock>
