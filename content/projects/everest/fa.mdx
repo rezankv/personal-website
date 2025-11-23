@@ -1,0 +1,56 @@
+---
+title: "اورست"
+isFeatured: false
+date: Sun Nov 23 2025 11:00:53 GMT+0330
+slug: everest
+liveLink:
+icon: /projects/everest/icon.png
+lang: fa
+subtitle: "وبسایت خرید اشتراک به همراه پنل بازاریاب"
+summery: "وبسایت خرید اشتراک به همراه پنل بازاریاب و مدیرکل"
+tags: ["html", "css", "tailwind", "admin-panel", "nextjs", "monorepo"]
+keywords: ["html", "css", "tailwind", "admin-panel", "monorepo", "nextjs"]
+author: رضا نیک روش
+introVideo: /projects/everest/intro-fa.mp4
+---
+
+## تجربه من از توسعه سایت فروش اشتراک
+
+این پروژه از یک پیام تلگرامی شروع شد. یک نفر بهم پیام داد و بهم گفت که به یک سایت فروش اشتراک نیاز داشت. بخش Backend پروژه از قبل آماده بود و وظیفه من پیاده‌سازی Frontend. این پروژه شامل ۳ Role اصلی یعنی مدیر سامانه، بازاریاب و کاربران سایت بود.
+
+### معماری و ساختار پروژه
+
+بعد از بررسی نیازها، تصمیم گرفتم برای هر Role یک وب‌اپ مستقل ایجاد کنم تا هم توسعه آسان‌تر شود و هم نگه‌داری آینده قابل مدیریت‌تر باشد. برای همین پروژه را با Turborepo پیش بردم و سه پروژه Next.js جداگانه ساختم.
+
+### پیاده‌سازی و تکنولوژی‌ها
+
+-     Next.js برای هر سه اپلیکیشن
+-     Turborepo برای مدیریت مونو‌ریپو
+-     TailwindCSS برای استایل‌دهی
+-     shadcn/ui برای سریع‌تر شدن فرایند توسعه رابط کاربری
+
+### چالش‌ها
+
+چالش اصلی پروژه، نبودن یک فرد فنی در سمت کارفرما بود. مدیریت هماهنگی‌ها برای او سخت بود و برای همین بخش زیادی از مسیر را در کنار او پیش بردم و راهنمایی‌های لازم را ارائه دادم تا پروژه درست جلو برود.  
+
+
+### خروجی نهایی
+
+در نهایت، پروژه شامل سه وب‌اپلیکیشن مستقل Next.js شد که روی سرور دیپلوی و تحویل داده شدند:
+- اپلیکیشن کاربر: خرید اشتراک و انجام پرداخت‌ها
+- اپلیکیشن بازاریاب: مدیریت زیرمجموعه‌ها و مشاهده درآمد
+- اپلیکیشن مدیر کل: نظارت، مدیریت کاربران، بازاریاب‌ها و کنترل سامانه
+
+فلو کلی سیستم نیز بر پایه پرداخت، ایجاد زیرمجموعه برای بازاریاب و مدیریت کامل از سمت مدیر پیاده‌سازی شد.
+
+
+### ابزار هایی که در این پروژه استفاده شد
+
+- <Link href="https://nextjs.org/" target="_blank">Next.js(app router)</Link>
+- <Link href="https://tailwindcss.com/" target="_blank">TailwindCSS</Link>
+- <Link href="https://turborepo.com/" target="_blank">Turborepo</Link>
+- <Link href="https://zod.dev/" target="_blank">ZOD</Link>
+- <Link href="https://react-hook-form.com/" target="_blank">React Hook Form</Link>
+- <Link href="https://nginx.org/" target="_blank">Nginx</Link>
+- <Link href="https://pm2.keymetrics.io/" target="_blank">PM2</Link>
+- <Link href="https://www.typescriptlang.org/" target="_blank">Typescript</Link>
