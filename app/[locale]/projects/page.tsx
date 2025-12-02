@@ -12,7 +12,7 @@ import { projectService } from "@app/contents";
 import { ProjectCard } from "@app/components";
 
 // utils
-import { cn, sortDocumentByDateDesc } from "@app/utils";
+import { sortDocumentByDateDesc } from "@app/utils";
 
 // i18n
 import { Locale } from "@app/i18n/routing";
@@ -73,11 +73,6 @@ const ProjectsPage = async ({
             </Link>
           );
         })}
-        <p className={cn("text-muted-foreground-2 italic  border-r border-r-3 border-r-black mt-5 pr-3",locale === 'en' && " border-r-0 border-l border-l-3 border-l-black pl-3")}>
-          {locale === "fa"
-            ? "سایر پروژه ها در روز های آینده اضافه خواهند شد..."
-            : "Rest of the projects will be available soon..."}
-        </p>
       </div>
     </div>
   );
